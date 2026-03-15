@@ -1,14 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
 import './ScrollStop.css';
+import alligatorImg from './assets/alligator.png';
+import alligator2Img from './assets/alligator-2.png';
+import beaverImg from './assets/beaver.png';
+import birdOfParadiseImg from './assets/Bird of Paradise.png';
+import berryImg from './assets/berry.png';
+import cobraImg from './assets/cobra.png';
+import deerImg from './assets/deer.png';
 
 const TOTAL_FRAMES = 121;
+
+const ACCENT = '#39FF14';
+
+const RolodexText = ({ text, baseDelay, style, visible }) => (
+  <span className="stat-num" style={{ color: ACCENT, ...style }}>
+    {visible
+      ? text.split('').map((char, i) => (
+          <span key={i} className="rolodex-slot">
+            <span className="rolodex-char" style={{ animationDelay: `${baseDelay + i * 0.06}s` }}>
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          </span>
+        ))
+      : <span style={{ visibility: 'hidden' }}>{text}</span>
+    }
+  </span>
+);
 
 const ScrollStopSite = () => {
   const canvasRef = useRef(null);
   const scrollContainerRef = useRef(null);
+  const storyRef = useRef(null);
+  const menuRef = useRef(null);
+  const statsRef = useRef(null);
+  const statsTriggeredRef = useRef(false);
   const [images, setImages] = useState([]);
   const [loadedFrames, setLoadedFrames] = useState(0);
   const [currentFrame, setCurrentFrame] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const [storyRelY, setStoryRelY] = useState(0);
+  const [menuRelY, setMenuRelY] = useState(0);
+  const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
 
   const accentColor = '#39FF14';
@@ -65,6 +97,22 @@ const ScrollStopSite = () => {
       if (!scrollContainerRef.current) return;
       const html = document.documentElement;
       const scrollProgress = html.scrollTop;
+      setScrollY(scrollProgress);
+      if (storyRef.current) {
+        const rel = scrollProgress - storyRef.current.offsetTop + window.innerHeight;
+        setStoryRelY(Math.max(0, rel));
+      }
+      if (menuRef.current) {
+        const rel = scrollProgress - menuRef.current.offsetTop + window.innerHeight;
+        setMenuRelY(Math.max(0, rel));
+      }
+      if (statsRef.current && !statsTriggeredRef.current) {
+        const rect = statsRef.current.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          statsTriggeredRef.current = true;
+          setStatsVisible(true);
+        }
+      }
       // Video finishes scrubbing in the first 30% of total scroll
       const maxVideoScroll = (html.scrollHeight - window.innerHeight) * 0.3;
       const scrollFraction = Math.max(0, Math.min(1, scrollProgress / maxVideoScroll));
@@ -82,14 +130,6 @@ const ScrollStopSite = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, [currentFrame, images]);
-
-  const Tag = ({ label }) => (
-    <div className="ingredient-tag">
-      <span className="tag-dot"></span>
-      <span className="tag-text">{label}</span>
-      <div className="tag-line"></div>
-    </div>
-  );
 
   const beerMenu = {
     Lagers: [
@@ -153,9 +193,37 @@ const ScrollStopSite = () => {
 
       {/* ─── HERO ─── */}
       <section className="hero">
+        {/* Alligator — fast up, slight right */}
+        <img
+          src={alligatorImg}
+          alt=""
+          className="parallax-img parallax-alligator"
+          style={{ transform: `translateY(${scrollY * -0.55}px) translateX(${scrollY * 0.08}px)` }}
+        />
+        {/* Deer — medium up, slight left */}
+        <img
+          src={deerImg}
+          alt=""
+          className="parallax-img parallax-deer"
+          style={{ transform: `translateY(${scrollY * -0.32}px) translateX(${scrollY * -0.06}px)` }}
+        />
+        {/* Cobra — slow up, no diagonal */}
+        <img
+          src={cobraImg}
+          alt=""
+          className="parallax-img parallax-cobra"
+          style={{ transform: `translateY(${scrollY * -0.18}px)` }}
+        />
+        {/* Beaver — medium-fast up, slight right */}
+        <img
+          src={beaverImg}
+          alt=""
+          className="parallax-img parallax-beaver-hero"
+          style={{ transform: `translateY(${scrollY * -0.42}px) translateX(${scrollY * 0.05}px)` }}
+        />
         <div className="hero-content">
           <p className="hero-eyebrow">Fort Lauderdale, FL</p>
-          <h1>A Vibe As<br /><span style={{ color: accentColor }}>Original</span><br />As The Beers.</h1>
+          <h1>A New Breed<br /><span style={{ color: accentColor }}>Of Beers</span></h1>
           <p className="hero-sub">South Florida's premier destination for craft beer &amp; spirits.</p>
           <a href="#menu" className="cta-btn">Explore the Menu</a>
         </div>
@@ -173,21 +241,18 @@ const ScrollStopSite = () => {
           {/* Ingredient Tags — left side */}
           <div className={`ingredient-wrap ing-1 ${currentFrame > 25 ? 'visible' : ''}`}>
             <div className="ingredient-tag">
-              <span className="tag-dot" />
               <span className="tag-text">AROMATIC HOPS</span>
               <div className="tag-line" />
             </div>
           </div>
           <div className={`ingredient-wrap ing-2 ${currentFrame > 50 ? 'visible' : ''}`}>
             <div className="ingredient-tag">
-              <span className="tag-dot" />
               <span className="tag-text">LOCAL MALT</span>
               <div className="tag-line" />
             </div>
           </div>
           <div className={`ingredient-wrap ing-3 ${currentFrame > 72 ? 'visible' : ''}`}>
             <div className="ingredient-tag">
-              <span className="tag-dot" />
               <span className="tag-text">FLORIDA CITRUS</span>
               <div className="tag-line" />
             </div>
@@ -198,39 +263,43 @@ const ScrollStopSite = () => {
             <div className="ingredient-tag tag-right">
               <div className="tag-line tag-line-left" />
               <span className="tag-text">YEAST CULTURE</span>
-              <span className="tag-dot" />
             </div>
           </div>
           <div className={`ingredient-wrap ing-r2 ${currentFrame > 62 ? 'visible' : ''}`}>
             <div className="ingredient-tag tag-right">
               <div className="tag-line tag-line-left" />
               <span className="tag-text">PURE WATER</span>
-              <span className="tag-dot" />
             </div>
           </div>
         </div>
       </div>
 
       {/* ─── STATS BAR ─── */}
-      <section className="stats-bar">
+      <section className="stats-bar" ref={statsRef}>
         <div className="stat-item">
-          <span className="stat-num" style={{ color: accentColor }}>24</span>
+          <RolodexText text="24" baseDelay={0} visible={statsVisible} />
           <span className="stat-label">Unique Varieties</span>
         </div>
         <div className="stat-divider" />
         <div className="stat-item">
-          <span className="stat-num" style={{ color: accentColor }}>7</span>
+          <RolodexText text="7" baseDelay={0.25} visible={statsVisible} />
           <span className="stat-label">Days A Week</span>
         </div>
         <div className="stat-divider" />
         <div className="stat-item">
-          <span className="stat-num" style={{ color: accentColor, fontSize: '2.5rem' }}>Ft. Lauderdale</span>
+          <RolodexText text="Ft. Lauderdale" baseDelay={0.45} style={{ fontSize: '2.5rem' }} visible={statsVisible} />
           <span className="stat-label">Heart of Florida</span>
         </div>
       </section>
 
       {/* ─── STORY ─── */}
-      <section id="story" className="story-section">
+      <section id="story" className="story-section" ref={storyRef}>
+        <img
+          src={alligator2Img}
+          alt=""
+          className="story-alligator"
+          style={{ transform: `translateY(calc(-50% + ${storyRelY * -0.18}px))` }}
+        />
         <div className="story-grid">
           <div className="story-left">
             <h2>The Spirit<br /><span style={{ color: accentColor }}>of Florida.</span></h2>
@@ -245,7 +314,14 @@ const ScrollStopSite = () => {
       </section>
 
       {/* ─── BEER MENU ─── */}
-      <section id="menu" className="menu-section">
+      <section id="menu" className="menu-section" ref={menuRef}>
+        {/* Berry — right edge */}
+        <img
+          src={berryImg}
+          alt=""
+          className="menu-plant menu-plant-right"
+          style={{ transform: `translateY(calc(-30% + ${menuRelY * -0.22}px))` }}
+        />
         <div className="menu-header">
           <p className="section-eyebrow">Rotating Selection</p>
           <h2>Beer <span style={{ color: accentColor }}>Menu</span></h2>
@@ -273,6 +349,16 @@ const ScrollStopSite = () => {
         </div>
       </section>
 
+      {/* ─── BIRD OF PARADISE BREAK ─── */}
+      <div className="plant-break">
+        <img
+          src={birdOfParadiseImg}
+          alt=""
+          className="plant-break-img"
+          style={{ transform: `translateY(${menuRelY * -0.14}px)` }}
+        />
+      </div>
+
       {/* ─── FOOD TRUCKS ─── */}
       <section id="food-trucks" className="food-trucks-section">
         <p className="section-eyebrow">On Site Every Day</p>
@@ -299,7 +385,7 @@ const ScrollStopSite = () => {
         <div className="visit-grid">
           <div className="visit-info">
             <p className="section-eyebrow">Come Find Us</p>
-            <h2 style={{ fontSize: '3.5rem', lineHeight: '1.1', marginBottom: '2rem' }}>Visit The<br /><span style={{ color: accentColor }}>Taproom</span></h2>
+            <h2 className="visit-heading">Visit The<br /><span style={{ color: accentColor }}>Taproom</span></h2>
             <p className="visit-address">726 NorthEast 2nd Ave<br />Fort Lauderdale, FL 33304</p>
             <div className="hours-table">
               <div className="hours-row"><span>Mon – Thu</span><span>5pm – 11pm</span></div>

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700;900&display=swap');
 
+@font-face {
+  font-family: 'InvasiveSpecies';
+  src: url('/src/assets/fonts/Invasive Species.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
@@ -12,6 +19,11 @@ body {
 }
 
 a { text-decoration: none; color: inherit; }
+
+h1, h2 {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
+  font-weight: normal;
+}
 
 /* ─── LOADER ─── */
 .loader {
@@ -56,8 +68,31 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 3rem;
-  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
-  backdrop-filter: blur(4px);
+  /* no background here — handled by ::before */
+}
+
+/* Tall alpha-mask gradient that softly fades black into transparent */
+.site-nav::before {
+  content: '';
+  position: absolute;
+  height: 240px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.08) 70%,
+    rgba(0, 0, 0, 0.0)  100%
+  );
+  /* Mask fades the blur so it's heavy at top, gone at bottom */
+  -webkit-mask-image: linear-gradient(180deg, black 0%, black 30%, transparent 100%);
+  mask-image: linear-gradient(180deg, black 0%, black 30%, transparent 100%);
+  backdrop-filter: blur(14px) brightness(0.95);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .nav-logo {
@@ -108,6 +143,15 @@ a { text-decoration: none; color: inherit; }
   background: radial-gradient(ellipse at center, rgba(57,255,20,0.07) 0%, #000 65%);
 }
 
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .hero-eyebrow {
   font-size: 0.75rem;
   letter-spacing: 4px;
@@ -117,10 +161,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero h1 {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
   font-size: clamp(3.5rem, 8vw, 8rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-weight: normal;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
   margin-bottom: 1.5rem;
 }
 
@@ -177,6 +222,52 @@ a { text-decoration: none; color: inherit; }
   50% { opacity: 1; transform: scaleY(1); }
 }
 
+/* ─── PARALLAX IMAGES ─── */
+.parallax-img {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  filter:
+    drop-shadow(0 12px 24px rgba(0,0,0,0.9))
+    drop-shadow(0 30px 60px rgba(0,0,0,0.7))
+    drop-shadow(0 60px 100px rgba(0,0,0,0.5));
+  z-index: 2;
+}
+
+/* Alligator — lower-right, pulled toward center */
+.parallax-alligator {
+  width: clamp(300px, 32vw, 460px);
+  bottom: 5%;
+  right: 16%;
+  opacity: 0.92;
+}
+
+/* Deer — upper-left, nudged right toward text */
+.parallax-deer {
+  width: clamp(180px, 18vw, 260px);
+  top: 14%;
+  left: 14%;
+  opacity: 0.78;
+}
+
+/* Cobra — mid-right, moved up */
+.parallax-cobra {
+  width: clamp(260px, 30vw, 440px);
+  top: 22%;
+  right: 2%;
+  opacity: 0.85;
+  z-index: 1;
+}
+
+/* Beaver — lower-left, offset higher than alligator */
+.parallax-beaver-hero {
+  width: clamp(200px, 22vw, 310px);
+  bottom: 28%;
+  left: 3%;
+  opacity: 0.82;
+}
+
 /* ─── SCROLL VIDEO ─── */
 .scroll-container {
   position: relative;
@@ -224,12 +315,12 @@ a { text-decoration: none; color: inherit; }
   transform: translateX(0);
 }
 
-/* Positions */
-.ing-1  { top: 18%; left: 5%; }
-.ing-2  { top: 47%; left: 5%; }
-.ing-3  { top: 73%; left: 5%; }
-.ing-r1 { top: 28%; right: 5%; }
-.ing-r2 { top: 58%; right: 5%; }
+/* Positions — staggered so they don't vertically align */
+.ing-1  { top: 18%; left: 4%; }
+.ing-2  { top: 47%; left: 12%; }
+.ing-3  { top: 73%; left: 6%; }
+.ing-r1 { top: 28%; right: 4%; }
+.ing-r2 { top: 60%; right: 10%; }
 
 /* Tag layout */
 .ingredient-tag {
@@ -238,9 +329,6 @@ a { text-decoration: none; color: inherit; }
   gap: 12px;
 }
 
-.tag-right {
-  flex-direction: row-reverse;
-}
 
 /* The green solid pill */
 .tag-text {
@@ -252,21 +340,11 @@ a { text-decoration: none; color: inherit; }
   background: #39FF14;
   padding: 9px 16px;
   border-radius: 4px;
-  /* Deep diffused shadow — makes it hover over the beer */
+  /* Deep black diffused shadow — makes it hover over the beer */
   box-shadow:
-    0 8px 24px rgba(57, 255, 20, 0.55),
-    0 20px 60px rgba(57, 255, 20, 0.2),
-    0 40px 100px rgba(0, 0, 0, 0.7);
-}
-
-/* Inset dot beside tag */
-.tag-dot {
-  width: 7px;
-  height: 7px;
-  min-width: 7px;
-  background: #111;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(57,255,20,0.5), inset 0 1px 2px rgba(0,0,0,0.8);
+    0 8px 24px rgba(0, 0, 0, 0.7),
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 40px 100px rgba(0, 0, 0, 0.5);
 }
 
 /* Connecting line (left tags: line goes right toward beer) */
@@ -287,6 +365,27 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ─── STATS BAR ─── */
+@keyframes rolodex {
+  0%   { opacity: 0; transform: rotateX(-90deg); }
+  40%  { opacity: 1; }
+  100% { transform: rotateX(0deg); }
+}
+
+/* Each character sits in a clipping slot so only the front face shows */
+.rolodex-slot {
+  display: inline-block;
+  overflow: hidden;
+  /* Slight extra height so descenders aren't clipped */
+  padding-bottom: 0.1em;
+  perspective: 400px;
+}
+
+.rolodex-char {
+  display: inline-block;
+  transform-origin: top center;
+  animation: rolodex 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 .stats-bar {
   display: flex;
   align-items: center;
@@ -330,6 +429,23 @@ a { text-decoration: none; color: inherit; }
   background: #000;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+
+.story-alligator {
+  position: absolute;
+  width: clamp(600px, 72vw, 1000px);
+  left: -28%;
+  top: 82%;
+  /* translateY(-50%) is the centering baseline; JS adds parallax offset on top */
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.9;
+  filter:
+    drop-shadow(0 12px 24px rgba(0,0,0,0.9))
+    drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+  z-index: 0;
 }
 
 .story-grid {
@@ -340,10 +456,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 .story-left h2 {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  font-weight: normal;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
   position: sticky;
   top: 8rem;
 }
@@ -361,6 +478,31 @@ a { text-decoration: none; color: inherit; }
   background: #050505;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  overflow: visible;
+}
+
+.menu-plant {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  filter:
+    drop-shadow(0 12px 24px rgba(0,0,0,0.9))
+    drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+}
+
+.menu-plant-right {
+  width: clamp(180px, 20vw, 300px);
+  right: min(0px, calc((1200px - 100vw) / 2));
+  top: 40%;
+  opacity: 0.88;
+}
+
+.menu-plant-left {
+  width: clamp(300px, 32vw, 480px);
+  left: -14%;
+  top: 25%;
+  opacity: 0.92;
 }
 
 .menu-header {
@@ -377,9 +519,11 @@ a { text-decoration: none; color: inherit; }
 }
 
 .menu-header h2 {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-weight: normal;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
   margin-bottom: 1rem;
 }
 
@@ -455,6 +599,28 @@ a { text-decoration: none; color: inherit; }
   color: #333;
 }
 
+/* ─── PLANT BREAK ─── */
+.plant-break {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #000;
+  overflow: visible;
+}
+
+.plant-break-img {
+  position: absolute;
+  width: clamp(300px, 32vw, 480px);
+  left: -2%;
+  top: -60px;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.92;
+  filter:
+    drop-shadow(0 12px 24px rgba(0,0,0,0.9))
+    drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+}
+
 /* ─── FOOD TRUCKS ─── */
 .food-trucks-section {
   padding: 8rem 2rem;
@@ -463,11 +629,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 .food-trucks-section h2 {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-weight: normal;
+  letter-spacing: 0.01em;
   margin-bottom: 4rem;
-  line-height: 1.05;
+  line-height: 0.9;
 }
 
 .trucks-grid {
@@ -576,7 +743,7 @@ a { text-decoration: none; color: inherit; }
 .email-section h2 {
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.12em;
   margin-bottom: 1rem;
 }
 
@@ -678,13 +845,82 @@ a { text-decoration: none; color: inherit; }
   padding-top: 2rem;
 }
 
+/* ─── VISIT HEADING ─── */
+.visit-heading {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  .site-nav { padding: 1rem 1.5rem; }
+
+  /* NAVBAR */
+  .site-nav { padding: 1rem 1.25rem; }
   .nav-links { display: none; }
-  .story-grid, .visit-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .story-left h2 { position: static; font-size: 2.5rem; }
-  .stat-item { padding: 0 2rem; }
-  .stat-num { font-size: 2.5rem; }
-  .footer-top { flex-direction: column; align-items: flex-start; }
+
+  /* HERO */
+  .hero h1 { font-size: clamp(2.6rem, 10vw, 3.5rem); }
+  .hero-sub { max-width: 100%; }
+  .hero-content { padding: 0 1.5rem; }
+  /* Hide parallax animals — clamp minimums cause overflow on mobile */
+  .parallax-img { display: none; }
+
+  /* SCROLL VIDEO — ingredient tags */
+  .ing-1  { top: 10%; left: 2%; }
+  .ing-2  { top: 44%; left: 2%; }
+  .ing-3  { top: 70%; left: 2%; }
+  .ing-r1 { top: 24%; right: 2%; }
+  .ing-r2 { top: 57%; right: 2%; }
+  .ingredient-wrap.visible .tag-line { width: 36px; }
+  .tag-text { font-size: 0.6rem; padding: 6px 10px; letter-spacing: 1.5px; }
+
+  /* STATS BAR */
+  .stats-bar { padding: 3rem 0.5rem; }
+  .stat-item { padding: 0 1rem; }
+  .stat-num { font-size: 2rem !important; }
+  .stat-label { font-size: 0.65rem; }
+
+  /* STORY */
+  .story-section { padding: 4rem 1.5rem; }
+  .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .story-left h2 { position: static; font-size: 2.8rem; }
+  .story-right p { font-size: 0.95rem; }
+  .story-alligator { display: none; }
+
+  /* MENU */
+  .menu-section { padding: 4rem 1.5rem; }
+  .menu-header { margin-bottom: 3rem; }
+  .menu-plant { display: none; }
+
+  /* PLANT BREAK */
+  .plant-break { height: 160px; }
+  .plant-break-img {
+    width: clamp(160px, 52vw, 240px);
+    top: -10px;
+    left: -2%;
+  }
+
+  /* FOOD TRUCKS */
+  .food-trucks-section { padding: 4rem 1.5rem; }
+  .trucks-grid { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .truck-card { max-width: 100%; }
+
+  /* VISIT */
+  .visit-section { padding: 4rem 1.5rem; }
+  .visit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .visit-heading { font-size: 2.5rem; }
+  .visit-address { font-size: 1rem; }
+  .visit-map iframe { height: 220px !important; }
+
+  /* EMAIL */
+  .email-section { padding: 4rem 1.5rem; }
+  .email-form { flex-direction: column; max-width: 100%; }
+  .email-input { border-right: 1px solid #222; border-bottom: none; }
+  .email-submit { width: 100%; }
+
+  /* FOOTER */
+  .site-footer { padding: 3rem 1.25rem 2rem; }
+  .footer-top { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer-nav { gap: 1rem; flex-wrap: wrap; }
 }
