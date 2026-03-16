@@ -7,6 +7,20 @@ import birdOfParadiseImg from './assets/Bird of Paradise.png';
 import berryImg from './assets/berry.png';
 import cobraImg from './assets/cobra.png';
 import deerImg from './assets/deer.png';
+import logoImg from './assets/logo.png';
+import Shop from './Shop.jsx';
+import photo1 from './assets/photos/invasive-species-brewing.jpeg';
+import photo2 from './assets/photos/IMG_5759.jpg';
+import photo3 from './assets/photos/IMG_5769.jpg';
+import photo4 from './assets/photos/IMG_5721.jpg';
+import photo5 from './assets/photos/IMG_57681.jpg';
+import photo6 from './assets/photos/IMG_5711.jpg';
+import photo7 from './assets/photos/IMG_5712.jpg';
+import photo8 from './assets/photos/IMG_5713.jpg';
+import photo9 from './assets/photos/IMG_57621.jpg';
+import photo10 from './assets/photos/IMG_57651.jpg';
+
+const photos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10];
 
 const TOTAL_FRAMES = 121;
 
@@ -42,6 +56,23 @@ const ScrollStopSite = () => {
   const [menuRelY, setMenuRelY] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  const openLightbox = (i) => setLightboxIndex(i);
+  const closeLightbox = () => setLightboxIndex(null);
+  const prevPhoto = (e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + photos.length - 1) % photos.length); };
+  const nextPhoto = (e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % photos.length); };
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') setLightboxIndex((i) => (i + photos.length - 1) % photos.length);
+      if (e.key === 'ArrowRight') setLightboxIndex((i) => (i + 1) % photos.length);
+      if (e.key === 'Escape') closeLightbox();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxIndex]);
 
   const accentColor = '#39FF14';
 
@@ -200,7 +231,7 @@ const ScrollStopSite = () => {
       {/* Loader */}
       {loadedFrames < TOTAL_FRAMES && (
         <div className="loader">
-          <img src="https://invasivespeciesbrewing.com/wp-content/uploads/2020/07/iguana-white-invasive-species-brewing.png" alt="Logo" style={{ height: '80px', marginBottom: '2rem', opacity: 0.9 }} />
+          <img src={logoImg} alt="Logo" style={{ height: '80px', marginBottom: '2rem', opacity: 0.9 }} />
           <div className="loader-bar-outer">
             <div className="loader-bar-inner" style={{ width: `${Math.floor((loadedFrames / TOTAL_FRAMES) * 100)}%` }} />
           </div>
@@ -210,12 +241,15 @@ const ScrollStopSite = () => {
 
       {/* ─── NAVBAR ─── */}
       <nav className="site-nav">
-        <img src="https://invasivespeciesbrewing.com/wp-content/uploads/2020/07/iguana-white-invasive-species-brewing.png" alt="Invasive Species Brewing" className="nav-logo" />
+        <img src={logoImg} alt="Invasive Species Brewing" className="nav-logo" />
         <ul className="nav-links">
           <li><a href="#story">About</a></li>
           <li><a href="#menu">Menu</a></li>
           <li><a href="#food-trucks">Food Trucks</a></li>
           <li><a href="#visit">Visit</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#press">Press</a></li>
+          <li><a href="#shop">Shop</a></li>
           <li><a href="https://invasivespeciesbrewing.com/brew-shop" target="_blank" rel="noreferrer" className="nav-cta">Brew Shop</a></li>
         </ul>
       </nav>
@@ -463,16 +497,68 @@ const ScrollStopSite = () => {
         </form>
       </section>
 
+      {/* ─── PRESS ─── */}
+      <section id="press" className="press-section">
+        <p className="section-eyebrow">As Seen In</p>
+        <h2>Press</h2>
+        <div className="press-grid">
+          {[
+            { pub: 'Miami New Times', title: 'Best Brewery in Broward 2025', url: 'https://www.miaminewtimes.com/best-of-miami/2025/eat-and-drink/best-brewery-broward-23480163' },
+            { pub: 'Forbes', title: 'No One Laughs Anymore At The Florida Craft Beer Scene', url: 'https://www.forbes.com/sites/garystoller/2019/09/25/no-one-laughs-anymore-at-the-florida-craft-beer-scene/' },
+            { pub: 'ESPN SW Florida', title: 'The 10 Best Breweries in Florida', url: 'https://espnswfl.com/listicle/the-10-best-breweries-in-florida/' },
+            { pub: 'Miami New Times', title: 'Best Breweries in Miami and Fort Lauderdale 2022', url: 'https://www.miaminewtimes.com/restaurants/best-of-miami-2022-the-best-breweries-in-miami-and-fort-lauderdale-14739980' },
+            { pub: 'Thrillist', title: 'The 10 Best Breweries in Florida Ranked', url: 'https://www.thrillist.com/drink/miami/the-10-best-breweries-in-florida-ranked' },
+            { pub: 'Forbes', title: '10 Under the Radar Breweries to Watch This Spring', url: 'https://www.forbes.com/sites/kennygould/2019/03/08/best-craft-beer-spring-2019/' },
+            { pub: 'New Times Broward', title: 'Invasive Species Offers Experimental Beers at Ft. Lauderdale Brewery', url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216' },
+            { pub: 'Miami New Times', title: 'Best New Brewery in Broward 2022', url: 'https://www.miaminewtimes.com/best-of/2022/eat-and-drink/best-new-brewery-miami-14715459' },
+            { pub: 'Sun Sentinel', title: 'Best New Brewery in South Florida 2017', url: 'http://www.southflorida.com/best-of-south-florida/bars-clubs-entertainment/sf-best-new-brewery-south-florida-invasive-species-20171129-story.html' },
+            { pub: 'Fort Lauderdale Daily', title: "Invasive Species Promises to Be Ft. Lauderdale's Funkiest New Brewery", url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216' },
+          ].map(({ pub, title, url }) => (
+            <a key={url + title} href={url} target="_blank" rel="noreferrer" className="press-card">
+              <span className="press-pub">{pub}</span>
+              <p className="press-title">{title}</p>
+              <span className="press-read">Read Article →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── SHOP ─── */}
+      <Shop />
+
+      {/* ─── PHOTOS ─── */}
+      <section id="photos" className="photos-section">
+        <p className="section-eyebrow">The Taproom</p>
+        <h2>Photos</h2>
+        <div className="photos-grid">
+          {photos.map((src, i) => (
+            <div key={i} className={`photo-item photo-item-${i + 1}`} onClick={() => openLightbox(i)}>
+              <img src={src} alt={`Invasive Species Brewing ${i + 1}`} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── LIGHTBOX ─── */}
+      {lightboxIndex !== null && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <button className="lightbox-arrow lightbox-prev" onClick={prevPhoto}>&#8592;</button>
+          <img className="lightbox-img" src={photos[lightboxIndex]} alt="" />
+          <button className="lightbox-arrow lightbox-next" onClick={nextPhoto}>&#8594;</button>
+          <button className="lightbox-close" onClick={closeLightbox}>&#10005;</button>
+        </div>
+      )}
+
       {/* ─── FOOTER ─── */}
       <footer className="site-footer">
         <div className="footer-top">
-          <img src="https://invasivespeciesbrewing.com/wp-content/uploads/2020/07/iguana-white-invasive-species-brewing.png" alt="Invasive Species Brewing" style={{ height: '60px', opacity: 0.7 }} />
+          <img src={logoImg} alt="Invasive Species Brewing" style={{ height: '60px', opacity: 0.7 }} />
           <nav className="footer-nav">
             <a href="https://invasivespeciesbrewing.com/our-story" target="_blank" rel="noreferrer">About</a>
             <a href="https://invasivespeciesbrewing.com/brew-shop" target="_blank" rel="noreferrer">Brew Shop</a>
             <a href="https://invasivespeciesbrewing.com/menu-6-26" target="_blank" rel="noreferrer">Menu</a>
-            <a href="https://invasivespeciesbrewing.com/photos" target="_blank" rel="noreferrer">Photos</a>
-            <a href="https://invasivespeciesbrewing.com/home-2" target="_blank" rel="noreferrer">Press</a>
+            <a href="#photos">Photos</a>
+            <a href="#press">Press</a>
             <a href="https://invasivespeciesbrewing.com/contact" target="_blank" rel="noreferrer">Contact</a>
           </nav>
           <div className="footer-social">
