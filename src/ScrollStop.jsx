@@ -7,7 +7,7 @@ import birdOfParadiseImg from './assets/Bird of Paradise.png';
 import berryImg from './assets/berry.png';
 import cobraImg from './assets/cobra.png';
 import deerImg from './assets/deer.png';
-import logoImg from './assets/logo.png';
+import logoImg from './assets/logo-badge.png';
 import Shop from './Shop.jsx';
 import photo1 from './assets/photos/invasive-species-brewing.jpeg';
 import photo2 from './assets/photos/IMG_5759.jpg';
@@ -56,6 +56,7 @@ const ScrollStopSite = () => {
   const [menuRelY, setMenuRelY] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
   const [selectedTruck, setSelectedTruck] = useState(null);
 
   const trucks = [
@@ -293,7 +294,7 @@ const ScrollStopSite = () => {
 
       {/* ─── NAVBAR ─── */}
       <nav className="site-nav">
-        <img src={logoImg} alt="Invasive Species Brewing" className="nav-logo" />
+        <img src={logoImg} alt="Invasive Species Brewing" className="nav-logo" style={{ filter: 'invert(1)' }} />
         <ul className="nav-links">
           <li><a href="#story">About</a></li>
           <li><a href="#menu">Menu</a></li>
@@ -303,7 +304,22 @@ const ScrollStopSite = () => {
           <li><a href="#press">Press</a></li>
           <li><a href="#shop" className="nav-cta">Brew Shop</a></li>
         </ul>
+        {/* Hamburger */}
+        <button className="nav-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* ─── MOBILE DRAWER ─── */}
+      {menuOpen && <div className="nav-drawer-overlay" onClick={() => setMenuOpen(false)} />}
+      <div className={`nav-drawer ${menuOpen ? 'nav-drawer-open' : ''}`}>
+        <button className="nav-drawer-close" onClick={() => setMenuOpen(false)}>✕</button>
+        <ul className="nav-drawer-links">
+          {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press'],['#shop','Brew Shop']].map(([href, label]) => (
+            <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
+          ))}
+        </ul>
+      </div>
 
       {/* ─── HERO ─── */}
       <section className="hero">
