@@ -612,7 +612,7 @@ h1, h2 {
   position: absolute;
   width: clamp(300px, 32vw, 480px);
   left: -2%;
-  top: -60px;
+  top: 260px;
   pointer-events: none;
   user-select: none;
   opacity: 0.92;

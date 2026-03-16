@@ -160,7 +160,7 @@ const ScrollStopSite = () => {
       { name: 'Jazz Flute', price: '$8', desc: 'Kettle Sour. Blueberry, Blackberry & Raspberry.', abv: '7%' },
       { name: 'Mango Painkiller', price: '$8', desc: 'Cocktail Sour. Mango, Pineapple & Coconut Gelato. Lactose Free.', abv: '7%' },
     ],
-    'Malty & Dark': [
+    "Malty N' Dark": [
       { name: 'Mild Marker', price: '$7', desc: 'English Dark Mild on NITRO.', abv: '3.5%' },
       { name: 'Beam Me Down', price: '$7', desc: 'Scottish Ale on NITRO.', abv: '4.2%' },
       { name: 'Octodon', price: '$10', desc: 'BBA Imperial Stout. 2YR Bourbon Barrel Aged w/ Coconut, Chocolate, Vanilla & Coffee.', abv: '15%' },
@@ -185,7 +185,7 @@ const ScrollStopSite = () => {
       { name: 'Bitburger 0.0%', price: '$6', desc: 'Alcohol-free German Pilsner.', abv: '0%' },
       { name: 'Soda', price: '$3', desc: 'Rotating sodas & flavored seltzers.', abv: '' },
     ],
-    Spirits: [
+    'Take Me Home Tonight': [
       { name: 'High Rye Bourbon', price: '$39 / bottle', desc: '4-year aged Straight Bourbon, 80 proof. 750ml.', abv: '80 proof' },
       { name: 'Show Pony - Sweet Tea Bourbon', price: '$42 / bottle', desc: 'Southern-style sweet tea bourbon with black tea. 750ml.', abv: '' },
       { name: 'High Rye Ninety Nine Bourbon', price: '$42 / bottle', desc: '4-year aged, 99 proof. 750ml.', abv: '99 proof' },
@@ -373,9 +373,7 @@ const ScrollStopSite = () => {
             </div>
           </div>
         ))}
-        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <a href="https://invasivespeciesbrewing.com/menu-6-26" target="_blank" rel="noreferrer" className="cta-btn">Full Menu →</a>
-        </div>
+
       </section>
 
       {/* ─── BIRD OF PARADISE BREAK ─── */}
@@ -436,6 +434,15 @@ const ScrollStopSite = () => {
               allowFullScreen
               loading="lazy"
             />
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
+              target="_blank"
+              rel="noreferrer"
+              className="cta-btn"
+              style={{ display: 'block', textAlign: 'center', marginTop: '1.25rem' }}
+            >
+              Get Directions
+            </a>
           </div>
         </div>
       </section>
