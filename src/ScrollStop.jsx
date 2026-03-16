@@ -56,6 +56,56 @@ const ScrollStopSite = () => {
   const [menuRelY, setMenuRelY] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
+  const [selectedTruck, setSelectedTruck] = useState(null);
+
+  const trucks = [
+    {
+      id: 'tightlines',
+      name: 'Tight Lines Food Shack',
+      days: 'Mon – Tue',
+      tagline: 'Fresh-caught flavor, handmade with care.',
+      story: "Tight Lines Food Shack is all about fresh ingredients and handmade food done right. Born from a love of Florida's coastal culture, they bring the flavor of the sea straight to your plate — perfectly fried fish, loaded tots, and tacos that punch well above their weight. Originally from Delray Beach, they park at Invasive Species on Mondays and Tuesdays.",
+      menu: ['Fish Sammy', 'Chop Cheese', 'Gringo Tacos', 'Loaded Fries', 'Fish Tacos', 'Loaded Tots'],
+      images: [
+        'https://tightlinesfoodtruck.com/wp-content/uploads/2023/08/Fish-Sandwich.jpg',
+        'https://tightlinesfoodtruck.com/wp-content/uploads/2023/08/Fish-Tacos.jpg',
+        'https://tightlinesfoodtruck.com/wp-content/uploads/2023/08/Loaded-Tots.jpg',
+      ],
+      website: 'https://tightlinesfoodtruck.com',
+      instagram: 'https://www.instagram.com/tightlinesfoodshack/',
+    },
+    {
+      id: 'billys',
+      name: "Billy's Curbside Kitchen",
+      days: 'Wed – Sat',
+      tagline: 'Restaurant quality fare meets the curbside.',
+      story: "Named Fort Lauderdale Magazine's Best Food Truck of 2021–2022, Billy's Curbside Kitchen brings serious burger craftsmanship to the street. Their smash-style burgers, loaded quesadillas, and hand-cut fries have earned a loyal following throughout South Florida — restaurant-quality food with no reservations required.",
+      menu: ['Smash Burgers', 'Double Bacon Cheeseburger', 'Florida Man Slider', 'Quesadillas', 'Wraps', 'Fries & Sides'],
+      images: [
+        'https://itin-dev.wanderlogstatic.com/freeImage/jldSS3G80L7IK2HI1vpJdSXs7Q12k3uD',
+        'https://itin-dev.wanderlogstatic.com/freeImage/rYKvXBYcUNtIT0Pae230ZKBivnZu5Q0a',
+        'https://itin-dev.wanderlogstatic.com/freeImage/OToquSV9z2zpAgA2nqa9VxGaf8LzIIDj',
+      ],
+      website: null,
+      instagram: 'https://www.instagram.com/billyscurbsidegrill/',
+    },
+    {
+      id: 'condesa',
+      name: 'La Condesa Taqueria',
+      days: 'Sunday',
+      note: 'Starts at noon',
+      tagline: 'Authentic Mexican cuisine with a gourmet twist.',
+      story: "La Condesa Taqueria brings the bold, vivid flavors of Mexico to South Florida with a fresh upscale approach. From street-style birria and pastor tacos to ceviches, housemade guacamoles, and flan de cajeta — every dish is crafted with authentic ingredients and serious technique. Find them every Sunday starting at noon.",
+      menu: ['Birria Tacos', 'Baja Fish Tacos', 'Shrimp Tacos', 'Ceviche Vuelve a la Vida', 'Quesadillas', 'Guacamole La Condesa'],
+      images: [
+        'https://d3hbe0kmbam4a5.cloudfront.net/photos/0c309fc3-234d-4c65-8ef4-b8f898cc8fe2.jpeg',
+        'https://d3hbe0kmbam4a5.cloudfront.net/photos/f60fbd75-2f38-4b50-b956-1fdb9725af16.jpeg',
+        'https://d3hbe0kmbam4a5.cloudfront.net/photos/a0dac2fd-0b74-402a-b8cf-567e21209e5b.jpeg',
+      ],
+      website: 'https://lacondesataqueria.com/',
+      instagram: 'https://www.instagram.com/condesa_taqueria/',
+    },
+  ];
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const openLightbox = (i) => setLightboxIndex(i);
@@ -426,21 +476,60 @@ const ScrollStopSite = () => {
         <p className="section-eyebrow">On Site Every Day</p>
         <h2>Food Trucks<br /><span style={{ color: accentColor }}>Always Here.</span></h2>
         <div className="trucks-grid">
-          <div className="truck-card">
-            <div className="truck-day" style={{ color: accentColor }}>Mon – Tue</div>
-            <div className="truck-name">Tight Lines Food Shack</div>
-          </div>
-          <div className="truck-card">
-            <div className="truck-day" style={{ color: accentColor }}>Wed – Sat</div>
-            <div className="truck-name">Billy's Curbside Kitchen</div>
-          </div>
-          <div className="truck-card">
-            <div className="truck-day" style={{ color: accentColor }}>Sunday</div>
-            <div className="truck-name">La Condesa Taqueria</div>
-            <div className="truck-note">Starts at noon</div>
-          </div>
+          {trucks.map(truck => (
+            <div key={truck.id} className="truck-card" onClick={() => setSelectedTruck(truck)}>
+              <div className="truck-day" style={{ color: accentColor }}>{truck.days}</div>
+              <div className="truck-name">{truck.name}</div>
+              {truck.note && <div className="truck-note">{truck.note}</div>}
+              <div className="truck-tap">Tap for details →</div>
+            </div>
+          ))}
         </div>
       </section>
+
+      {/* ─── FOOD TRUCK POPUP ─── */}
+      {selectedTruck && (
+        <div className="truck-overlay" onClick={() => setSelectedTruck(null)}>
+          <div className="truck-popup" onClick={e => e.stopPropagation()}>
+            <button className="truck-popup-close" onClick={() => setSelectedTruck(null)}>✕</button>
+
+            {/* Image grid */}
+            <div className={`truck-popup-imgs truck-popup-imgs-${selectedTruck.images.length}`}>
+              {selectedTruck.images.map((src, i) => (
+                <div key={i} className="truck-popup-img-wrap">
+                  <img src={src} alt={selectedTruck.name} />
+                </div>
+              ))}
+            </div>
+
+            {/* Info */}
+            <div className="truck-popup-body">
+              <div className="truck-popup-meta">
+                <span className="truck-popup-days" style={{ color: accentColor }}>{selectedTruck.days}{selectedTruck.note ? ` · ${selectedTruck.note}` : ''}</span>
+              </div>
+              <h3 className="truck-popup-name">{selectedTruck.name}</h3>
+              <p className="truck-popup-tagline">{selectedTruck.tagline}</p>
+              <p className="truck-popup-story">{selectedTruck.story}</p>
+
+              <div className="truck-popup-menu">
+                <span className="truck-popup-menu-label">On the Menu</span>
+                <div className="truck-popup-menu-items">
+                  {selectedTruck.menu.map(item => (
+                    <span key={item} className="truck-menu-pill">{item}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="truck-popup-links">
+                {selectedTruck.website && (
+                  <a href={selectedTruck.website} target="_blank" rel="noreferrer" className="truck-link-btn truck-link-primary">Visit Website</a>
+                )}
+                <a href={selectedTruck.instagram} target="_blank" rel="noreferrer" className="truck-link-btn truck-link-secondary">Instagram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ─── VISIT ─── */}
       <section id="visit" className="visit-section">
@@ -505,14 +594,14 @@ const ScrollStopSite = () => {
         <div className="press-grid">
           {[
             { pub: 'Miami New Times', title: 'Best Brewery in Broward 2025', url: 'https://www.miaminewtimes.com/best-of-miami/2025/eat-and-drink/best-brewery-broward-23480163', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2025-26/bom25-762x431.webp' },
-            { pub: 'Forbes', title: 'No One Laughs Anymore At The Florida Craft Beer Scene', url: 'https://www.forbes.com/sites/garystoller/2019/09/25/no-one-laughs-anymore-at-the-florida-craft-beer-scene/' },
-            { pub: 'ESPN SW Florida', title: 'The 10 Best Breweries in Florida', url: 'https://espnswfl.com/listicle/the-10-best-breweries-in-florida/' },
+            { pub: 'Forbes', title: 'No One Laughs Anymore At The Florida Craft Beer Scene', url: 'https://www.forbes.com/sites/garystoller/2019/09/25/no-one-laughs-anymore-at-the-florida-craft-beer-scene/', img: 'https://floridabeerblog.wordpress.com/wp-content/uploads/2018/07/20180720_181255.jpg' },
+            { pub: 'ESPN SW Florida', title: 'The 10 Best Breweries in Florida', url: 'https://espnswfl.com/listicle/the-10-best-breweries-in-florida/', img: 'https://floridabeerblog.wordpress.com/wp-content/uploads/2018/07/20180720_181400.jpg' },
             { pub: 'Miami New Times', title: 'Best Breweries in Miami and Fort Lauderdale 2022', url: 'https://www.miaminewtimes.com/restaurants/best-of-miami-2022-the-best-breweries-in-miami-and-fort-lauderdale-14739980', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2022-25/best_miami_brewery_photo_courtesy_of_tripping_animals_of_i-2.webp' },
-            { pub: 'Thrillist', title: 'The 10 Best Breweries in Florida Ranked', url: 'https://www.thrillist.com/drink/miami/the-10-best-breweries-in-florida-ranked' },
-            { pub: 'Forbes', title: '10 Under the Radar Breweries to Watch This Spring', url: 'https://www.forbes.com/sites/kennygould/2019/03/08/best-craft-beer-spring-2019/' },
+            { pub: 'Thrillist', title: 'The 10 Best Breweries in Florida Ranked', url: 'https://www.thrillist.com/drink/miami/the-10-best-breweries-in-florida-ranked', img: 'https://floridabeerblog.wordpress.com/wp-content/uploads/2018/07/20180720_181435.jpg' },
+            { pub: 'Forbes', title: '10 Under the Radar Breweries to Watch This Spring', url: 'https://www.forbes.com/sites/kennygould/2019/03/08/best-craft-beer-spring-2019/', img: 'https://floridabeerblog.wordpress.com/wp-content/uploads/2018/07/20180720_181315.jpg' },
             { pub: 'New Times Broward', title: 'Invasive Species Offers Experimental Beers at Ft. Lauderdale Brewery', url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2017-29/unnamed-11.webp' },
             { pub: 'Miami New Times', title: 'Best New Brewery in Broward 2022', url: 'https://www.miaminewtimes.com/best-of/2022/eat-and-drink/best-new-brewery-miami-14715459', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2022-24/bom-mnt_06-23-22.webp' },
-            { pub: 'Sun Sentinel', title: 'Best New Brewery in South Florida 2017', url: 'http://www.southflorida.com/best-of-south-florida/bars-clubs-entertainment/sf-best-new-brewery-south-florida-invasive-species-20171129-story.html' },
+            { pub: 'Sun Sentinel', title: 'Best New Brewery in South Florida 2017', url: 'http://www.southflorida.com/best-of-south-florida/bars-clubs-entertainment/sf-best-new-brewery-south-florida-invasive-species-20171129-story.html', img: 'https://floridabeerblog.wordpress.com/wp-content/uploads/2018/07/20180720_181329.jpg' },
             { pub: 'Fort Lauderdale Daily', title: "Invasive Species Promises to Be Ft. Lauderdale's Funkiest New Brewery", url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2017-29/unnamed-11.webp' },
           ].map(({ pub, title, url, img }) => (
             <a key={url + title} href={url} target="_blank" rel="noreferrer" className={`press-card${img ? ' press-card-has-img' : ''}`}>
