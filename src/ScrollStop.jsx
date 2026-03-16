@@ -144,9 +144,11 @@ const ScrollStopSite = () => {
           setStatsVisible(true);
         }
       }
-      // Video finishes scrubbing in the first 30% of total scroll
-      const maxVideoScroll = (html.scrollHeight - window.innerHeight) * 0.3;
-      const scrollFraction = Math.max(0, Math.min(1, scrollProgress / maxVideoScroll));
+      // Video scrubs relative to the scroll container's own height
+      const containerTop = scrollContainerRef.current.offsetTop;
+      const containerHeight = scrollContainerRef.current.offsetHeight;
+      const relativeScroll = scrollProgress - containerTop;
+      const scrollFraction = Math.max(0, Math.min(1, relativeScroll / (containerHeight - window.innerHeight)));
       const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.floor(scrollFraction * TOTAL_FRAMES));
       if (frameIndex !== currentFrame) {
         setCurrentFrame(frameIndex);
@@ -249,8 +251,7 @@ const ScrollStopSite = () => {
           <li><a href="#visit">Visit</a></li>
           <li><a href="#photos">Photos</a></li>
           <li><a href="#press">Press</a></li>
-          <li><a href="#shop">Shop</a></li>
-          <li><a href="https://invasivespeciesbrewing.com/brew-shop" target="_blank" rel="noreferrer" className="nav-cta">Brew Shop</a></li>
+          <li><a href="#shop" className="nav-cta">Brew Shop</a></li>
         </ul>
       </nav>
 
@@ -503,21 +504,24 @@ const ScrollStopSite = () => {
         <h2>Press</h2>
         <div className="press-grid">
           {[
-            { pub: 'Miami New Times', title: 'Best Brewery in Broward 2025', url: 'https://www.miaminewtimes.com/best-of-miami/2025/eat-and-drink/best-brewery-broward-23480163' },
+            { pub: 'Miami New Times', title: 'Best Brewery in Broward 2025', url: 'https://www.miaminewtimes.com/best-of-miami/2025/eat-and-drink/best-brewery-broward-23480163', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2025-26/bom25-762x431.webp' },
             { pub: 'Forbes', title: 'No One Laughs Anymore At The Florida Craft Beer Scene', url: 'https://www.forbes.com/sites/garystoller/2019/09/25/no-one-laughs-anymore-at-the-florida-craft-beer-scene/' },
             { pub: 'ESPN SW Florida', title: 'The 10 Best Breweries in Florida', url: 'https://espnswfl.com/listicle/the-10-best-breweries-in-florida/' },
-            { pub: 'Miami New Times', title: 'Best Breweries in Miami and Fort Lauderdale 2022', url: 'https://www.miaminewtimes.com/restaurants/best-of-miami-2022-the-best-breweries-in-miami-and-fort-lauderdale-14739980' },
+            { pub: 'Miami New Times', title: 'Best Breweries in Miami and Fort Lauderdale 2022', url: 'https://www.miaminewtimes.com/restaurants/best-of-miami-2022-the-best-breweries-in-miami-and-fort-lauderdale-14739980', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2022-25/best_miami_brewery_photo_courtesy_of_tripping_animals_of_i-2.webp' },
             { pub: 'Thrillist', title: 'The 10 Best Breweries in Florida Ranked', url: 'https://www.thrillist.com/drink/miami/the-10-best-breweries-in-florida-ranked' },
             { pub: 'Forbes', title: '10 Under the Radar Breweries to Watch This Spring', url: 'https://www.forbes.com/sites/kennygould/2019/03/08/best-craft-beer-spring-2019/' },
-            { pub: 'New Times Broward', title: 'Invasive Species Offers Experimental Beers at Ft. Lauderdale Brewery', url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216' },
-            { pub: 'Miami New Times', title: 'Best New Brewery in Broward 2022', url: 'https://www.miaminewtimes.com/best-of/2022/eat-and-drink/best-new-brewery-miami-14715459' },
+            { pub: 'New Times Broward', title: 'Invasive Species Offers Experimental Beers at Ft. Lauderdale Brewery', url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2017-29/unnamed-11.webp' },
+            { pub: 'Miami New Times', title: 'Best New Brewery in Broward 2022', url: 'https://www.miaminewtimes.com/best-of/2022/eat-and-drink/best-new-brewery-miami-14715459', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2022-24/bom-mnt_06-23-22.webp' },
             { pub: 'Sun Sentinel', title: 'Best New Brewery in South Florida 2017', url: 'http://www.southflorida.com/best-of-south-florida/bars-clubs-entertainment/sf-best-new-brewery-south-florida-invasive-species-20171129-story.html' },
-            { pub: 'Fort Lauderdale Daily', title: "Invasive Species Promises to Be Ft. Lauderdale's Funkiest New Brewery", url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216' },
-          ].map(({ pub, title, url }) => (
-            <a key={url + title} href={url} target="_blank" rel="noreferrer" className="press-card">
-              <span className="press-pub">{pub}</span>
-              <p className="press-title">{title}</p>
-              <span className="press-read">Read Article →</span>
+            { pub: 'Fort Lauderdale Daily', title: "Invasive Species Promises to Be Ft. Lauderdale's Funkiest New Brewery", url: 'http://www.miaminewtimes.com/restaurants/invasive-species-brewing-offers-experimental-beers-at-fort-lauderdale-brewery-9504216', img: 'https://www.miaminewtimes.com/wp-content/uploads/sites/4/ww-media/mediaserver/mia/2017-29/unnamed-11.webp' },
+          ].map(({ pub, title, url, img }) => (
+            <a key={url + title} href={url} target="_blank" rel="noreferrer" className={`press-card${img ? ' press-card-has-img' : ''}`}>
+              {img && <div className="press-img-wrap"><img src={img} alt={title} loading="lazy" /></div>}
+              <div className="press-text">
+                <span className="press-pub">{pub}</span>
+                <p className="press-title">{title}</p>
+                <span className="press-read">Read Article →</span>
+              </div>
             </a>
           ))}
         </div>
