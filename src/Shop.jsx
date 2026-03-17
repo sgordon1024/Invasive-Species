@@ -1,6 +1,19 @@
 import { useState } from 'react';
 import './Shop.css';
 
+import imgClassicTee      from './assets/photos/Classic Logo Tee Mockup.png';
+import imgHoodie          from './assets/photos/Logo Hoodie Mockup.png';
+import imgDadCap          from './assets/photos/Logo Dad Cap Mockup.png';
+import imgSnapback        from './assets/photos/Mockup Logo Snapback Hat.png';
+import imgShakerPint      from './assets/photos/Mockup Logo Shaker Pint Glass.png';
+import imgTulipGlass      from './assets/photos/Logo Tulip Glass Mockup.png';
+import imgGlassGrowler    from './assets/photos/Logo Mockup 64oz Glass Growler.png';
+import imgStainlessGrowler from './assets/photos/Logo Mockup on Growler.png';
+import imgBottleOpener    from './assets/photos/Logo Bottle Opener Mockup.png';
+import imgGiftSet         from "./assets/photos/Brewer's Gift Set Mockup with Logo.png";
+import imgToteBag         from './assets/photos/Canvas Tote Bag Mockup.png';
+import imgStickerPack     from './assets/photos/Sticker Pack Mockup with Logo.png';
+
 const ACCENT = '#39FF14';
 
 const products = [
@@ -9,7 +22,7 @@ const products = [
     name: 'Classic Logo Tee',
     price: 28,
     desc: 'Soft 100% cotton tee with the Invasive Species iguana logo. Available in black.',
-    img: 'https://picsum.photos/seed/isb-tee/600/600',
+    img: imgClassicTee,
     category: 'Apparel',
   },
   {
@@ -17,7 +30,7 @@ const products = [
     name: 'Logo Hoodie',
     price: 55,
     desc: 'Heavyweight pullover hoodie with embroidered iguana logo on the chest.',
-    img: 'https://picsum.photos/seed/isb-hoodie/600/600',
+    img: imgHoodie,
     category: 'Apparel',
   },
   {
@@ -25,7 +38,7 @@ const products = [
     name: 'Dad Cap',
     price: 32,
     desc: 'Unstructured 6-panel cap with embroidered logo patch. One size fits all.',
-    img: 'https://picsum.photos/seed/isb-dadcap/600/600',
+    img: imgDadCap,
     category: 'Apparel',
   },
   {
@@ -33,7 +46,7 @@ const products = [
     name: 'Snapback Hat',
     price: 30,
     desc: 'Flat-brim snapback with woven logo patch. Adjustable fit.',
-    img: 'https://picsum.photos/seed/isb-snapback/600/600',
+    img: imgSnapback,
     category: 'Apparel',
   },
   {
@@ -41,7 +54,7 @@ const products = [
     name: 'Shaker Pint Glass (4-pack)',
     price: 24,
     desc: '16oz classic shaker pint glasses screen-printed with the ISB logo. Dishwasher safe.',
-    img: 'https://picsum.photos/seed/isb-pint/600/600',
+    img: imgShakerPint,
     category: 'Glassware',
   },
   {
@@ -49,7 +62,7 @@ const products = [
     name: 'Tulip Glass (2-pack)',
     price: 22,
     desc: '13oz tulip glasses — the ideal shape for IPAs, sours, and Belgian-style beers.',
-    img: 'https://picsum.photos/seed/isb-tulip/600/600',
+    img: imgTulipGlass,
     category: 'Glassware',
   },
   {
@@ -57,7 +70,7 @@ const products = [
     name: '64oz Glass Growler',
     price: 18,
     desc: 'Classic amber glass growler with a swing-top lid. Fill it up at the taproom.',
-    img: 'https://picsum.photos/seed/isb-growler/600/600',
+    img: imgGlassGrowler,
     category: 'Glassware',
   },
   {
@@ -65,7 +78,7 @@ const products = [
     name: 'Stainless Growler',
     price: 45,
     desc: '64oz vacuum-insulated stainless steel growler. Keeps beer cold for 24 hours.',
-    img: 'https://picsum.photos/seed/isb-steel-growler/600/600',
+    img: imgStainlessGrowler,
     category: 'Glassware',
   },
   {
@@ -73,7 +86,7 @@ const products = [
     name: 'Bottle Opener Keychain',
     price: 12,
     desc: 'Solid brass bottle opener with the ISB logo laser-engraved. Clips to your keys.',
-    img: 'https://picsum.photos/seed/isb-opener/600/600',
+    img: imgBottleOpener,
     category: 'Accessories',
   },
   {
@@ -81,7 +94,7 @@ const products = [
     name: 'Canvas Tote Bag',
     price: 20,
     desc: 'Heavy natural canvas tote with an oversized screen-printed iguana graphic.',
-    img: 'https://picsum.photos/seed/isb-tote/600/600',
+    img: imgToteBag,
     category: 'Accessories',
   },
   {
@@ -89,7 +102,7 @@ const products = [
     name: 'Sticker Pack (5-pack)',
     price: 10,
     desc: 'Waterproof vinyl stickers. Mix of logo, iguana, and slogan designs.',
-    img: 'https://picsum.photos/seed/isb-stickers/600/600',
+    img: imgStickerPack,
     category: 'Accessories',
   },
   {
@@ -97,7 +110,7 @@ const products = [
     name: "Brewer's Gift Set",
     price: 52,
     desc: 'The perfect gift — includes a tulip glass, bottle opener keychain, and sticker pack.',
-    img: 'https://picsum.photos/seed/isb-giftset/600/600',
+    img: imgGiftSet,
     category: 'Accessories',
   },
 ];
@@ -167,6 +180,11 @@ export default function Shop() {
 
   return (
     <>
+      {/* Cart status live region */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {addedId ? `${products.find(p => p.id === addedId)?.name} added to cart` : ''}
+      </div>
+
       {/* ─── SHOP SECTION ─── */}
       <section id="shop" className="shop-section">
         <div className="shop-header">
@@ -179,7 +197,10 @@ export default function Shop() {
           {products.map(product => (
             <div key={product.id} className="product-card">
               <div className="product-img-wrap">
-                <img src={product.img} alt={product.name} loading="lazy" />
+                {product.img
+                  ? <img src={product.img} alt={product.name} loading="lazy" />
+                  : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#111', color: '#333', fontSize: '0.75rem', letterSpacing: '0.1em' }}>IMAGE COMING SOON</div>
+                }
               </div>
               <div className="product-body">
                 <span className="product-category">{product.category}</span>
@@ -213,8 +234,14 @@ export default function Shop() {
 
       {/* ─── DRAWER OVERLAY ─── */}
       {drawerOpen && (
-        <div className="drawer-overlay" onClick={step === 'confirm' ? closeAndReset : closeAndReset}>
-          <div className="drawer" onClick={e => e.stopPropagation()}>
+        <div className="drawer-overlay" onClick={closeAndReset}>
+          <div
+            className="drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label={step === 'confirm' ? 'Order confirmed' : step === 'cart' ? 'Your cart' : step === 'shipping' ? 'Shipping information' : 'Payment information'}
+            onClick={e => e.stopPropagation()}
+          >
 
             {/* Header */}
             <div className="drawer-header">
@@ -229,7 +256,7 @@ export default function Shop() {
                 {step === 'payment' && 'Payment'}
                 {step === 'confirm' && 'Order Confirmed'}
               </h3>
-              <button className="drawer-close" onClick={closeAndReset}>✕</button>
+              <button className="drawer-close" onClick={closeAndReset} aria-label="Close cart">✕</button>
             </div>
 
             {/* Progress bar */}
@@ -263,16 +290,16 @@ export default function Shop() {
                             <span className="cart-item-name">{item.name}</span>
                             <span className="cart-item-unit">${item.price}.00 each</span>
                             <div className="qty-control">
-                              <button onClick={() => updateQty(item.id, item.qty - 1)}>−</button>
-                              <span>{item.qty}</span>
-                              <button onClick={() => updateQty(item.id, item.qty + 1)}>+</button>
+                              <button onClick={() => updateQty(item.id, item.qty - 1)} aria-label={`Decrease quantity of ${item.name}`}>−</button>
+                              <span aria-label={`Quantity: ${item.qty}`}>{item.qty}</span>
+                              <button onClick={() => updateQty(item.id, item.qty + 1)} aria-label={`Increase quantity of ${item.name}`}>+</button>
                             </div>
                           </div>
                           <div className="cart-item-right">
                             <span className="cart-item-total" style={{ color: ACCENT }}>
                               ${(item.price * item.qty).toFixed(2)}
                             </span>
-                            <button className="remove-btn" onClick={() => updateQty(item.id, 0)}>✕</button>
+                            <button className="remove-btn" onClick={() => updateQty(item.id, 0)} aria-label={`Remove ${item.name} from cart`}>✕</button>
                           </div>
                         </div>
                       ))}
@@ -304,29 +331,29 @@ export default function Shop() {
               <div className="drawer-body">
                 <form className="checkout-form" onSubmit={e => { e.preventDefault(); setStep('payment'); }}>
                   <div className="form-group">
-                    <label>Full Name</label>
-                    <input name="name" placeholder="Jane Smith" value={form.name} onChange={handleFormChange} required />
+                    <label htmlFor="checkout-name">Full Name</label>
+                    <input id="checkout-name" name="name" placeholder="Jane Smith" value={form.name} onChange={handleFormChange} required autoComplete="name" />
                   </div>
                   <div className="form-group">
-                    <label>Email</label>
-                    <input name="email" type="email" placeholder="jane@example.com" value={form.email} onChange={handleFormChange} required />
+                    <label htmlFor="checkout-email">Email</label>
+                    <input id="checkout-email" name="email" type="email" placeholder="jane@example.com" value={form.email} onChange={handleFormChange} required autoComplete="email" />
                   </div>
                   <div className="form-group">
-                    <label>Street Address</label>
-                    <input name="address" placeholder="726 NE 2nd Ave" value={form.address} onChange={handleFormChange} required />
+                    <label htmlFor="checkout-address">Street Address</label>
+                    <input id="checkout-address" name="address" placeholder="726 NE 2nd Ave" value={form.address} onChange={handleFormChange} required autoComplete="street-address" />
                   </div>
                   <div className="form-row-3">
                     <div className="form-group">
-                      <label>City</label>
-                      <input name="city" placeholder="Fort Lauderdale" value={form.city} onChange={handleFormChange} required />
+                      <label htmlFor="checkout-city">City</label>
+                      <input id="checkout-city" name="city" placeholder="Fort Lauderdale" value={form.city} onChange={handleFormChange} required autoComplete="address-level2" />
                     </div>
                     <div className="form-group form-group-sm">
-                      <label>State</label>
-                      <input name="state" placeholder="FL" value={form.state} onChange={handleFormChange} maxLength={2} required />
+                      <label htmlFor="checkout-state">State</label>
+                      <input id="checkout-state" name="state" placeholder="FL" value={form.state} onChange={handleFormChange} maxLength={2} required autoComplete="address-level1" />
                     </div>
                     <div className="form-group form-group-sm">
-                      <label>ZIP</label>
-                      <input name="zip" placeholder="33304" value={form.zip} onChange={handleFormChange} maxLength={5} required />
+                      <label htmlFor="checkout-zip">ZIP</label>
+                      <input id="checkout-zip" name="zip" placeholder="33304" value={form.zip} onChange={handleFormChange} maxLength={5} required autoComplete="postal-code" />
                     </div>
                   </div>
                   <button type="submit" className="checkout-btn">Continue to Payment →</button>
@@ -342,24 +369,26 @@ export default function Shop() {
                 </div>
                 <form className="checkout-form" onSubmit={placeOrder}>
                   <div className="form-group">
-                    <label>Card Number</label>
+                    <label htmlFor="checkout-card">Card Number</label>
                     <input
+                      id="checkout-card"
                       name="card"
                       placeholder="1234 5678 9012 3456"
                       value={form.card}
                       onChange={handleFormChange}
                       required
                       inputMode="numeric"
+                      autoComplete="cc-number"
                     />
                   </div>
                   <div className="form-row-2">
                     <div className="form-group">
-                      <label>Expiry</label>
-                      <input name="expiry" placeholder="MM / YY" value={form.expiry} onChange={handleFormChange} required inputMode="numeric" />
+                      <label htmlFor="checkout-expiry">Expiry</label>
+                      <input id="checkout-expiry" name="expiry" placeholder="MM / YY" value={form.expiry} onChange={handleFormChange} required inputMode="numeric" autoComplete="cc-exp" />
                     </div>
                     <div className="form-group">
-                      <label>CVV</label>
-                      <input name="cvv" placeholder="123" value={form.cvv} onChange={handleFormChange} maxLength={4} required inputMode="numeric" />
+                      <label htmlFor="checkout-cvv">CVV</label>
+                      <input id="checkout-cvv" name="cvv" placeholder="123" value={form.cvv} onChange={handleFormChange} maxLength={4} required inputMode="numeric" autoComplete="cc-csc" />
                     </div>
                   </div>
                   <div className="order-total-box">

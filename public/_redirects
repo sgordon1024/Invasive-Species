@@ -1,0 +1,3 @@
+# Netlify SPA routing — all unmatched routes serve index.html.
+# If you deploy to Vercel, delete this file and use vercel.json instead.
+/Invasive-Species/*  /Invasive-Species/index.html  200

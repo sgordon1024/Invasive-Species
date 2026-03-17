@@ -1,0 +1,977 @@
+/* ==========================================================================
+   Beer Passport — Styles
+   Matches the Invasive Species Brewing dark design system:
+     Background:   #000 / #050505 / #0a0a0a
+     Accent green: #39FF14
+     Text:         #f0f0f0 / #aaa / #666
+     Font:         'Space Grotesk' (same as main site)
+   ========================================================================== */
+
+/* ── Loading screen ─────────────────────────────────────────────────────── */
+.pp-loading-screen {
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pp-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #222;
+  border-top-color: #39FF14;
+  border-radius: 50%;
+  animation: pp-spin 0.7s linear infinite;
+}
+
+@keyframes pp-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ── Page wrapper ───────────────────────────────────────────────────────── */
+.pp-page {
+  min-height: 100vh;
+  background: #000;
+  color: #f0f0f0;
+  font-family: 'Space Grotesk', sans-serif;
+  padding-top: 80px; /* clear the fixed navbar */
+}
+
+/* Constrained content container */
+.pp-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.pp-container--narrow {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+
+/* ── Accent & typography helpers ────────────────────────────────────────── */
+.pp-accent   { color: #39FF14; }
+.pp-muted    { color: #666; }
+.pp-small    { font-size: 0.8rem; letter-spacing: 0.05em; }
+.pp-mono     { font-family: monospace; letter-spacing: 0.1em; }
+
+.pp-section-title {
+  font-family: 'InvasiveSpecies', 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+  color: #f0f0f0;
+}
+
+.pp-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #39FF14;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pp-lead {
+  font-size: 1.15rem;
+  color: #aaa;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.pp-card {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+
+.pp-card--highlight {
+  border-color: #39FF14;
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.06);
+}
+
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.pp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.pp-btn--primary {
+  background: #39FF14;
+  color: #000;
+}
+.pp-btn--primary:hover:not(:disabled) {
+  background: #4fff2a;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.35);
+}
+
+.pp-btn--outline {
+  background: transparent;
+  color: #39FF14;
+  border: 1.5px solid #39FF14;
+}
+.pp-btn--outline:hover:not(:disabled) {
+  background: rgba(57, 255, 20, 0.08);
+}
+
+.pp-btn--ghost {
+  background: transparent;
+  color: #aaa;
+  border: 1.5px solid #222;
+}
+.pp-btn--ghost:hover:not(:disabled) { border-color: #444; color: #f0f0f0; }
+
+.pp-btn--danger {
+  background: #c0392b;
+  color: #fff;
+}
+.pp-btn--danger:hover:not(:disabled) { background: #e74c3c; }
+
+.pp-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pp-btn--full { width: 100%; }
+
+.pp-btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+}
+
+
+/* ── Form elements ──────────────────────────────────────────────────────── */
+.pp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.pp-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.pp-input {
+  background: #0d0d0d;
+  border: 1.5px solid #222;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #f0f0f0;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.pp-input:focus { border-color: #39FF14; }
+.pp-input::placeholder { color: #444; }
+
+.pp-input-hint {
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.pp-form-error {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.pp-form-success {
+  background: rgba(57, 255, 20, 0.06);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #39FF14;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+
+/* ── Divider ────────────────────────────────────────────────────────────── */
+.pp-divider {
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  margin: 1.5rem 0;
+}
+
+
+/* ==========================================================================
+   Landing page
+   ========================================================================== */
+
+.pp-hero {
+  padding: 5rem 0 4rem;
+  text-align: center;
+}
+
+.pp-hero__stamp {
+  display: inline-block;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 16px rgba(57, 255, 20, 0.4));
+  animation: pp-stamp-pulse 3s ease-in-out infinite;
+}
+
+@keyframes pp-stamp-pulse {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.3)); }
+  50%       { filter: drop-shadow(0 0 28px rgba(57, 255, 20, 0.7)); }
+}
+
+.pp-hero__cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+
+/* ── How it works ───────────────────────────────────────────────────────── */
+.pp-steps {
+  padding: 4rem 0;
+  background: #040404;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.pp-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.pp-step {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.pp-step__icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pp-step__num {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: #39FF14;
+  color: #000;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.pp-step h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: #f0f0f0;
+}
+
+.pp-step p {
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.55;
+  margin: 0;
+}
+
+
+/* ── Rewards section ────────────────────────────────────────────────────── */
+.pp-rewards {
+  padding: 4rem 0;
+}
+
+.pp-rewards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.pp-reward-card {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pp-reward-card:hover {
+  border-color: #39FF14;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.08);
+}
+
+.pp-reward-card__visits {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #39FF14;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.pp-reward-card__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.pp-reward-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.pp-reward-card p {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0;
+  line-height: 1.5;
+}
+
+
+/* ── Landing page CTA strip ─────────────────────────────────────────────── */
+.pp-cta-strip {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   Auth page (login / signup)
+   ========================================================================== */
+
+.pp-auth {
+  padding: 3rem 0 5rem;
+}
+
+.pp-auth__card {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.pp-auth__tabs {
+  display: flex;
+  border-bottom: 1px solid #1a1a1a;
+  margin-bottom: 2rem;
+}
+
+.pp-auth__tab {
+  flex: 1;
+  padding: 0.7rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: all 0.15s;
+  margin-bottom: -1px;
+}
+.pp-auth__tab--active {
+  color: #39FF14;
+  border-bottom-color: #39FF14;
+}
+
+.pp-auth__footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #555;
+}
+.pp-auth__footer a {
+  color: #39FF14;
+  text-decoration: none;
+}
+.pp-auth__footer a:hover { text-decoration: underline; }
+
+
+/* ==========================================================================
+   Passport profile (user dashboard)
+   ========================================================================== */
+
+.pp-profile {
+  padding: 3rem 0 5rem;
+}
+
+/* ── Top stat row ────────────────────────────────────────────────────────── */
+.pp-profile__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pp-profile__welcome {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 0.25rem;
+}
+
+.pp-profile__name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  color: #f0f0f0;
+}
+
+.pp-member-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.78rem;
+  color: #666;
+  letter-spacing: 0.05em;
+}
+.pp-member-badge__id {
+  font-weight: 700;
+  color: #f0f0f0;
+  font-family: monospace;
+  letter-spacing: 0.12em;
+}
+
+
+/* ── Visit counter ──────────────────────────────────────────────────────── */
+.pp-visits {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.pp-visits__count {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #39FF14;
+  line-height: 1;
+}
+
+.pp-visits__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #555;
+  margin-top: 0.2rem;
+}
+
+.pp-visits__next {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+.pp-visits__next strong { color: #39FF14; }
+
+
+/* ── Progress bar ───────────────────────────────────────────────────────── */
+.pp-progress-wrap {
+  margin-bottom: 2rem;
+}
+
+.pp-progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.pp-progress-track {
+  height: 8px;
+  background: #111;
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2bcc0f, #39FF14);
+  border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+}
+
+/* Milestone markers on the progress bar */
+.pp-milestones {
+  display: flex;
+  position: relative;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.pp-milestone {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.pp-milestone__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #222;
+  border: 2px solid #333;
+}
+.pp-milestone__dot--unlocked {
+  background: #39FF14;
+  border-color: #39FF14;
+  box-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+}
+
+.pp-milestone__label {
+  font-size: 0.65rem;
+  color: #444;
+  white-space: nowrap;
+}
+.pp-milestone__label--unlocked { color: #39FF14; }
+
+
+/* ── Reward tiles ───────────────────────────────────────────────────────── */
+.pp-reward-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pp-reward-tile {
+  background: #070707;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pp-reward-tile--locked {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
+.pp-reward-tile--unlocked {
+  border-color: rgba(57, 255, 20, 0.25);
+  box-shadow: 0 0 16px rgba(57, 255, 20, 0.05);
+}
+
+.pp-reward-tile--redeemed {
+  opacity: 0.4;
+}
+.pp-reward-tile--redeemed::after {
+  content: 'REDEEMED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #39FF14;
+  border: 1.5px solid #39FF14;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+
+.pp-reward-tile__threshold {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #39FF14;
+  font-weight: 700;
+}
+.pp-reward-tile--locked .pp-reward-tile__threshold { color: #333; }
+
+.pp-reward-tile__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin: 0;
+}
+
+.pp-reward-tile__desc {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.45;
+  margin: 0;
+}
+
+
+/* ── Toast notification ─────────────────────────────────────────────────── */
+.pp-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: #0f0f0f;
+  border: 1.5px solid #39FF14;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #f0f0f0;
+  white-space: nowrap;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.6), 0 0 20px rgba(57,255,20,0.12);
+  z-index: 9999;
+  animation: pp-toast-in 0.3s ease;
+}
+.pp-toast__icon { font-size: 1.3rem; }
+
+@keyframes pp-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(1rem); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+
+/* ==========================================================================
+   Check-in page
+   ========================================================================== */
+
+.pp-checkin {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: #000;
+}
+
+.pp-checkin__card {
+  width: 100%;
+  max-width: 440px;
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.pp-checkin__logo {
+  height: 52px;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+  filter: invert(1);
+}
+
+.pp-checkin__icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pp-checkin__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.pp-checkin__sub {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+
+/* State variants */
+.pp-checkin__card--success { border-color: rgba(57,255,20,0.3); }
+.pp-checkin__card--already  { border-color: rgba(255,200,50,0.25); }
+.pp-checkin__card--error    { border-color: rgba(231,76,60,0.25); }
+
+.pp-checkin__visits-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(57,255,20,0.06);
+  border: 1px solid rgba(57,255,20,0.2);
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+}
+
+.pp-checkin__visits-num {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #39FF14;
+  line-height: 1;
+}
+
+.pp-checkin__visits-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #39FF14;
+  opacity: 0.7;
+}
+
+.pp-checkin__reward-pop {
+  background: rgba(57,255,20,0.06);
+  border: 1.5px solid #39FF14;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1.25rem 0;
+  text-align: center;
+}
+
+.pp-checkin__reward-pop h4 {
+  color: #39FF14;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem;
+}
+
+.pp-checkin__reward-pop p {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   Staff portal
+   ========================================================================== */
+
+.pp-staff {
+  padding: 3rem 0 5rem;
+}
+
+.pp-staff__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #111;
+  margin-bottom: 2rem;
+}
+
+.pp-staff__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(57,255,20,0.08);
+  border: 1px solid rgba(57,255,20,0.2);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #39FF14;
+}
+
+/* ── QR token panel ──────────────────────────────────────────────────────── */
+.pp-qr-panel {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.pp-qr-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.pp-qr-panel__img {
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: #fff;
+}
+
+.pp-qr-panel__meta {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pp-qr-panel__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.pp-qr-panel__status--active { color: #39FF14; }
+.pp-qr-panel__status--none   { color: #555; }
+
+
+/* ── Member search ───────────────────────────────────────────────────────── */
+.pp-search {
+  margin-bottom: 2rem;
+}
+
+.pp-search__row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.pp-member-result {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.pp-member-result__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.pp-member-result__name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.pp-member-result__meta {
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.pp-reward-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 0;
+  border-top: 1px solid #111;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pp-reward-row__info {}
+.pp-reward-row__name { font-weight: 600; font-size: 0.95rem; }
+.pp-reward-row__desc { font-size: 0.8rem; color: #555; margin-top: 0.15rem; }
+
+.pp-reward-row__status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+}
+.pp-reward-row__status--locked  { background: #111; color: #444; }
+.pp-reward-row__status--earned  { background: rgba(57,255,20,0.1); color: #39FF14; }
+.pp-reward-row__status--redeemed{ background: #1a1a1a; color: #555; }
+
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .pp-steps__grid,
+  .pp-rewards__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .pp-hero { padding: 3rem 0 2.5rem; }
+
+  .pp-auth__card { padding: 1.75rem; }
+
+  .pp-visits {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.25rem;
+  }
+
+  .pp-visits__count { font-size: 3rem; }
+
+  .pp-qr-panel__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pp-qr-panel__img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .pp-search__row {
+    flex-direction: column;
+  }
+
+  .pp-checkin__card {
+    padding: 2rem 1.25rem;
+  }
+}

@@ -1,3 +1,16 @@
+/* ─── ACCESSIBILITY UTILITIES ─── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ─── SHOP SECTION ─── */
 .shop-section {
   padding: 6rem 4rem;
@@ -76,7 +89,7 @@
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #555;
+  color: #808080;
 }
 
 .product-name {
@@ -89,7 +102,7 @@
 
 .product-desc {
   font-size: 0.82rem;
-  color: #666;
+  color: #808080;
   line-height: 1.55;
   flex: 1;
   margin: 0.25rem 0 0.75rem;
@@ -310,7 +323,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  color: #555;
+  color: #808080;
 }
 
 .cart-items {
@@ -356,7 +369,7 @@
 
 .cart-item-unit {
   font-size: 0.72rem;
-  color: #555;
+  color: #808080;
 }
 
 .qty-control {
@@ -460,7 +473,7 @@
   font-size: 0.7rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #666;
+  color: #808080;
 }
 
 .form-group input {
@@ -472,13 +485,13 @@
   font-size: 0.9rem;
   font-family: inherit;
   transition: border-color 0.2s;
-  outline: none;
   width: 100%;
   box-sizing: border-box;
 }
 
 .form-group input:focus { border-color: #39FF14; }
-.form-group input::placeholder { color: #444; }
+.form-group input:focus-visible { outline: 2px solid #39FF14; outline-offset: 2px; }
+.form-group input::placeholder { color: #555; }
 
 .form-row-2 {
   display: grid;
@@ -565,7 +578,7 @@
 .confirm-order-num {
   font-size: 0.75rem;
   letter-spacing: 2px;
-  color: #555;
+  color: #808080;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
 }

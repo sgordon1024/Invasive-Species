@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ScrollStop.css';
+import taglineImg from './assets/tagline.png';
 import alligatorImg from './assets/alligator.png';
 import alligator2Img from './assets/alligator-2.png';
 import beaverImg from './assets/beaver.png';
@@ -7,8 +9,9 @@ import birdOfParadiseImg from './assets/Bird of Paradise.png';
 import berryImg from './assets/berry.png';
 import cobraImg from './assets/cobra.png';
 import deerImg from './assets/deer.png';
-import logoImg from './assets/logo-badge.png';
-import Shop from './Shop.jsx';
+import logoImg from './assets/logo-white-new.png';
+import laCondesaFood1 from './assets/photos/La Condesa Taqueria.webp';
+import laCondesaFood2 from './assets/photos/La Condesa Taqueria 70A4715 Edit.webp';
 import photo1 from './assets/photos/invasive-species-brewing.jpeg';
 import photo2 from './assets/photos/IMG_5759.jpg';
 import photo3 from './assets/photos/IMG_5769.jpg';
@@ -98,11 +101,8 @@ const ScrollStopSite = () => {
       tagline: 'Authentic Mexican cuisine with a gourmet twist.',
       story: "La Condesa Taqueria brings the bold, vivid flavors of Mexico to South Florida with a fresh upscale approach. From street-style birria and pastor tacos to ceviches, housemade guacamoles, and flan de cajeta — every dish is crafted with authentic ingredients and serious technique. Find them every Sunday starting at noon.",
       menu: ['Birria Tacos', 'Baja Fish Tacos', 'Shrimp Tacos', 'Ceviche Vuelve a la Vida', 'Quesadillas', 'Guacamole La Condesa'],
-      images: [
-        'https://d3hbe0kmbam4a5.cloudfront.net/photos/0c309fc3-234d-4c65-8ef4-b8f898cc8fe2.jpeg',
-        'https://d3hbe0kmbam4a5.cloudfront.net/photos/f60fbd75-2f38-4b50-b956-1fdb9725af16.jpeg',
-        'https://d3hbe0kmbam4a5.cloudfront.net/photos/a0dac2fd-0b74-402a-b8cf-567e21209e5b.jpeg',
-      ],
+      images: [laCondesaFood1, laCondesaFood2],
+      video: 'https://www.youtube.com/embed/dJe7zsqDYIs?autoplay=1&mute=1&loop=1&playlist=dJe7zsqDYIs&controls=0&modestbranding=1&playsinline=1',
       website: 'https://lacondesataqueria.com/',
       instagram: 'https://www.instagram.com/condesa_taqueria/',
     },
@@ -281,10 +281,11 @@ const ScrollStopSite = () => {
 
   return (
     <div className="site-root">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       {/* Loader */}
       {loadedFrames < TOTAL_FRAMES && (
         <div className="loader">
-          <img src={logoImg} alt="Logo" style={{ height: '80px', marginBottom: '2rem', opacity: 0.9 }} />
+          <img src={logoImg} alt="Invasive Species Brewing logo" style={{ height: '80px', marginBottom: '2rem', opacity: 0.9 }} />
           <div className="loader-bar-outer">
             <div className="loader-bar-inner" style={{ width: `${Math.floor((loadedFrames / TOTAL_FRAMES) * 100)}%` }} />
           </div>
@@ -293,33 +294,67 @@ const ScrollStopSite = () => {
       )}
 
       {/* ─── NAVBAR ─── */}
-      <nav className="site-nav">
-        <img src={logoImg} alt="Invasive Species Brewing" className="nav-logo" style={{ filter: 'invert(1)' }} />
-        <ul className="nav-links">
-          <li><a href="#story">About</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#food-trucks">Food Trucks</a></li>
-          <li><a href="#visit">Visit</a></li>
-          <li><a href="#photos">Photos</a></li>
-          <li><a href="#press">Press</a></li>
-          <li><a href="#shop" className="nav-cta">Brew Shop</a></li>
-        </ul>
-        {/* Hamburger */}
-        <button className="nav-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
-          <span /><span /><span />
-        </button>
-      </nav>
+      <header>
+        <nav className="site-nav" aria-label="Main navigation">
+          <img src={logoImg} alt="Invasive Species Brewing" className="nav-logo" />
+          <ul className="nav-links">
+            <li><a href="#story">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#food-trucks">Food Trucks</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#photos">Photos</a></li>
+            <li><a href="#press">Press</a></li>
+            <li><Link to="/shop" className="nav-cta">Brew Shop</Link></li>
+            <li><Link to="/passport" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)' }}>Beer Passport</Link></li>
+          </ul>
+          {/* Hamburger */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav-drawer"
+          >
+            <span /><span /><span />
+          </button>
+        </nav>
 
-      {/* ─── MOBILE DRAWER ─── */}
-      {menuOpen && <div className="nav-drawer-overlay" onClick={() => setMenuOpen(false)} />}
-      <div className={`nav-drawer ${menuOpen ? 'nav-drawer-open' : ''}`}>
-        <button className="nav-drawer-close" onClick={() => setMenuOpen(false)}>✕</button>
-        <ul className="nav-drawer-links">
-          {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press'],['#shop','Brew Shop']].map(([href, label]) => (
-            <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
-          ))}
-        </ul>
-      </div>
+        {/* ─── MOBILE DRAWER ─── */}
+        {menuOpen && <div className="nav-drawer-overlay" onClick={() => setMenuOpen(false)} />}
+        <div id="mobile-nav-drawer" className={`nav-drawer ${menuOpen ? 'nav-drawer-open' : ''}`} aria-label="Mobile navigation">
+          <button className="nav-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu">✕</button>
+          <ul className="nav-drawer-links">
+            {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
+              <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
+            ))}
+            <li>
+              <Link to="/shop" onClick={() => setMenuOpen(false)} className="nav-cta">
+                Brew Shop
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/passport"
+                onClick={() => setMenuOpen(false)}
+                style={{ color: '#39FF14' }}
+              >
+                🛂 Beer Passport
+              </Link>
+            </li>
+          </ul>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
+            target="_blank"
+            rel="noreferrer"
+            className="nav-drawer-directions"
+            onClick={() => setMenuOpen(false)}
+          >
+            Get Directions
+          </a>
+        </div>
+      </header>
+
+      <main id="main-content">
 
       {/* ─── HERO ─── */}
       <section className="hero">
@@ -353,7 +388,7 @@ const ScrollStopSite = () => {
         />
         <div className="hero-content">
           <p className="hero-eyebrow">Fort Lauderdale, FL</p>
-          <h1>A New Breed<br /><span style={{ color: accentColor }}>Of Beers</span></h1>
+          <img src={taglineImg} alt="Invasive Species Brewing + Distilling" style={{ maxWidth: '840px', width: '100%', filter: 'sepia(1) saturate(2.2) hue-rotate(345deg) brightness(0.75) contrast(1.2)' }} />
           <p className="hero-sub">South Florida's premier destination for craft beer &amp; spirits.</p>
           <a href="#menu" className="cta-btn">Explore the Menu</a>
         </div>
@@ -366,7 +401,7 @@ const ScrollStopSite = () => {
       {/* ─── SCROLL VIDEO SECTION ─── */}
       <div className="scroll-container" ref={scrollContainerRef}>
         <div className="canvas-wrapper">
-          <canvas ref={canvasRef} className="video-canvas" />
+          <canvas ref={canvasRef} className="video-canvas" aria-hidden="true" />
 
           {/* Ingredient Tags — left side */}
           <div className={`ingredient-wrap ing-1 ${currentFrame > 25 ? 'visible' : ''}`}>
@@ -428,6 +463,7 @@ const ScrollStopSite = () => {
           src={alligator2Img}
           alt=""
           className="story-alligator"
+          loading="lazy"
           style={{ transform: `translateY(calc(-50% + ${storyRelY * -0.18}px))` }}
         />
         <div className="story-grid">
@@ -450,6 +486,7 @@ const ScrollStopSite = () => {
           src={berryImg}
           alt=""
           className="menu-plant menu-plant-right"
+          loading="lazy"
           style={{ transform: `translateY(calc(-30% + ${menuRelY * -0.22}px))` }}
         />
         <div className="menu-header">
@@ -483,6 +520,7 @@ const ScrollStopSite = () => {
           src={birdOfParadiseImg}
           alt=""
           className="plant-break-img"
+          loading="lazy"
           style={{ transform: `translateY(${menuRelY * -0.14}px)` }}
         />
       </div>
@@ -493,11 +531,19 @@ const ScrollStopSite = () => {
         <h2>Food Trucks<br /><span style={{ color: accentColor }}>Always Here.</span></h2>
         <div className="trucks-grid">
           {trucks.map(truck => (
-            <div key={truck.id} className="truck-card" onClick={() => setSelectedTruck(truck)}>
+            <div
+              key={truck.id}
+              className="truck-card"
+              onClick={() => setSelectedTruck(truck)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedTruck(truck); } }}
+              aria-label={`${truck.name} — ${truck.days}${truck.note ? `, ${truck.note}` : ''}. Tap for details.`}
+            >
               <div className="truck-day" style={{ color: accentColor }}>{truck.days}</div>
               <div className="truck-name">{truck.name}</div>
               {truck.note && <div className="truck-note">{truck.note}</div>}
-              <div className="truck-tap">Tap for details →</div>
+              <div className="truck-tap" aria-hidden="true">Tap for details →</div>
             </div>
           ))}
         </div>
@@ -505,18 +551,30 @@ const ScrollStopSite = () => {
 
       {/* ─── FOOD TRUCK POPUP ─── */}
       {selectedTruck && (
-        <div className="truck-overlay" onClick={() => setSelectedTruck(null)}>
+        <div className="truck-overlay" role="dialog" aria-modal="true" aria-label={`${selectedTruck.name} details`} onClick={() => setSelectedTruck(null)}>
           <div className="truck-popup" onClick={e => e.stopPropagation()}>
-            <button className="truck-popup-close" onClick={() => setSelectedTruck(null)}>✕</button>
+            <button className="truck-popup-close" onClick={() => setSelectedTruck(null)} aria-label="Close popup">✕</button>
 
-            {/* Image grid */}
-            <div className={`truck-popup-imgs truck-popup-imgs-${selectedTruck.images.length}`}>
-              {selectedTruck.images.map((src, i) => (
-                <div key={i} className="truck-popup-img-wrap">
-                  <img src={src} alt={selectedTruck.name} />
-                </div>
-              ))}
-            </div>
+            {/* Video or image grid */}
+            {selectedTruck.video ? (
+              <div className="truck-popup-video">
+                <iframe
+                  src={selectedTruck.video}
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  title={selectedTruck.name}
+                />
+              </div>
+            ) : (
+              <div className={`truck-popup-imgs truck-popup-imgs-${selectedTruck.images.length}`}>
+                {selectedTruck.images.map((src, i) => (
+                  <div key={i} className="truck-popup-img-wrap">
+                    <img src={src} alt={`${selectedTruck.name} food photo ${i + 1}`} />
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Info */}
             <div className="truck-popup-body">
@@ -553,7 +611,7 @@ const ScrollStopSite = () => {
           <div className="visit-info">
             <p className="section-eyebrow">Come Find Us</p>
             <h2 className="visit-heading">Visit The<br /><span style={{ color: accentColor }}>Taproom</span></h2>
-            <p className="visit-address">726 NorthEast 2nd Ave<br />Fort Lauderdale, FL 33304</p>
+            <address className="visit-address">726 NorthEast 2nd Ave<br />Fort Lauderdale, FL 33304</address>
             <div className="hours-table">
               <div className="hours-row"><span>Mon – Thu</span><span>5pm – 11pm</span></div>
               <div className="hours-row"><span>Fri – Sat</span><span>2pm – 1am</span></div>
@@ -587,22 +645,6 @@ const ScrollStopSite = () => {
         </div>
       </section>
 
-      {/* ─── EMAIL SIGNUP ─── */}
-      <section className="email-section">
-        <h2>Join The <span style={{ color: accentColor }}>Club</span></h2>
-        <p>Be the first to know when we release limited edition brews.</p>
-        <form className="email-form" onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="email"
-            placeholder="your@email.com"
-            value={emailInput}
-            onChange={(e) => setEmailInput(e.target.value)}
-            className="email-input"
-          />
-          <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }}>Send</button>
-        </form>
-      </section>
-
       {/* ─── PRESS ─── */}
       <section id="press" className="press-section">
         <p className="section-eyebrow">As Seen In</p>
@@ -632,8 +674,6 @@ const ScrollStopSite = () => {
         </div>
       </section>
 
-      {/* ─── SHOP ─── */}
-      <Shop />
 
       {/* ─── PHOTOS ─── */}
       <section id="photos" className="photos-section">
@@ -641,8 +681,16 @@ const ScrollStopSite = () => {
         <h2>Photos</h2>
         <div className="photos-grid">
           {photos.map((src, i) => (
-            <div key={i} className={`photo-item photo-item-${i + 1}`} onClick={() => openLightbox(i)}>
-              <img src={src} alt={`Invasive Species Brewing ${i + 1}`} />
+            <div
+              key={i}
+              className={`photo-item photo-item-${i + 1}`}
+              onClick={() => openLightbox(i)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); } }}
+              aria-label={`View taproom photo ${i + 1} in full screen`}
+            >
+              <img src={src} alt={`Invasive Species Brewing taproom photo ${i + 1}`} loading="lazy" />
             </div>
           ))}
         </div>
@@ -650,21 +698,42 @@ const ScrollStopSite = () => {
 
       {/* ─── LIGHTBOX ─── */}
       {lightboxIndex !== null && (
-        <div className="lightbox-overlay" onClick={closeLightbox}>
-          <button className="lightbox-arrow lightbox-prev" onClick={prevPhoto}>&#8592;</button>
-          <img className="lightbox-img" src={photos[lightboxIndex]} alt="" />
-          <button className="lightbox-arrow lightbox-next" onClick={nextPhoto}>&#8594;</button>
-          <button className="lightbox-close" onClick={closeLightbox}>&#10005;</button>
+        <div className="lightbox-overlay" role="dialog" aria-modal="true" aria-label={`Photo ${lightboxIndex + 1} of ${photos.length}`} onClick={closeLightbox}>
+          <button className="lightbox-arrow lightbox-prev" onClick={prevPhoto} aria-label="Previous photo">&#8592;</button>
+          <img className="lightbox-img" src={photos[lightboxIndex]} alt={`Invasive Species Brewing taproom photo ${lightboxIndex + 1} of ${photos.length}`} />
+          <button className="lightbox-arrow lightbox-next" onClick={nextPhoto} aria-label="Next photo">&#8594;</button>
+          <button className="lightbox-close" onClick={closeLightbox} aria-label="Close lightbox">&#10005;</button>
         </div>
       )}
+
+      {/* ─── EMAIL SIGNUP ─── */}
+      <section className="email-section">
+        <h2>Join The <span style={{ color: accentColor }}>Club</span></h2>
+        <p>Be the first to know when we release limited edition brews.</p>
+        <form className="email-form" onSubmit={(e) => e.preventDefault()}>
+          <label htmlFor="email-signup" className="sr-only">Email address</label>
+          <input
+            id="email-signup"
+            type="email"
+            placeholder="your@email.com"
+            value={emailInput}
+            onChange={(e) => setEmailInput(e.target.value)}
+            className="email-input"
+            autoComplete="email"
+          />
+          <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }}>Send</button>
+        </form>
+      </section>
+
+      </main>
 
       {/* ─── FOOTER ─── */}
       <footer className="site-footer">
         <div className="footer-top">
           <img src={logoImg} alt="Invasive Species Brewing" style={{ height: '60px', opacity: 0.7 }} />
-          <nav className="footer-nav">
+          <nav className="footer-nav" aria-label="Footer navigation">
             <a href="https://invasivespeciesbrewing.com/our-story" target="_blank" rel="noreferrer">About</a>
-            <a href="https://invasivespeciesbrewing.com/brew-shop" target="_blank" rel="noreferrer">Brew Shop</a>
+            <Link to="/shop">Brew Shop</Link>
             <a href="https://invasivespeciesbrewing.com/menu-6-26" target="_blank" rel="noreferrer">Menu</a>
             <a href="#photos">Photos</a>
             <a href="#press">Press</a>
@@ -676,13 +745,13 @@ const ScrollStopSite = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>726 NorthEast 2nd Ave, Fort Lauderdale, FL 33304</p>
+          <address style={{ fontStyle: 'normal' }}>726 NorthEast 2nd Ave, Fort Lauderdale, FL 33304</address>
           <p style={{ marginTop: '0.75rem' }}>
-            <a href="https://invasivespeciesbrewing.com/return-policy" style={{ color: '#555' }}>Return Policy</a>
-            <span style={{ margin: '0 1rem', color: '#333' }}>|</span>
-            <a href="https://invasivespeciesbrewing.com/privacy-policy" style={{ color: '#555' }}>Privacy Policy</a>
+            <a href="https://invasivespeciesbrewing.com/return-policy" style={{ color: '#808080' }}>Return Policy</a>
+            <span style={{ margin: '0 1rem', color: '#555' }}>|</span>
+            <a href="https://invasivespeciesbrewing.com/privacy-policy" style={{ color: '#808080' }}>Privacy Policy</a>
           </p>
-          <p style={{ marginTop: '1.5rem', color: '#404040', fontSize: '0.8rem' }}>Copyright 2026 © All rights Reserved.</p>
+          <p style={{ marginTop: '1.5rem', color: '#808080', fontSize: '0.8rem' }}>Copyright 2026 © All rights Reserved.</p>
         </div>
       </footer>
     </div>
