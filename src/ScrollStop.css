@@ -1443,7 +1443,7 @@ h1, h2 {
   .menu-plant { display: none; }
 
   /* PLANT BREAK */
-  .plant-break { height: 160px; }
+  .plant-break { display: none; }
   .plant-break-img {
     width: clamp(160px, 52vw, 240px);
     top: -10px;

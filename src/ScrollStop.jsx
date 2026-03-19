@@ -29,6 +29,84 @@ const TOTAL_FRAMES = 121;
 
 const ACCENT = '#39FF14';
 
+function parseCSVRow(row) {
+  const result = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < row.length; i++) {
+    const char = row[i];
+    if (char === '"') { inQuotes = !inQuotes; }
+    else if (char === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
+    else { current += char; }
+  }
+  result.push(current.trim());
+  return result;
+}
+
+const DEFAULT_MENU = {
+  Lagers: [
+    { name: 'Yacht Club', price: '$6.50', desc: 'Florida Pilsner. Crisp, refreshing lager brewed for Florida\'s Endless Summer.', abv: '4.5%' },
+    { name: 'SHTY Beer', price: '$6.50', desc: 'American Light Lager. Collab with @ShithouseMouse.', abv: '5%' },
+    { name: 'Country Club', price: '$6.50', desc: 'Czech Pilsner.', abv: '5%' },
+    { name: 'Curbside', price: '$6.50', desc: 'Amber Lager. German-style.', abv: '4.8%' },
+    { name: 'Rauchbier', price: '$6.50', desc: 'Smoked Lager. Bamberg-style smoked Märzen.', abv: '5%' },
+    { name: 'Schwarzbier', price: '$6.50', desc: 'Dark Lager. German-style.', abv: '5.2%' },
+    { name: 'Maibock', price: '$6.50', desc: 'Strong Golden Lager. German-style.', abv: '7%' },
+  ],
+  'Hoppy & Juicy': [
+    { name: 'Layover', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nelson Sauvin, Citra, Cashmere & Mosaic.', abv: '6%' },
+    { name: 'Lunch Date', price: '$7.50', desc: 'Hazy IPA. DDH w/ Cashmere, Citra, Mosaic & Strata.', abv: '6.5%' },
+    { name: 'Krampus', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nectaron, Strata & Citra.', abv: '7%' },
+    { name: 'Undead Haze', price: '$7.50', desc: 'Hazy IPA. DDH w/ El Dorado, Citra & Nelson Sauvin.', abv: '7.2%' },
+    { name: 'Loakals Only', price: '$7.50', desc: 'Hazy IPA. Aged on White Oak. DDH w/ Citra & Nelson.', abv: '7.2%' },
+    { name: 'Brain Tease', price: '$7.50', desc: 'Hazy IPA. DDH w/ Sabro, Citra & Cashmere.', abv: '7.5%' },
+    { name: 'Battle Llama', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nelson Sauvin, Citra & Mosaic.', abv: '7.8%' },
+    { name: 'Cuban Link', price: '$8', desc: 'Hazy DIPA. DDH w/ Strata & Nelson Sauvin.', abv: '8%' },
+    { name: 'Float Switch', price: '$8', desc: 'Oated DIPA. DDH w/ Talus, Cashmere, Citra & Sabro.', abv: '8%' },
+    { name: 'Westies are for Besties', price: '$8', desc: 'West Coast DIPA. Centennial, Chinook & Citra.', abv: '8.5%' },
+    { name: 'Space Chaser', price: '$9', desc: 'Hazy TIPA. DDH w/ Galaxy, Citra & Strata.', abv: '9.5%' },
+  ],
+  Sours: [
+    { name: 'Guava Pastelito', price: '$8', desc: 'Pastry Sour. Kettle Sour finished w/ Guava & Cream Cheese. Contains Lactose.', abv: '7%' },
+    { name: '2-Way Petting Zoo', price: '$8', desc: 'Kettle Sour. Pineapple, Prickly Pear & Passionfruit.', abv: '7%' },
+    { name: 'Jazz Flute', price: '$8', desc: 'Kettle Sour. Blueberry, Blackberry & Raspberry.', abv: '7%' },
+    { name: 'Mango Painkiller', price: '$8', desc: 'Cocktail Sour. Mango, Pineapple & Coconut Gelato. Lactose Free.', abv: '7%' },
+  ],
+  "Malty N' Dark": [
+    { name: 'Mild Marker', price: '$7', desc: 'English Dark Mild on NITRO.', abv: '3.5%' },
+    { name: 'Beam Me Down', price: '$7', desc: 'Scottish Ale on NITRO.', abv: '4.2%' },
+    { name: 'Octodon', price: '$10', desc: 'BBA Imperial Stout. 2YR Bourbon Barrel Aged w/ Coconut, Chocolate, Vanilla & Coffee.', abv: '15%' },
+    { name: 'The Shadow', price: '$10', desc: 'BBA Imperial Stout. Bourbon Barrel-Aged w/ Chocolate, Hazelnut, Cinnamon & Vanilla.', abv: '15%' },
+  ],
+  'Something New': [
+    { name: 'Ninja Juice', price: '$9', desc: 'Sake Hybrid. Rice & Pilsner malt fermented with Japanese sake yeast.', abv: '10%' },
+    { name: 'Ghost Orchid', price: '$6.50', desc: 'Saison. Dry and effervescent w/ banana, clove & bubblegum notes.', abv: '5.6%' },
+    { name: 'Best Bitter', price: '$6', desc: 'English Session Ale. British heirloom malt & traditional hops.', abv: '4%' },
+  ],
+  'Anything But Beer': [
+    { name: 'Sparkling Italian Wine (Scarpetta)', price: '$8', desc: '250mL can.', abv: '' },
+    { name: 'Prosecco (Jeio)', price: '$9', desc: '187mL split, Italy.', abv: '' },
+    { name: 'Pinot Grigio (Jermann 2021)', price: '$22', desc: '375mL half bottle, Italy.', abv: '' },
+    { name: 'Sauvignon Blanc (Honig 2021)', price: '$22', desc: '375mL, Napa County.', abv: '' },
+    { name: 'Chardonnay (Alexander Valley 2019)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
+    { name: 'Cabernet Sauvignon (Beringer Knights Valley 2018)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
+    { name: 'Pinot Noir (J Vineyards)', price: '$22', desc: '375mL, California.', abv: '' },
+    { name: 'Merlot (Alexander Valley 2020)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
+    { name: 'Dry White Cider (Wolfer)', price: '$7', desc: '12oz. Gluten Free.', abv: '' },
+    { name: 'Peach Hard Cider (Wolfer)', price: '$7', desc: '12oz. Gluten Free.', abv: '' },
+    { name: 'Bitburger 0.0%', price: '$6', desc: 'Alcohol-free German Pilsner.', abv: '0%' },
+    { name: 'Soda', price: '$3', desc: 'Rotating sodas & flavored seltzers.', abv: '' },
+  ],
+  'Take Me Home Tonight': [
+    { name: 'High Rye Bourbon', price: '$39 / bottle', desc: '4-year aged Straight Bourbon, 80 proof. 750ml.', abv: '80 proof' },
+    { name: 'Show Pony - Sweet Tea Bourbon', price: '$42 / bottle', desc: 'Southern-style sweet tea bourbon with black tea. 750ml.', abv: '' },
+    { name: 'High Rye Ninety Nine Bourbon', price: '$42 / bottle', desc: '4-year aged, 99 proof. 750ml.', abv: '99 proof' },
+    { name: 'Amburana Cask Bourbon', price: '$42 / bottle', desc: 'Aged in Brazilian Amburana wood, 95 proof. 750ml.', abv: '95 proof' },
+    { name: 'Barrel Aged Florida Rum', price: '$36 / bottle', desc: '4-year aged in Bourbon barrels, 80 proof. 750ml.', abv: '80 proof' },
+    { name: 'Sugarcane Vodka', price: '$33 / bottle', desc: 'Quadruple distilled & double filtered. 750ml.', abv: '80 proof' },
+  ],
+};
+
 const RolodexText = ({ text, baseDelay, style, visible }) => (
   <span className="stat-num" style={{ color: ACCENT, ...style }}>
     {visible
@@ -59,8 +137,10 @@ const ScrollStopSite = () => {
   const [menuRelY, setMenuRelY] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
+  const [emailStatus, setEmailStatus] = useState(null); // null | 'success' | 'error'
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedTruck, setSelectedTruck] = useState(null);
+  const [beerMenu, setBeerMenu] = useState(DEFAULT_MENU);
 
   const trucks = [
     {
@@ -215,69 +295,26 @@ const ScrollStopSite = () => {
     };
   }, [currentFrame, images]);
 
-  const beerMenu = {
-    Lagers: [
-      { name: 'Yacht Club', price: '$6.50', desc: 'Florida Pilsner. Crisp, refreshing lager brewed for Florida\'s Endless Summer.', abv: '4.5%' },
-      { name: 'SHTY Beer', price: '$6.50', desc: 'American Light Lager. Collab with @ShithouseMouse.', abv: '5%' },
-      { name: 'Country Club', price: '$6.50', desc: 'Czech Pilsner.', abv: '5%' },
-      { name: 'Curbside', price: '$6.50', desc: 'Amber Lager. German-style.', abv: '4.8%' },
-      { name: 'Rauchbier', price: '$6.50', desc: 'Smoked Lager. Bamberg-style smoked Märzen.', abv: '5%' },
-      { name: 'Schwarzbier', price: '$6.50', desc: 'Dark Lager. German-style.', abv: '5.2%' },
-      { name: 'Maibock', price: '$6.50', desc: 'Strong Golden Lager. German-style.', abv: '7%' },
-    ],
-    'Hoppy & Juicy': [
-      { name: 'Layover', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nelson Sauvin, Citra, Cashmere & Mosaic.', abv: '6%' },
-      { name: 'Lunch Date', price: '$7.50', desc: 'Hazy IPA. DDH w/ Cashmere, Citra, Mosaic & Strata.', abv: '6.5%' },
-      { name: 'Krampus', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nectaron, Strata & Citra.', abv: '7%' },
-      { name: 'Undead Haze', price: '$7.50', desc: 'Hazy IPA. DDH w/ El Dorado, Citra & Nelson Sauvin.', abv: '7.2%' },
-      { name: 'Loakals Only', price: '$7.50', desc: 'Hazy IPA. Aged on White Oak. DDH w/ Citra & Nelson.', abv: '7.2%' },
-      { name: 'Brain Tease', price: '$7.50', desc: 'Hazy IPA. DDH w/ Sabro, Citra & Cashmere.', abv: '7.5%' },
-      { name: 'Battle Llama', price: '$7.50', desc: 'Hazy IPA. DDH w/ Nelson Sauvin, Citra & Mosaic.', abv: '7.8%' },
-      { name: 'Cuban Link', price: '$8', desc: 'Hazy DIPA. DDH w/ Strata & Nelson Sauvin.', abv: '8%' },
-      { name: 'Float Switch', price: '$8', desc: 'Oated DIPA. DDH w/ Talus, Cashmere, Citra & Sabro.', abv: '8%' },
-      { name: 'Westies are for Besties', price: '$8', desc: 'West Coast DIPA. Centennial, Chinook & Citra.', abv: '8.5%' },
-      { name: 'Space Chaser', price: '$9', desc: 'Hazy TIPA. DDH w/ Galaxy, Citra & Strata.', abv: '9.5%' },
-    ],
-    Sours: [
-      { name: 'Guava Pastelito', price: '$8', desc: 'Pastry Sour. Kettle Sour finished w/ Guava & Cream Cheese. Contains Lactose.', abv: '7%' },
-      { name: '2-Way Petting Zoo', price: '$8', desc: 'Kettle Sour. Pineapple, Prickly Pear & Passionfruit.', abv: '7%' },
-      { name: 'Jazz Flute', price: '$8', desc: 'Kettle Sour. Blueberry, Blackberry & Raspberry.', abv: '7%' },
-      { name: 'Mango Painkiller', price: '$8', desc: 'Cocktail Sour. Mango, Pineapple & Coconut Gelato. Lactose Free.', abv: '7%' },
-    ],
-    "Malty N' Dark": [
-      { name: 'Mild Marker', price: '$7', desc: 'English Dark Mild on NITRO.', abv: '3.5%' },
-      { name: 'Beam Me Down', price: '$7', desc: 'Scottish Ale on NITRO.', abv: '4.2%' },
-      { name: 'Octodon', price: '$10', desc: 'BBA Imperial Stout. 2YR Bourbon Barrel Aged w/ Coconut, Chocolate, Vanilla & Coffee.', abv: '15%' },
-      { name: 'The Shadow', price: '$10', desc: 'BBA Imperial Stout. Bourbon Barrel-Aged w/ Chocolate, Hazelnut, Cinnamon & Vanilla.', abv: '15%' },
-    ],
-    'Something New': [
-      { name: 'Ninja Juice', price: '$9', desc: 'Sake Hybrid. Rice & Pilsner malt fermented with Japanese sake yeast.', abv: '10%' },
-      { name: 'Ghost Orchid', price: '$6.50', desc: 'Saison. Dry and effervescent w/ banana, clove & bubblegum notes.', abv: '5.6%' },
-      { name: 'Best Bitter', price: '$6', desc: 'English Session Ale. British heirloom malt & traditional hops.', abv: '4%' },
-    ],
-    'Anything But Beer': [
-      { name: 'Sparkling Italian Wine (Scarpetta)', price: '$8', desc: '250mL can.', abv: '' },
-      { name: 'Prosecco (Jeio)', price: '$9', desc: '187mL split, Italy.', abv: '' },
-      { name: 'Pinot Grigio (Jermann 2021)', price: '$22', desc: '375mL half bottle, Italy.', abv: '' },
-      { name: 'Sauvignon Blanc (Honig 2021)', price: '$22', desc: '375mL, Napa County.', abv: '' },
-      { name: 'Chardonnay (Alexander Valley 2019)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
-      { name: 'Cabernet Sauvignon (Beringer Knights Valley 2018)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
-      { name: 'Pinot Noir (J Vineyards)', price: '$22', desc: '375mL, California.', abv: '' },
-      { name: 'Merlot (Alexander Valley 2020)', price: '$22', desc: '375mL, Sonoma County.', abv: '' },
-      { name: 'Dry White Cider (Wolfer)', price: '$7', desc: '12oz. Gluten Free.', abv: '' },
-      { name: 'Peach Hard Cider (Wolfer)', price: '$7', desc: '12oz. Gluten Free.', abv: '' },
-      { name: 'Bitburger 0.0%', price: '$6', desc: 'Alcohol-free German Pilsner.', abv: '0%' },
-      { name: 'Soda', price: '$3', desc: 'Rotating sodas & flavored seltzers.', abv: '' },
-    ],
-    'Take Me Home Tonight': [
-      { name: 'High Rye Bourbon', price: '$39 / bottle', desc: '4-year aged Straight Bourbon, 80 proof. 750ml.', abv: '80 proof' },
-      { name: 'Show Pony - Sweet Tea Bourbon', price: '$42 / bottle', desc: 'Southern-style sweet tea bourbon with black tea. 750ml.', abv: '' },
-      { name: 'High Rye Ninety Nine Bourbon', price: '$42 / bottle', desc: '4-year aged, 99 proof. 750ml.', abv: '99 proof' },
-      { name: 'Amburana Cask Bourbon', price: '$42 / bottle', desc: 'Aged in Brazilian Amburana wood, 95 proof. 750ml.', abv: '95 proof' },
-      { name: 'Barrel Aged Florida Rum', price: '$36 / bottle', desc: '4-year aged in Bourbon barrels, 80 proof. 750ml.', abv: '80 proof' },
-      { name: 'Sugarcane Vodka', price: '$33 / bottle', desc: 'Quadruple distilled & double filtered. 750ml.', abv: '80 proof' },
-    ],
-  };
+  useEffect(() => {
+    const url = import.meta.env.VITE_MENU_SHEET_URL;
+    if (!url) return;
+    fetch(url)
+      .then(r => r.text())
+      .then(text => {
+        const lines = text.trim().split('\n').slice(1);
+        const menu = {};
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          const [category, name, price, desc, abv] = parseCSVRow(line);
+          if (!category || !name) continue;
+          if (!menu[category]) menu[category] = [];
+          const normalizedPrice = price && !price.startsWith('$') ? `$${price}` : price;
+          menu[category].push({ name, price: normalizedPrice, desc, abv: abv || '' });
+        }
+        if (Object.keys(menu).length > 0) setBeerMenu(menu);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="site-root">
@@ -481,14 +518,6 @@ const ScrollStopSite = () => {
 
       {/* ─── BEER MENU ─── */}
       <section id="menu" className="menu-section" ref={menuRef}>
-        {/* Berry — right edge */}
-        <img
-          src={berryImg}
-          alt=""
-          className="menu-plant menu-plant-right"
-          loading="lazy"
-          style={{ transform: `translateY(calc(-30% + ${menuRelY * -0.22}px))` }}
-        />
         <div className="menu-header">
           <p className="section-eyebrow">Rotating Selection</p>
           <h2>Beer <span style={{ color: accentColor }}>Menu</span></h2>
@@ -605,6 +634,15 @@ const ScrollStopSite = () => {
         </div>
       )}
 
+      {/* ─── BERRY ─── */}
+      <img
+        src={berryImg}
+        alt=""
+        className="menu-plant menu-plant-right"
+        loading="lazy"
+        style={{ transform: `translateY(calc(-30% + ${menuRelY * -0.22}px))` }}
+      />
+
       {/* ─── VISIT ─── */}
       <section id="visit" className="visit-section">
         <div className="visit-grid">
@@ -710,19 +748,29 @@ const ScrollStopSite = () => {
       <section className="email-section">
         <h2>Join The <span style={{ color: accentColor }}>Club</span></h2>
         <p>Be the first to know when we release limited edition brews.</p>
-        <form className="email-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="email-form" onSubmit={(e) => {
+          e.preventDefault();
+          const url = import.meta.env.VITE_EMAIL_ENDPOINT;
+          if (!url || !emailInput) return;
+          setEmailStatus(null);
+          fetch(url, { method: 'POST', body: JSON.stringify({ email: emailInput }) })
+            .then(() => { setEmailStatus('success'); setEmailInput(''); })
+            .catch(() => setEmailStatus('error'));
+        }}>
           <label htmlFor="email-signup" className="sr-only">Email address</label>
           <input
             id="email-signup"
             type="email"
             placeholder="your@email.com"
             value={emailInput}
-            onChange={(e) => setEmailInput(e.target.value)}
+            onChange={(e) => { setEmailInput(e.target.value); setEmailStatus(null); }}
             className="email-input"
             autoComplete="email"
           />
           <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }}>Send</button>
         </form>
+        {emailStatus === 'success' && <p style={{ color: accentColor, marginTop: '1rem' }}>You're in. Thanks!</p>}
+        {emailStatus === 'error' && <p style={{ color: '#ff4444', marginTop: '1rem' }}>Something went wrong. Try again.</p>}
       </section>
 
       </main>
