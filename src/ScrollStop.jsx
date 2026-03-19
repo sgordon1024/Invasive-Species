@@ -137,7 +137,8 @@ const ScrollStopSite = () => {
   const [menuRelY, setMenuRelY] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [emailInput, setEmailInput] = useState('');
-  const [emailStatus, setEmailStatus] = useState(null); // null | 'success' | 'error'
+  const [emailStatus, setEmailStatus] = useState(null); // null | 'success' | 'duplicate' | 'error'
+  const [emailSubmitting, setEmailSubmitting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedTruck, setSelectedTruck] = useState(null);
   const [beerMenu, setBeerMenu] = useState(DEFAULT_MENU);
@@ -751,11 +752,17 @@ const ScrollStopSite = () => {
         <form className="email-form" onSubmit={(e) => {
           e.preventDefault();
           const url = import.meta.env.VITE_EMAIL_ENDPOINT;
-          if (!url || !emailInput) return;
+          if (!url || !emailInput || emailSubmitting) return;
           setEmailStatus(null);
+          setEmailSubmitting(true);
           fetch(url, { method: 'POST', body: JSON.stringify({ email: emailInput }) })
-            .then(() => { setEmailStatus('success'); setEmailInput(''); })
-            .catch(() => setEmailStatus('error'));
+            .then(r => r.json())
+            .then(data => {
+              if (data.status === 'duplicate') { setEmailStatus('duplicate'); }
+              else { setEmailStatus('success'); setEmailInput(''); }
+            })
+            .catch(() => setEmailStatus('error'))
+            .finally(() => setEmailSubmitting(false));
         }}>
           <label htmlFor="email-signup" className="sr-only">Email address</label>
           <input
@@ -767,9 +774,12 @@ const ScrollStopSite = () => {
             className="email-input"
             autoComplete="email"
           />
-          <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }}>Send</button>
+          <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }} disabled={emailSubmitting}>
+            {emailSubmitting ? '...' : 'Send'}
+          </button>
         </form>
         {emailStatus === 'success' && <p style={{ color: accentColor, marginTop: '1rem' }}>You're in. Thanks!</p>}
+        {emailStatus === 'duplicate' && <p style={{ color: accentColor, marginTop: '1rem' }}>You're already on the list!</p>}
         {emailStatus === 'error' && <p style={{ color: '#ff4444', marginTop: '1rem' }}>Something went wrong. Try again.</p>}
       </section>
 
