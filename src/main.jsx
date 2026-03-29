@@ -33,9 +33,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/*
       BrowserRouter basename must match Vite's `base` config.
-      Change this if you change the base path in vite.config.js.
     */}
-    <BrowserRouter basename="/Invasive-Species">
+    <BrowserRouter basename="/">
       <PassportProvider>
         <Suspense fallback={<PageLoader />}>
           <Routes>
