@@ -407,6 +407,7 @@ const ScrollStopSite = () => {
         />
         <div className="hero-content">
           <p className="hero-eyebrow">Fort Lauderdale, FL</p>
+          <h1 className="sr-only">Invasive Species Brewing — Fort Lauderdale Craft Brewery &amp; Distillery</h1>
           <img src={taglineImg} alt="Invasive Species Brewing + Distilling" style={{ maxWidth: '840px', width: '100%', filter: 'sepia(1) saturate(2.2) hue-rotate(345deg) brightness(0.75) contrast(1.2)' }} />
           <p className="hero-sub">South Florida's premier destination for craft beer &amp; spirits.</p>
           <a href="#menu" className="cta-btn">Explore the Menu</a>
