@@ -775,7 +775,7 @@ const ScrollStopSite = () => {
             autoComplete="email"
           />
           <button type="submit" className="email-submit" style={{ background: accentColor, color: '#000' }} disabled={emailSubmitting}>
-            {emailSubmitting ? '...' : 'Send'}
+            {emailSubmitting ? <span className="email-spinner" /> : 'Send'}
           </button>
         </form>
         {emailStatus === 'success' && <p style={{ color: accentColor, marginTop: '1rem' }}>You're in. Thanks!</p>}
