@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import './ScrollStop.css';
 import taglineImg from './assets/tagline.png';
 import alligatorImg from './assets/alligator.png';
@@ -340,8 +339,6 @@ const ScrollStopSite = () => {
             <li><a href="#visit">Visit</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#press">Press</a></li>
-            <li><Link to="/shop" className="nav-cta">Brew Shop</Link></li>
-            <li><Link to="/passport" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)' }}>Beer Passport</Link></li>
           </ul>
           {/* Hamburger */}
           <button
@@ -363,20 +360,6 @@ const ScrollStopSite = () => {
             {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
-            <li>
-              <Link to="/shop" onClick={() => setMenuOpen(false)} className="nav-cta">
-                Brew Shop
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/passport"
-                onClick={() => setMenuOpen(false)}
-                style={{ color: '#39FF14' }}
-              >
-                🛂 Beer Passport
-              </Link>
-            </li>
           </ul>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
@@ -769,7 +752,6 @@ const ScrollStopSite = () => {
           <img src={logoImg} alt="Invasive Species Brewing" style={{ height: '60px', opacity: 0.7 }} />
           <nav className="footer-nav" aria-label="Footer navigation">
             <a href="https://invasivespeciesbrewing.com/our-story" target="_blank" rel="noreferrer">About</a>
-            <Link to="/shop">Brew Shop</Link>
             <a href="https://invasivespeciesbrewing.com/menu-6-26" target="_blank" rel="noreferrer">Menu</a>
             <a href="#photos">Photos</a>
             <a href="#press">Press</a>
