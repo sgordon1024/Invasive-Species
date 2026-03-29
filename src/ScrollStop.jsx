@@ -571,7 +571,7 @@ const ScrollStopSite = () => {
               <div className={`truck-popup-imgs truck-popup-imgs-${selectedTruck.images.length}`}>
                 {selectedTruck.images.map((src, i) => (
                   <div key={i} className="truck-popup-img-wrap">
-                    <img src={src} alt={`${selectedTruck.name} food photo ${i + 1}`} />
+                    <img src={src} alt={`${selectedTruck.name} food photo ${i + 1}`} loading="lazy" />
                   </div>
                 ))}
               </div>
