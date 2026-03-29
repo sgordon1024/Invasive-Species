@@ -5,8 +5,6 @@ import taglineImg from './assets/tagline.png';
 import alligatorImg from './assets/alligator.png';
 import alligator2Img from './assets/alligator-2.png';
 import beaverImg from './assets/beaver.png';
-import birdOfParadiseImg from './assets/Bird of Paradise.png';
-import berryImg from './assets/berry.png';
 import cobraImg from './assets/cobra.png';
 import deerImg from './assets/deer.png';
 import logoImg from './assets/logo-white-new.png';
@@ -544,17 +542,6 @@ const ScrollStopSite = () => {
 
       </section>
 
-      {/* ─── BIRD OF PARADISE BREAK ─── */}
-      <div className="plant-break">
-        <img
-          src={birdOfParadiseImg}
-          alt=""
-          className="plant-break-img"
-          loading="lazy"
-          style={{ transform: `translateY(${menuRelY * -0.14}px)` }}
-        />
-      </div>
-
       {/* ─── FOOD TRUCKS ─── */}
       <section id="food-trucks" className="food-trucks-section">
         <p className="section-eyebrow">On Site Every Day</p>
@@ -634,15 +621,6 @@ const ScrollStopSite = () => {
           </div>
         </div>
       )}
-
-      {/* ─── BERRY ─── */}
-      <img
-        src={berryImg}
-        alt=""
-        className="menu-plant menu-plant-right"
-        loading="lazy"
-        style={{ transform: `translateY(calc(-30% + ${menuRelY * -0.22}px))` }}
-      />
 
       {/* ─── VISIT ─── */}
       <section id="visit" className="visit-section">
