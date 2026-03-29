@@ -253,6 +253,14 @@ const ScrollStopSite = () => {
   };
 
   useEffect(() => {
+    if (loadedFrames < TOTAL_FRAMES) return;
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, [loadedFrames]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!scrollContainerRef.current) return;
       const html = document.documentElement;
