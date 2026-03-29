@@ -423,39 +423,6 @@ const ScrollStopSite = () => {
         <div className="canvas-wrapper">
           <canvas ref={canvasRef} className="video-canvas" aria-hidden="true" />
 
-          {/* Ingredient Tags — left side */}
-          <div className={`ingredient-wrap ing-1 ${currentFrame > 25 ? 'visible' : ''}`}>
-            <div className="ingredient-tag">
-              <span className="tag-text">AROMATIC HOPS</span>
-              <div className="tag-line" />
-            </div>
-          </div>
-          <div className={`ingredient-wrap ing-2 ${currentFrame > 50 ? 'visible' : ''}`}>
-            <div className="ingredient-tag">
-              <span className="tag-text">LOCAL MALT</span>
-              <div className="tag-line" />
-            </div>
-          </div>
-          <div className={`ingredient-wrap ing-3 ${currentFrame > 72 ? 'visible' : ''}`}>
-            <div className="ingredient-tag">
-              <span className="tag-text">FLORIDA CITRUS</span>
-              <div className="tag-line" />
-            </div>
-          </div>
-
-          {/* Ingredient Tags — right side */}
-          <div className={`ingredient-wrap ing-r1 ${currentFrame > 35 ? 'visible' : ''}`}>
-            <div className="ingredient-tag tag-right">
-              <div className="tag-line tag-line-left" />
-              <span className="tag-text">YEAST CULTURE</span>
-            </div>
-          </div>
-          <div className={`ingredient-wrap ing-r2 ${currentFrame > 62 ? 'visible' : ''}`}>
-            <div className="ingredient-tag tag-right">
-              <div className="tag-line tag-line-left" />
-              <span className="tag-text">PURE WATER</span>
-            </div>
-          </div>
         </div>
       </div>
 
