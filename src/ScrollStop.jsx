@@ -142,11 +142,26 @@ const ScrollStopSite = () => {
 
   const trucks = [
     {
+      id: 'magaddino',
+      name: 'Pizzeria Magaddino',
+      days: 'Monday',
+      tagline: 'Nothing brings people together like pizza.',
+      story: "Pizzeria Magaddino brings the artistry of Neapolitan pizza to the streets of South Florida via their vintage pizza truck. Operating out of Gulf Stream Brewery in Fort Lauderdale, their pies are built on 72-hour fermented dough made with non-GMO Italian 00 flour — no seed oils, no shortcuts. From a classic Margherita to the honey-drizzled Humble Bumble, every slice is crafted with the care and technique of a proper pizzeria. Find them parked at Invasive Species every Monday.",
+      menu: ['Margherita', 'Humble Bumble', 'Queen Bee', 'Figaro', 'Saucy Ronni', 'Cannoli'],
+      images: [
+        'https://img1.wsimg.com/isteam/ip/af7db69b-d594-408b-aad9-83ef609025b9/popup%20pizzas.jpg',
+        'https://img1.wsimg.com/isteam/ip/af7db69b-d594-408b-aad9-83ef609025b9/ig_17992949800839180.jpg',
+        'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/4b/f5/46/caption.jpg',
+      ],
+      website: 'https://pizzeriamagaddino.com',
+      instagram: 'https://www.instagram.com/pizzeriamagaddino/',
+    },
+    {
       id: 'tightlines',
       name: 'Tight Lines Food Shack',
-      days: 'Mon – Tue',
+      days: 'Tuesday',
       tagline: 'Fresh-caught flavor, handmade with care.',
-      story: "Tight Lines Food Shack is all about fresh ingredients and handmade food done right. Born from a love of Florida's coastal culture, they bring the flavor of the sea straight to your plate — perfectly fried fish, loaded tots, and tacos that punch well above their weight. Originally from Delray Beach, they park at Invasive Species on Mondays and Tuesdays.",
+      story: "Tight Lines Food Shack is all about fresh ingredients and handmade food done right. Born from a love of Florida's coastal culture, they bring the flavor of the sea straight to your plate — perfectly fried fish, loaded tots, and tacos that punch well above their weight. Originally from Delray Beach, they park at Invasive Species every Tuesday.",
       menu: ['Fish Sammy', 'Chop Cheese', 'Gringo Tacos', 'Loaded Fries', 'Fish Tacos', 'Loaded Tots'],
       images: [
         'https://tightlinesfoodtruck.com/wp-content/uploads/2023/08/Fish-Sandwich.jpg',
