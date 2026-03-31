@@ -435,10 +435,7 @@ const ScrollStopSite = () => {
           <p className="hero-sub">South Florida's premier destination for craft beer &amp; spirits.</p>
           <a href="#menu" className="cta-btn">Explore the Menu</a>
         </div>
-        <div className="scroll-nudge">
-          <div className="scroll-line" />
-          <span>Scroll</span>
-        </div>
+
       </section>
 
       {/* ─── SCROLL VIDEO SECTION ─── */}

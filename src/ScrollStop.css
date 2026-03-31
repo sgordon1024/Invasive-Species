@@ -429,6 +429,7 @@ h1, h2 {
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .stat-label {
@@ -1489,4 +1490,13 @@ h1, h2 {
   .photo-item-4 { grid-column: span 1; }
   .photo-item-7 { grid-row: span 1; }
   .photo-item-9 { grid-column: span 2; }
+}
+
+@media (max-height: 650px) {
+  .scroll-nudge { display: none; }
+}
+
+@media (max-width: 500px) {
+  .stats-bar { flex-direction: column; gap: 2rem; padding: 3rem 2rem; }
+  .stat-divider { width: 60px; height: 1px; }
 }
