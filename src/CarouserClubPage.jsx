@@ -25,7 +25,7 @@ export default function CarouserClubPage() {
             <li><Link to="/#visit">Visit</Link></li>
             <li><Link to="/#photos">Photos</Link></li>
             <li><Link to="/#press">Press</Link></li>
-            <li><Link to="/carouser-club" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)' }}>Carouser Club</Link></li>
+            <li><Link to="/carouser-club" className="nav-cta">Carouser Club</Link></li>
           </ul>
           <button
             className="nav-hamburger"
@@ -46,7 +46,7 @@ export default function CarouserClubPage() {
             {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit'],['/#photos','Photos'],['/#press','Press']].map(([href, label]) => (
               <li key={href}><Link to={href} onClick={() => setMenuOpen(false)}>{label}</Link></li>
             ))}
-            <li><Link to="/carouser-club" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)', display: 'inline-block', marginTop: '0.5rem' }} onClick={() => setMenuOpen(false)}>Carouser Club</Link></li>
+            <li><Link to="/carouser-club" className="nav-cta" onClick={() => setMenuOpen(false)}>Carouser Club</Link></li>
           </ul>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
