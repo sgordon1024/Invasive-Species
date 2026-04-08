@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ScrollStop.css';
 import taglineImg from './assets/tagline.png';
 import alligatorImg from './assets/alligator.png';
@@ -362,6 +363,7 @@ const ScrollStopSite = () => {
             <li><a href="#visit">Visit</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#press">Press</a></li>
+            <li><Link to="/carouser-club" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)' }}>Carouser Club</Link></li>
           </ul>
           {/* Hamburger */}
           <button
@@ -383,6 +385,7 @@ const ScrollStopSite = () => {
             {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
+            <li><Link to="/carouser-club" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)', display: 'inline-block', marginTop: '0.5rem' }} onClick={() => setMenuOpen(false)}>Carouser Club</Link></li>
           </ul>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"

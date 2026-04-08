@@ -1,0 +1,405 @@
+/* ─── CAROUSER CLUB ─── */
+.cc-section {
+  padding: 4rem 2rem 6rem;
+  background: #050505;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.cc-hero {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 3rem;
+}
+
+.cc-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+
+.cc-subtitle {
+  color: #808080;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.cc-price-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  background: rgba(57, 255, 20, 0.08);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+}
+
+.cc-price-amount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #39FF14;
+}
+
+.cc-price-label {
+  font-size: 0.85rem;
+  color: #808080;
+  letter-spacing: 0.5px;
+}
+
+/* ── PERKS ── */
+.cc-perks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.cc-perk {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #111;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.cc-perk:hover {
+  border-color: #2a2a2a;
+}
+
+.cc-perk-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.cc-perk-text {
+  font-size: 0.88rem;
+  color: #ccc;
+}
+
+/* ── PROGRESS ── */
+.cc-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem 2rem;
+  gap: 0;
+}
+
+.cc-progress .progress-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #444;
+  transition: color 0.3s;
+}
+
+.cc-progress .progress-step.active { color: #aaa; }
+
+.cc-progress .progress-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #333;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.cc-progress .progress-step.active .progress-dot { background: #39FF14; }
+
+.cc-progress .progress-line {
+  width: 32px;
+  height: 1px;
+  background: #333;
+  margin: 0 6px;
+}
+
+/* ── FORM CONTAINER ── */
+.cc-form-container {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #0e0e0e;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.cc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cc-form-title {
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0;
+}
+
+.cc-form-desc {
+  color: #808080;
+  font-size: 0.88rem;
+  margin: -0.5rem 0 0;
+}
+
+.cc-back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+  width: fit-content;
+}
+
+.cc-back-btn:hover { color: #fff; }
+
+/* ── SIZE PICKER ── */
+.cc-size-picker {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cc-size-btn {
+  width: 52px;
+  height: 44px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 6px;
+  color: #ccc;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.cc-size-btn:hover {
+  border-color: #39FF14;
+  color: #39FF14;
+}
+
+.cc-size-btn.selected {
+  background: rgba(57, 255, 20, 0.1);
+  border-color: #39FF14;
+  color: #39FF14;
+}
+
+/* ── FIELD HINTS / ERRORS ── */
+.cc-field-hint {
+  font-size: 0.72rem;
+  color: #555;
+  margin-top: 0.15rem;
+}
+
+.cc-field-error {
+  font-size: 0.75rem;
+  color: #ff4444;
+  margin-top: 0.15rem;
+}
+
+/* ── ORDER SUMMARY ── */
+.cc-order-summary {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.cc-summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.cc-summary-detail {
+  font-size: 0.78rem;
+  color: #666;
+  margin-top: 0.4rem;
+}
+
+/* ── CONFIRMATION ── */
+.cc-confirm {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.cc-confirm-msg {
+  font-size: 0.95rem;
+  color: #888;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.cc-confirm-details {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cc-confirm-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-confirm-label {
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cc-confirm-value {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cc-confirm-email {
+  font-size: 0.85rem;
+  color: #808080;
+  margin-bottom: 1rem;
+}
+
+.cc-confirm-email strong {
+  color: #ccc;
+}
+
+.cc-confirm-pickup {
+  font-size: 0.85rem;
+  color: #39FF14;
+  background: rgba(57, 255, 20, 0.06);
+  border: 1px solid rgba(57, 255, 20, 0.15);
+  border-radius: 8px;
+  padding: 0.9rem 1.25rem;
+  line-height: 1.5;
+}
+
+/* ── SHARED FORM STYLES (from Shop) ── */
+.cc-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cc-form .form-group label {
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #808080;
+}
+
+.cc-form .form-group input {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cc-form .form-group input:focus { border-color: #39FF14; }
+.cc-form .form-group input:focus-visible { outline: 2px solid #39FF14; outline-offset: 2px; }
+.cc-form .form-group input::placeholder { color: #555; }
+
+.cc-form .form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.cc-form .form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+  gap: 0.75rem;
+}
+
+.cc-form .demo-notice {
+  background: #1a1200;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.78rem;
+  color: #888;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.cc-form .checkout-btn {
+  background: #39FF14;
+  color: #000;
+  border: none;
+  border-radius: 7px;
+  padding: 0.9rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.cc-form .checkout-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.cc-form .checkout-btn:active { transform: translateY(0); }
+
+.cc-form .checkout-btn-confirm {
+  background: #fff;
+  box-shadow: 0 0 24px rgba(255,255,255,0.08);
+}
+
+.cc-confirm .confirm-icon {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.cc-confirm .confirm-title {
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.cc-confirm .confirm-order-num {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #808080;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .cc-section { padding: 3rem 1rem 4rem; }
+  .cc-form-container { padding: 1.5rem; }
+  .cc-perks { gap: 0.75rem; }
+  .cc-perk { padding: 0.6rem 1rem; }
+  .form-row-3 { grid-template-columns: 1fr 1fr; }
+  .form-row-3 .form-group:last-child { grid-column: span 2; }
+}
