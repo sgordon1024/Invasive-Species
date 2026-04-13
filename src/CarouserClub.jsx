@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackEvent } from './useAnalytics';
 import './CarouserClub.css';
 
 const ACCENT = '#39FF14';
@@ -51,12 +52,14 @@ export default function CarouserClub() {
     if (!form.mugName.trim()) newErrors.mugName = 'Please enter a name for your mug';
     if (!form.shirtSize) newErrors.shirtSize = 'Please select a T-shirt size';
     if (Object.keys(newErrors).length) { setErrors(newErrors); return; }
+    trackEvent('carouser_club_step', { step: 'payment' });
     setStep('payment');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const placeOrder = (e) => {
     e.preventDefault();
+    trackEvent('carouser_club_step', { step: 'confirm' });
     setStep('confirm');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
