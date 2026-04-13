@@ -1,17 +1,30 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import ScrollStopSite from './ScrollStop';
 import useAnalytics from './useAnalytics';
+
+const ScrollStopSite = lazy(() => import('./ScrollStop'));
+const ShopPage = lazy(() => import('./ShopPage'));
+
+function LoadingFallback() {
+  return (
+    <div style={{ background: '#000', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ color: '#39FF14', fontFamily: 'sans-serif', fontSize: '1rem', letterSpacing: '0.2em' }}>LOADING…</div>
+    </div>
+  );
+}
 
 function AppRoutes() {
   useAnalytics();
   return (
-    <Routes>
-      <Route path="/" element={<ScrollStopSite />} />
-      <Route path="*" element={<ScrollStopSite />} />
-    </Routes>
+    <Suspense fallback={<LoadingFallback />}>
+      <Routes>
+        <Route path="/" element={<ScrollStopSite />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="*" element={<ScrollStopSite />} />
+      </Routes>
+    </Suspense>
   );
 }
 

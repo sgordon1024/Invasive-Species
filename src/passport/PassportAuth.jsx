@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { usePassport } from './PassportContext';
-import logoImg from '../assets/logo-white-new.png';
+import logoImg from '../assets/logo-white-new.webp';
 import './passport.css';
 
 export default function PassportAuth() {
