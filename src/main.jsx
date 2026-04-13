@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import ScrollStopSite from './ScrollStop';
+import useAnalytics from './useAnalytics';
+
+function AppRoutes() {
+  useAnalytics();
+  return (
+    <Routes>
+      <Route path="/" element={<ScrollStopSite />} />
+      <Route path="*" element={<ScrollStopSite />} />
+    </Routes>
+  );
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/">
-      <Routes>
-        <Route path="/" element={<ScrollStopSite />} />
-        <Route path="*" element={<ScrollStopSite />} />
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   </React.StrictMode>,
 );

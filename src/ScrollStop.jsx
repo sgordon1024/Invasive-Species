@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { trackEvent } from './useAnalytics';
 import './ScrollStop.css';
 import taglineImg from './assets/tagline.png';
 import alligatorImg from './assets/alligator.png';
@@ -316,6 +318,34 @@ const ScrollStopSite = () => {
     };
   }, [currentFrame, images]);
 
+  // ── Analytics: scroll depth + section visibility ──
+  useEffect(() => {
+    const depthFired = { 25: false, 50: false, 75: false, 90: false };
+    const sectionFired = {};
+    const sections = ['story', 'menu', 'food-trucks', 'visit', 'press', 'photos'];
+
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const pct = Math.round((doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100);
+      for (const mark of [25, 50, 75, 90]) {
+        if (pct >= mark && !depthFired[mark]) {
+          depthFired[mark] = true;
+          trackEvent('scroll_depth', { depth: mark });
+        }
+      }
+      for (const id of sections) {
+        if (sectionFired[id]) continue;
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.6) {
+          sectionFired[id] = true;
+          trackEvent('view_section', { section: id });
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   useEffect(() => {
     const url = import.meta.env.VITE_MENU_SHEET_URL;
     if (!url) return;
@@ -433,7 +463,7 @@ const ScrollStopSite = () => {
           <h1 className="sr-only">Invasive Species Brewing — Fort Lauderdale Craft Brewery &amp; Distillery</h1>
           <img src={taglineImg} alt="Invasive Species Brewing + Distilling" style={{ maxWidth: '840px', width: '100%', filter: 'sepia(1) saturate(2.2) hue-rotate(345deg) brightness(0.75) contrast(1.2)' }} />
           <p className="hero-sub">South Florida's premier destination for craft beer &amp; spirits.</p>
-          <a href="#menu" className="cta-btn">Explore the Menu</a>
+          <a href="#menu" className="cta-btn" onClick={() => trackEvent('click_cta', { label: 'explore_menu' })}>Explore the Menu</a>
         </div>
 
       </section>
@@ -626,6 +656,7 @@ const ScrollStopSite = () => {
               rel="noreferrer"
               className="cta-btn"
               style={{ display: 'block', textAlign: 'center', marginTop: '1.25rem' }}
+              onClick={() => trackEvent('click_cta', { label: 'get_directions' })}
             >
               Get Directions
             </a>
@@ -708,7 +739,7 @@ const ScrollStopSite = () => {
             .then(r => r.json())
             .then(data => {
               if (data.status === 'duplicate') { setEmailStatus('duplicate'); }
-              else { setEmailStatus('success'); setEmailInput(''); }
+              else { setEmailStatus('success'); setEmailInput(''); trackEvent('email_signup', { status: 'success' }); }
             })
             .catch(() => setEmailStatus('error'))
             .finally(() => setEmailSubmitting(false));
