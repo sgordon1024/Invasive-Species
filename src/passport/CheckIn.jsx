@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { usePassport } from './PassportContext';
-import logoImg from '../assets/logo-white-new.png';
+import logoImg from '../assets/logo-white-new.webp';
 import './passport.css';
 
 // Possible states the check-in page can be in.

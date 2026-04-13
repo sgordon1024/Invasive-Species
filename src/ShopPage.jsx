@@ -3,7 +3,7 @@
 
 import { Link } from 'react-router-dom';
 import Shop from './Shop';
-import logoImg from './assets/logo-white-new.png';
+import logoImg from './assets/logo-white-new.webp';
 
 export default function ShopPage() {
   return (
