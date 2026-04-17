@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import './Shop.css';
 
-import imgClassicTee      from './assets/photos/Classic Logo Tee Mockup.png';
-import imgHoodie          from './assets/photos/Logo Hoodie Mockup.png';
-import imgDadCap          from './assets/photos/Logo Dad Cap Mockup.png';
-import imgSnapback        from './assets/photos/Mockup Logo Snapback Hat.png';
-import imgShakerPint      from './assets/photos/Mockup Logo Shaker Pint Glass.png';
-import imgTulipGlass      from './assets/photos/Logo Tulip Glass Mockup.png';
-import imgGlassGrowler    from './assets/photos/Logo Mockup 64oz Glass Growler.png';
-import imgStainlessGrowler from './assets/photos/Logo Mockup on Growler.png';
-import imgBottleOpener    from './assets/photos/Logo Bottle Opener Mockup.png';
-import imgGiftSet         from "./assets/photos/Brewer's Gift Set Mockup with Logo.png";
-import imgToteBag         from './assets/photos/Canvas Tote Bag Mockup.png';
-import imgStickerPack     from './assets/photos/Sticker Pack Mockup with Logo.png';
+import imgClassicTee      from './assets/photos/Classic Logo Tee Mockup.webp';
+import imgHoodie          from './assets/photos/Logo Hoodie Mockup.webp';
+import imgDadCap          from './assets/photos/Logo Dad Cap Mockup.webp';
+import imgSnapback        from './assets/photos/Mockup Logo Snapback Hat.webp';
+import imgShakerPint      from './assets/photos/Mockup Logo Shaker Pint Glass.webp';
+import imgTulipGlass      from './assets/photos/Logo Tulip Glass Mockup.webp';
+import imgGlassGrowler    from './assets/photos/Logo Mockup 64oz Glass Growler.webp';
+import imgStainlessGrowler from './assets/photos/Logo Mockup on Growler.webp';
+import imgBottleOpener    from './assets/photos/Logo Bottle Opener Mockup.webp';
+import imgGiftSet         from "./assets/photos/Brewer's Gift Set Mockup with Logo.webp";
+import imgToteBag         from './assets/photos/Canvas Tote Bag Mockup.webp';
+import imgStickerPack     from './assets/photos/Sticker Pack Mockup with Logo.webp';
 
 const ACCENT = '#39FF14';
 

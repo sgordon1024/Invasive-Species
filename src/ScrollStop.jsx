@@ -2,25 +2,25 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from './useAnalytics';
 import './ScrollStop.css';
-import taglineImg from './assets/tagline.png';
-import alligatorImg from './assets/alligator.png';
-import alligator2Img from './assets/alligator-2.png';
-import beaverImg from './assets/beaver.png';
-import cobraImg from './assets/cobra.png';
-import deerImg from './assets/deer.png';
-import logoImg from './assets/logo-white-new.png';
+import taglineImg from './assets/tagline.webp';
+import alligatorImg from './assets/alligator.webp';
+import alligator2Img from './assets/alligator-2.webp';
+import beaverImg from './assets/beaver.webp';
+import cobraImg from './assets/cobra.webp';
+import deerImg from './assets/deer.webp';
+import logoImg from './assets/logo-white-new.webp';
 import laCondesaFood1 from './assets/photos/La Condesa Taqueria.webp';
 import laCondesaFood2 from './assets/photos/La Condesa Taqueria 70A4715 Edit.webp';
-import photo1 from './assets/photos/invasive-species-brewing.jpeg';
-import photo2 from './assets/photos/IMG_5759.jpg';
-import photo3 from './assets/photos/IMG_5769.jpg';
-import photo4 from './assets/photos/IMG_5721.jpg';
-import photo5 from './assets/photos/IMG_57681.jpg';
-import photo6 from './assets/photos/IMG_5711.jpg';
-import photo7 from './assets/photos/IMG_5712.jpg';
-import photo8 from './assets/photos/IMG_5713.jpg';
-import photo9 from './assets/photos/IMG_57621.jpg';
-import photo10 from './assets/photos/IMG_57651.jpg';
+import photo1 from './assets/photos/invasive-species-brewing.webp';
+import photo2 from './assets/photos/IMG_5759.webp';
+import photo3 from './assets/photos/IMG_5769.webp';
+import photo4 from './assets/photos/IMG_5721.webp';
+import photo5 from './assets/photos/IMG_57681.webp';
+import photo6 from './assets/photos/IMG_5711.webp';
+import photo7 from './assets/photos/IMG_5712.webp';
+import photo8 from './assets/photos/IMG_5713.webp';
+import photo9 from './assets/photos/IMG_57621.webp';
+import photo10 from './assets/photos/IMG_57651.webp';
 
 const photos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10];
 
@@ -228,7 +228,7 @@ const ScrollStopSite = () => {
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
       const frameStr = i.toString().padStart(4, '0');
-      img.src = `${import.meta.env.BASE_URL}frames/frame_${frameStr}.jpg`;
+      img.src = `${import.meta.env.BASE_URL}frames/frame_${frameStr}.webp`;
       img.onload = () => {
         loaded++;
         setLoadedFrames(loaded);
