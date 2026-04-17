@@ -1407,6 +1407,22 @@ h1, h2 {
 }
 .nav-drawer-directions:hover { border-color: #666; color: #ccc; }
 
+.nav-drawer-links .nav-cta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid #39FF14;
+  border-radius: 20px;
+  color: #39FF14;
+  background: rgba(57, 255, 20, 0.08);
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-drawer-links .nav-cta:hover {
+  background: #39FF14;
+  color: #000;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
 
@@ -1499,4 +1515,262 @@ h1, h2 {
 @media (max-width: 500px) {
   .stats-bar { flex-direction: column; gap: 2rem; padding: 3rem 2rem; }
   .stat-divider { width: 60px; height: 1px; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   CAROUSER CLUB COUNTDOWN SECTION
+   ───────────────────────────────────────────────────────── */
+
+.cc-countdown-section {
+  padding: 5rem 2rem 5.5rem;
+  background: #060606;
+  text-align: center;
+  border-top: 1px solid #141414;
+  border-bottom: 1px solid #141414;
+}
+
+.cc-countdown-heading {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: #fff;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.cc-countdown-accent {
+  color: #39FF14;
+}
+
+.cc-countdown-sub {
+  color: #808080;
+  font-size: 1rem;
+  line-height: 1.65;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ── Timer digits ── */
+.cc-countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cc-countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.cc-countdown-num {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: #39FF14;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 24px rgba(57, 255, 20, 0.35);
+}
+
+.cc-countdown-label {
+  font-size: 0.68rem;
+  color: #555;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+}
+
+.cc-countdown-sep {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #39FF14;
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 1rem; /* optically align with nums */
+}
+
+.cc-countdown-date {
+  font-size: 0.8rem;
+  color: #444;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 2rem;
+}
+
+/* ── CTA button ── */
+.cc-countdown-cta {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  border: 2px solid #39FF14;
+  color: #39FF14;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  border-radius: 2px;
+  margin-bottom: 3rem;
+}
+
+.cc-countdown-cta:hover {
+  background: #39FF14;
+  color: #000;
+}
+
+.cc-countdown-cta--live {
+  font-size: 1.05rem;
+  padding: 1rem 2.6rem;
+}
+
+/* ── Perks row ── */
+.cc-countdown-perks {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cc-countdown-perk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: #555;
+  max-width: 130px;
+  text-align: center;
+}
+
+.cc-countdown-perk span:first-child {
+  font-size: 1.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .cc-countdown-section { padding: 4rem 1.5rem 4.5rem; }
+  .cc-countdown-unit { min-width: 56px; }
+  .cc-countdown-perks { gap: 1.5rem; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   NAV CAROUSER COUNTDOWN (pre-launch, locked pill + tooltip)
+   ───────────────────────────────────────────────────────── */
+
+.nav-cta--countdown {
+  position: relative;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgba(57, 255, 20, 0.45);
+  color: #39FF14;
+  border-radius: 4px;
+  background: rgba(57, 255, 20, 0.06);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  box-shadow: 0 0 14px rgba(57, 255, 20, 0.12);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta--countdown:hover {
+  border-color: rgba(57, 255, 20, 0.85);
+  background: rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.25);
+  color: #39FF14;
+}
+
+.nav-cta-countdown-digits {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+/* ── Tooltip ── */
+.nav-cta-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  color: #e0e0e0;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  padding: 0.65rem 0.9rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+  z-index: 100;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.nav-cta-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #2a2a2a;
+}
+
+.nav-cta-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(1px);
+  border: 5px solid transparent;
+  border-bottom-color: #0a0a0a;
+}
+
+.nav-cta-tooltip strong {
+  color: #39FF14;
+  font-weight: 700;
+}
+
+.nav-cta--countdown:hover .nav-cta-tooltip,
+.nav-cta--countdown:focus-within .nav-cta-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Drawer version — tooltip floats above since there's no room below */
+.nav-drawer-links .nav-cta--countdown {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.nav-drawer-links .nav-cta-tooltip {
+  top: auto;
+  bottom: calc(100% + 10px);
+}
+
+.nav-drawer-links .nav-cta-tooltip::before,
+.nav-drawer-links .nav-cta-tooltip::after {
+  bottom: auto;
+  top: 100%;
+  border-bottom-color: transparent;
+}
+
+.nav-drawer-links .nav-cta-tooltip::before {
+  border-top-color: #2a2a2a;
+}
+
+.nav-drawer-links .nav-cta-tooltip::after {
+  border-top-color: #0a0a0a;
+  transform: translateX(-50%) translateY(-1px);
 }
