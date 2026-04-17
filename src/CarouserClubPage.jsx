@@ -4,10 +4,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CarouserClub from './CarouserClub';
-import logoImg from './assets/logo-white-new.png';
+import CarouserCountdown from './CarouserCountdown';
+import NavCarouserButton from './NavCarouserButton';
+import { useTimeLeft } from './carouserLaunch';
+import logoImg from './assets/logo-white-new.webp';
+import './ScrollStop.css'; // shared nav + countdown styles
 
 export default function CarouserClubPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const timeLeft = useTimeLeft();
+  const launched = !timeLeft;
 
   return (
     <div style={{ background: '#000', minHeight: '100vh' }}>
@@ -25,7 +31,7 @@ export default function CarouserClubPage() {
             <li><Link to="/#visit">Visit</Link></li>
             <li><Link to="/#photos">Photos</Link></li>
             <li><Link to="/#press">Press</Link></li>
-            <li><Link to="/carouser-club" className="nav-cta">Carouser Club</Link></li>
+            <li><NavCarouserButton /></li>
           </ul>
           <button
             className="nav-hamburger"
@@ -46,7 +52,7 @@ export default function CarouserClubPage() {
             {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit'],['/#photos','Photos'],['/#press','Press']].map(([href, label]) => (
               <li key={href}><Link to={href} onClick={() => setMenuOpen(false)}>{label}</Link></li>
             ))}
-            <li><Link to="/carouser-club" className="nav-cta" onClick={() => setMenuOpen(false)}>Carouser Club</Link></li>
+            <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
@@ -61,8 +67,9 @@ export default function CarouserClubPage() {
       </header>
 
       {/* ── Page content ────────────────────────────────────────── */}
+      {/* Before 4/20 nobody gets to the form — they see the countdown. */}
       <div style={{ paddingTop: '80px' }}>
-        <CarouserClub />
+        {launched ? <CarouserClub /> : <CarouserCountdown />}
       </div>
 
     </div>
