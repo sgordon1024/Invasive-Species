@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from './useAnalytics';
-import CarouserCountdown from './CarouserCountdown';
-import NavCarouserButton from './NavCarouserButton';
 import './ScrollStop.css';
 import taglineImg from './assets/tagline.webp';
 import alligatorImg from './assets/alligator.webp';
@@ -394,7 +392,6 @@ const ScrollStopSite = () => {
             <li><a href="#visit">Visit</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#press">Press</a></li>
-            <li><NavCarouserButton /></li>
           </ul>
           {/* Hamburger */}
           <button
@@ -416,7 +413,6 @@ const ScrollStopSite = () => {
             {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
-            <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
@@ -728,9 +724,6 @@ const ScrollStopSite = () => {
           <button className="lightbox-close" onClick={closeLightbox} aria-label="Close lightbox">&#10005;</button>
         </div>
       )}
-
-      {/* ─── CAROUSER CLUB COUNTDOWN ─── */}
-      <CarouserCountdown />
 
       {/* ─── EMAIL SIGNUP ─── */}
       <section className="email-section">
