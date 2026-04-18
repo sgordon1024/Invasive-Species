@@ -198,32 +198,88 @@
 .cp-particle {
   position: absolute;
   border-radius: 50%;
-  background: #39FF14;
   opacity: 0;
   animation: pfloat linear infinite;
+
+  /* ── Photorealistic bubble ── */
+  background:
+    /* Primary specular highlight — bright white-green upper-left */
+    radial-gradient(circle at 30% 26%, rgba(220, 255, 195, 0.98) 0%, rgba(170, 255, 130, 0.65) 16%, transparent 36%),
+    /* Secondary soft highlight — lower-right catch-light */
+    radial-gradient(circle at 68% 72%, rgba(90, 210, 55, 0.45) 0%, transparent 28%),
+    /* Bubble membrane — mostly transparent green body, dark rim */
+    radial-gradient(circle at 50% 50%,
+      rgba(57, 255, 20, 0.03)  0%,
+      rgba(57, 255, 20, 0.10) 58%,
+      rgba(22, 160, 6,  0.32) 80%,
+      rgba(8,  72,  2,  0.60) 100%
+    );
+
+  border: 1px solid rgba(57, 255, 20, 0.22);
+  box-shadow:
+    /* Outer rim glow */
+    0 0 6px rgba(57, 255, 20, 0.18),
+    /* Inner iridescent sheen */
+    inset 0 0 12px rgba(57, 255, 20, 0.07),
+    /* Subtle bottom-right inner shadow */
+    inset -2px -3px 6px rgba(0, 30, 0, 0.22);
 }
 
 @keyframes pfloat {
-  0%   { transform: translateY(0) scale(1);   opacity: 0; }
-  8%   { opacity: 0.12; }
-  88%  { opacity: 0.05; }
+  0%   { transform: translateY(0) scale(1);        opacity: 0; }
+  6%   { opacity: 0.5; }
+  85%  { opacity: 0.18; }
   100% { transform: translateY(-110vh) scale(0.4); opacity: 0; }
 }
 
-.cp-p1  { width:4px;height:4px; left:7%;  bottom:8%;  animation-duration:8s;   animation-delay:0s;   }
-.cp-p2  { width:3px;height:3px; left:18%; bottom:12%; animation-duration:10s;  animation-delay:1.2s; }
-.cp-p3  { width:5px;height:5px; left:29%; bottom:4%;  animation-duration:7s;   animation-delay:2.5s; }
-.cp-p4  { width:3px;height:3px; left:41%; bottom:9%;  animation-duration:9s;   animation-delay:0.8s; }
-.cp-p5  { width:6px;height:6px; left:54%; bottom:3%;  animation-duration:11s;  animation-delay:1.7s; }
-.cp-p6  { width:4px;height:4px; left:63%; bottom:14%; animation-duration:8s;   animation-delay:3.1s; }
-.cp-p7  { width:3px;height:3px; left:72%; bottom:7%;  animation-duration:9.5s; animation-delay:0.4s; }
-.cp-p8  { width:5px;height:5px; left:82%; bottom:10%; animation-duration:7.5s; animation-delay:2.2s; }
-.cp-p9  { width:3px;height:3px; left:91%; bottom:5%;  animation-duration:10s;  animation-delay:1.5s; }
-.cp-p10 { width:4px;height:4px; left:24%; bottom:20%; animation-duration:12s;  animation-delay:4s;   }
-.cp-p11 { width:6px;height:6px; left:48%; bottom:18%; animation-duration:9s;   animation-delay:0.6s; }
-.cp-p12 { width:3px;height:3px; left:70%; bottom:22%; animation-duration:11s;  animation-delay:3.8s; }
-.cp-p13 { width:4px;height:4px; left:36%; bottom:26%; animation-duration:8.5s; animation-delay:2s;   }
-.cp-p14 { width:5px;height:5px; left:86%; bottom:19%; animation-duration:10s;  animation-delay:1s;   }
+/* ── Layer 1 — background (blurred) ── */
+.cp-p1  { width:16px; height:16px; left:7%;  bottom:6%;  animation-duration:14.8s; animation-delay:0s;    }
+.cp-p2  { width:12px; height:12px; left:18%; bottom:11%; animation-duration:14.8s; animation-delay:1.2s;  }
+.cp-p3  { width:20px; height:20px; left:29%; bottom:4%;  animation-duration:10.3s; animation-delay:2.5s;  }
+.cp-p4  { width:14px; height:14px; left:41%; bottom:9%;  animation-duration:13.3s; animation-delay:0.8s;  }
+.cp-p5  { width:18px; height:18px; left:54%; bottom:3%;  animation-duration:16.1s; animation-delay:1.7s;  }
+.cp-p6  { width:13px; height:13px; left:63%; bottom:14%; animation-duration:11.8s; animation-delay:3.1s;  }
+.cp-p7  { width:15px; height:15px; left:72%; bottom:7%;  animation-duration:14.0s; animation-delay:0.4s;  }
+.cp-p8  { width:19px; height:19px; left:82%; bottom:10%; animation-duration:11.0s; animation-delay:2.2s;  }
+.cp-p9  { width:12px; height:12px; left:91%; bottom:5%;  animation-duration:14.8s; animation-delay:1.5s;  }
+.cp-p10 { width:17px; height:17px; left:24%; bottom:20%; animation-duration:17.6s; animation-delay:4s;    }
+.cp-p11 { width:22px; height:22px; left:48%; bottom:18%; animation-duration:13.3s; animation-delay:0.6s;  }
+.cp-p12 { width:14px; height:14px; left:70%; bottom:22%; animation-duration:16.1s; animation-delay:3.8s;  }
+.cp-p13 { width:16px; height:16px; left:36%; bottom:26%; animation-duration:12.5s; animation-delay:2s;    }
+.cp-p14 { width:20px; height:20px; left:86%; bottom:19%; animation-duration:14.8s; animation-delay:1s;    }
+/* ── Layer 2 — mid-ground (slight blur) ── */
+.cp-p15 { width:9px;  height:9px;  left:13%; bottom:35%; animation-duration:13.3s; animation-delay:5s;    }
+.cp-p16 { width:14px; height:14px; left:22%; bottom:40%; animation-duration:19.1s; animation-delay:6.5s;  }
+.cp-p17 { width:10px; height:10px; left:33%; bottom:45%; animation-duration:9.4s;  animation-delay:3.2s;  }
+.cp-p18 { width:8px;  height:8px;  left:45%; bottom:32%; animation-duration:12.9s; animation-delay:7s;    }
+.cp-p19 { width:16px; height:16px; left:58%; bottom:42%; animation-duration:11.8s; animation-delay:2.3s;  }
+.cp-p20 { width:9px;  height:9px;  left:67%; bottom:50%; animation-duration:11.2s; animation-delay:4.7s;  }
+.cp-p21 { width:7px;  height:7px;  left:76%; bottom:38%; animation-duration:14.1s; animation-delay:1.8s;  }
+.cp-p22 { width:13px; height:13px; left:85%; bottom:44%; animation-duration:10s;   animation-delay:5.4s;  }
+.cp-p23 { width:8px;  height:8px;  left:93%; bottom:28%; animation-duration:11.8s; animation-delay:3.6s;  }
+.cp-p24 { width:10px; height:10px; left:4%;  bottom:55%; animation-duration:16.5s; animation-delay:8s;    }
+.cp-p25 { width:7px;  height:7px;  left:28%; bottom:60%; animation-duration:12.9s; animation-delay:6s;    }
+.cp-p26 { width:15px; height:15px; left:50%; bottom:55%; animation-duration:10.6s; animation-delay:2.8s;  }
+.cp-p27 { width:9px;  height:9px;  left:62%; bottom:65%; animation-duration:14.1s; animation-delay:4s;    }
+.cp-p28 { width:7px;  height:7px;  left:78%; bottom:58%; animation-duration:11.8s; animation-delay:7.5s;  }
+/* ── Layer 3 — foreground (sharp, closest) — 4 rendered (p29–p32) ── */
+.cp-p29 { width:12px; height:12px; left:4%;  bottom:42%; animation-duration:9.4s;  animation-delay:1.4s;  }
+.cp-p30 { width:8px;  height:8px;  left:16%; bottom:70%; animation-duration:15.3s; animation-delay:9s;    }
+.cp-p31 { width:18px; height:18px; left:39%; bottom:75%; animation-duration:12.9s; animation-delay:3.5s;  }
+.cp-p32 { width:10px; height:10px; left:55%; bottom:80%; animation-duration:10.6s; animation-delay:5.8s;  }
+
+/* ── Depth-of-field blur layers ── */
+.cp-p1,.cp-p2,.cp-p3,.cp-p4,.cp-p5,.cp-p6,.cp-p7,
+.cp-p8,.cp-p9,.cp-p10,.cp-p11,.cp-p12,.cp-p13,.cp-p14 {
+  filter: blur(3px);
+}
+
+.cp-p15,.cp-p16,.cp-p17,.cp-p18,.cp-p19,.cp-p20,.cp-p21,
+.cp-p22,.cp-p23,.cp-p24,.cp-p25,.cp-p26,.cp-p27,.cp-p28 {
+  filter: blur(1.2px);
+}
+
+/* cp-p29–cp-p32: no blur — sharpest, closest bubbles */
 
 /* ─── SHARED TYPOGRAPHY ─── */
 .cp-label {
@@ -362,8 +418,10 @@
 }
 
 .cp-stat-card {
-  background: #080808;
-  border: 1px solid #141414;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 1.5rem 1rem;
   text-align: center;
 }
@@ -383,6 +441,14 @@
   color: #555;
   text-transform: uppercase;
   line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.cp-stat-ctx {
+  font-size: 0.68rem;
+  color: #333;
+  line-height: 1.45;
+  font-style: italic;
 }
 
 /* ══════════════════════════════════════════════════
@@ -400,13 +466,15 @@
 }
 
 .cp-comp-card {
-  background: #080808;
-  border: 1px solid #111;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 1.35rem 1.25rem;
 }
 .cp-comp-card.featured {
-  border-color: #1e1e1e;
-  background: #090909;
+  border-color: rgba(255, 255, 255, 0.07);
+  background: rgba(10, 10, 10, 0.6);
 }
 
 .cp-comp-tag {
@@ -458,8 +526,10 @@
   align-items: center;
   gap: 1.5rem;
   margin: 0.25rem 0 1.5rem;
-  background: #080808;
-  border: 1px solid #141414;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-left: 3px solid #39FF14;
   padding: 1.25rem 2rem;
   max-width: 620px;
@@ -489,9 +559,10 @@
 }
 
 .s-sci-hero-source {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: #444;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 .s-sci-facts {
@@ -503,8 +574,10 @@
 }
 
 .s-sci-fact {
-  background: #080808;
-  border: 1px solid #111;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-left: 2px solid #39FF14;
   padding: 1rem 1.15rem;
   display: flex;
@@ -524,13 +597,14 @@
   font-size: 0.78rem;
   color: #ccc;
   line-height: 1.4;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .s-sci-fact-sub {
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   color: #444;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 /* ══════════════════════════════════════════════════
@@ -547,17 +621,19 @@
 }
 
 .s-tier {
-  background: #080808;
-  border: 1px solid #111;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 1.35rem 1.15rem;
 }
 .s-tier.workhorse {
-  border-color: #1e1e1e;
-  background: #090909;
+  border-color: rgba(255, 255, 255, 0.07);
+  background: rgba(10, 10, 10, 0.6);
 }
 .s-tier.apex {
   border-color: #39FF14;
-  background: #050a02;
+  background: rgba(5, 12, 2, 0.65);
 }
 
 .s-tier-badge {
@@ -702,6 +778,158 @@
   z-index: 1;
 }
 
+/* ─── REVENUE LAYOUT (new 2-col) ─── */
+.s-rev-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 960px;
+  position: relative;
+  z-index: 1;
+}
+
+.s-rev-left, .s-rev-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.s-rev-section-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  color: #39FF14;
+  text-transform: uppercase;
+  margin-bottom: 0.1rem;
+}
+
+.s-rev-box {
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.25rem 1.5rem;
+}
+
+.s-rev-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  gap: 1rem;
+}
+
+.s-rev-desc { font-size: 0.82rem; color: #888; }
+.s-rev-row.total .s-rev-desc { color: #ccc; font-weight: 700; }
+
+.s-rev-val { font-size: 0.92rem; font-weight: 600; color: #ccc; text-align: right; }
+
+.total-val {
+  font-size: 1.5rem !important;
+  color: #39FF14 !important;
+  text-shadow: 0 0 30px rgba(57,255,20,0.35);
+  font-weight: 700 !important;
+}
+
+.s-rev-divider { height: 1px; background: #161616; margin: 0.5rem 0; }
+
+.s-rev-assumption {
+  font-size: 0.64rem;
+  color: #2a2a2a;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ─── 3-YEAR BARS ─── */
+.s-rev-years {
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+
+.s-rev-year {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 0.2rem 0.75rem;
+  align-items: center;
+}
+
+.s-rev-year-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 0.05em;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.s-rev-year-members {
+  font-size: 0.62rem;
+  color: #2d2d2d;
+  grid-row: 2;
+  grid-column: 1 / 3;
+}
+
+.s-rev-year-bar {
+  grid-row: 1;
+  grid-column: 2;
+  height: 6px;
+  background: #111;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.s-rev-bar-fill {
+  height: 100%;
+  background: #39FF14;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(57,255,20,0.4);
+}
+
+.s-rev-year-total {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ccc;
+  text-align: right;
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.y3 {
+  color: #39FF14;
+  text-shadow: 0 0 20px rgba(57,255,20,0.3);
+  font-size: 1rem !important;
+}
+
+.s-rev-cumulative {
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #141414;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #444;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.s-rev-cumulative-val {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #39FF14;
+  text-shadow: 0 0 25px rgba(57,255,20,0.4);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 /* ══════════════════════════════════════════════════
    SLIDE 6 — PLATFORM
 ══════════════════════════════════════════════════ */
@@ -716,7 +944,9 @@
 }
 
 .s-plat-main {
-  background: #050a02;
+  background: rgba(5, 12, 2, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid #39FF14;
   padding: 1.5rem;
 }
@@ -728,8 +958,10 @@
 }
 
 .s-plat-card {
-  background: #080808;
-  border: 1px solid #111;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 1.25rem;
   flex: 1;
 }
@@ -812,8 +1044,10 @@
   display: flex;
   gap: 1.35rem;
   align-items: flex-start;
-  background: #080808;
-  border: 1px solid #111;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   padding: 1.15rem 1.35rem;
 }
 

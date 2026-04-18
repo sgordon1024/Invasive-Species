@@ -7,7 +7,7 @@ const PASSWORD = 'carouser';
 function Particles() {
   return (
     <div className="cp-particles" aria-hidden="true">
-      {Array.from({ length: 14 }, (_, i) => (
+      {Array.from({ length: 16 }, (_, i) => (
         <span key={i} className={`cp-particle cp-p${i + 1}`} />
       ))}
     </div>
@@ -55,7 +55,6 @@ function PasswordGate({ onUnlock }) {
 function SlideTitle() {
   return (
     <div className="cp-slide s-title">
-      <Particles />
       <div className="s-title-eyebrow">Invasive Species Brewing</div>
       <h1 className="s-title-heading">
         Carouser Club<span className="s-title-version">2.0</span>
@@ -73,25 +72,30 @@ function SlideOpportunity() {
       <div className="cp-label">The Opportunity</div>
       <h2 className="cp-h2">The Assets Are Already Here</h2>
       <p className="cp-intro">
-        ISB has everything needed to build a market-leading loyalty program.
-        The community exists — it just needs a reason to commit.
+        ISB already has a fanbase that rivals breweries three times its size —
+        built entirely through the beer itself, not paid acquisition.
+        The infrastructure for a loyalty program exists. What's missing is the wrapper around it.
       </p>
       <div className="cp-stat-grid">
         <div className="cp-stat-card">
           <div className="cp-stat-num">13,993</div>
           <div className="cp-stat-label">Unique Untappd Users</div>
+          <div className="cp-stat-ctx">Organic, beer-credible audience — each one a potential paid member</div>
         </div>
         <div className="cp-stat-card">
           <div className="cp-stat-num">78,714</div>
-          <div className="cp-stat-label">Total Untappd Check-ins</div>
+          <div className="cp-stat-label">Total Check-ins on Untappd</div>
+          <div className="cp-stat-ctx">306 per month on average — active, repeat visitors already in the habit loop</div>
         </div>
         <div className="cp-stat-card">
           <div className="cp-stat-num">515</div>
           <div className="cp-stat-label">Unique Beers Catalogued</div>
+          <div className="cp-stat-ctx">The rotating tap list is a loyalty mechanic in disguise — members want to try them all</div>
         </div>
         <div className="cp-stat-card">
           <div className="cp-stat-num">24</div>
           <div className="cp-stat-label">Rotating Taps</div>
+          <div className="cp-stat-ctx">Constant novelty drives return visits — the "Florida 24 Challenge" turns this into a game</div>
         </div>
       </div>
     </div>
@@ -141,30 +145,30 @@ function SlideScience() {
       <div className="s-sci-hero">
         <span className="s-sci-pct">60%</span>
         <div className="s-sci-hero-text">
-          <span className="s-sci-hero-label">higher incremental spend</span>
-          <span className="s-sci-hero-source">for paid members vs. free programs — McKinsey 2020</span>
+          <span className="s-sci-hero-label">higher incremental spend for paid members</span>
+          <span className="s-sci-hero-source">vs. 30% for free programs — McKinsey Consumer Loyalty Survey, 2020. The annual fee creates an endowment effect: members feel they own the program and behave accordingly to "get their money's worth."</span>
         </div>
       </div>
       <div className="s-sci-facts">
         <div className="s-sci-fact">
           <span className="s-sci-num">2×</span>
           <div>
-            <div className="s-sci-fact-label">more motivating than gain</div>
-            <div className="s-sci-fact-sub">Loss aversion — Kahneman &amp; Tversky, 1979</div>
+            <div className="s-sci-fact-label">more motivating than potential gain</div>
+            <div className="s-sci-fact-sub">Loss aversion — Kahneman &amp; Tversky, 1979. Status that decays, points that expire, and members-only windows that close are 2× more powerful than discounts. Use sparingly — communicate rules transparently to avoid backlash.</div>
           </div>
         </div>
         <div className="s-sci-fact">
           <span className="s-sci-num">98%</span>
           <div>
-            <div className="s-sci-fact-label">SMS open rate within 3 min</div>
-            <div className="s-sci-fact-sub">Vibes / Hospitality Tech, 2025</div>
+            <div className="s-sci-fact-label">SMS open rate within 3 minutes</div>
+            <div className="s-sci-fact-sub">Vibes / Hospitality Tech, 2025. vs. 32–40% for email. Businesses using both generate 2.3× more revenue per campaign. SMS = urgency (new release drop). Email = storytelling (monthly brewer letter).</div>
           </div>
         </div>
         <div className="s-sci-fact">
-          <span className="s-sci-num">34%</span>
+          <span className="s-sci-num">50%</span>
           <div>
-            <div className="s-sci-fact-label">completion with endowed progress</div>
-            <div className="s-sci-fact-sub">vs. 19% without — Nunes &amp; Drèze, 2006</div>
+            <div className="s-sci-fact-label">of paid members cancel in year one</div>
+            <div className="s-sci-fact-sub">When they don't visit enough to justify the fee. The first 90 days are make-or-break. Pre-stamped Curly-Tail cards and a welcome SMS sequence directly address this — triggering goal-pursuit psychology at signup.</div>
           </div>
         </div>
       </div>
@@ -229,31 +233,68 @@ function SlideRevenue() {
   return (
     <div className="cp-slide s-generic">
       <div className="cp-label">The Business Case</div>
-      <h2 className="cp-h2">Year One Revenue Projection</h2>
-      <div className="s-rev-box">
-        <div className="s-rev-row">
-          <span className="s-rev-desc">200 mid-tier members × $50</span>
-          <span className="s-rev-eq">=</span>
-          <span className="s-rev-val">$10,000</span>
+      <h2 className="cp-h2">The Full Revenue Picture</h2>
+      <div className="s-rev-layout">
+        {/* Left: Year 1 breakdown */}
+        <div className="s-rev-left">
+          <div className="s-rev-section-label">Year One Breakdown</div>
+          <div className="s-rev-box">
+            <div className="s-rev-row">
+              <span className="s-rev-desc">200 Carouser members × $50</span>
+              <span className="s-rev-val">$10,000</span>
+            </div>
+            <div className="s-rev-row">
+              <span className="s-rev-desc">100 Apex Invader × $175</span>
+              <span className="s-rev-val">$17,500</span>
+            </div>
+            <div className="s-rev-row">
+              <span className="s-rev-desc">Per-visit spend lift (25%)</span>
+              <span className="s-rev-val">$38,000</span>
+            </div>
+            <div className="s-rev-row">
+              <span className="s-rev-desc">Events &amp; experiences</span>
+              <span className="s-rev-val">$4,800</span>
+            </div>
+            <div className="s-rev-divider" />
+            <div className="s-rev-row total">
+              <span className="s-rev-desc">Year One Impact</span>
+              <span className="s-rev-val total-val">$70,300</span>
+            </div>
+          </div>
+          <div className="s-rev-assumption">
+            Spend lift based on 300 paid members · avg 2 visits/month · $20 ticket · 25% documented incremental lift (McKinsey)
+          </div>
         </div>
-        <div className="s-rev-row">
-          <span className="s-rev-desc">100 premium members × $175</span>
-          <span className="s-rev-eq">=</span>
-          <span className="s-rev-val">$17,500</span>
-        </div>
-        <div className="s-rev-divider" />
-        <div className="s-rev-row total">
-          <span className="s-rev-desc">Recurring fee revenue</span>
-          <span className="s-rev-eq">=</span>
-          <span className="s-rev-val total-val">$27,500</span>
+
+        {/* Right: 3-year projection */}
+        <div className="s-rev-right">
+          <div className="s-rev-section-label">3-Year Projection</div>
+          <div className="s-rev-years">
+            <div className="s-rev-year">
+              <div className="s-rev-year-label">Year 1</div>
+              <div className="s-rev-year-members">300 paid members</div>
+              <div className="s-rev-year-bar"><div className="s-rev-bar-fill" style={{width:'55%'}} /></div>
+              <div className="s-rev-year-total">$70,300</div>
+            </div>
+            <div className="s-rev-year">
+              <div className="s-rev-year-label">Year 2</div>
+              <div className="s-rev-year-members">420 paid members</div>
+              <div className="s-rev-year-bar"><div className="s-rev-bar-fill" style={{width:'78%'}} /></div>
+              <div className="s-rev-year-total">$104,050</div>
+            </div>
+            <div className="s-rev-year">
+              <div className="s-rev-year-label">Year 3</div>
+              <div className="s-rev-year-members">550 paid members</div>
+              <div className="s-rev-year-bar"><div className="s-rev-bar-fill" style={{width:'100%'}} /></div>
+              <div className="s-rev-year-total y3">$128,750</div>
+            </div>
+            <div className="s-rev-cumulative">
+              3-year cumulative impact
+              <span className="s-rev-cumulative-val">$303,100</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="s-rev-notes">
-        <div className="s-rev-note">+ 25% documented lift in per-visit spend for paid members</div>
-        <div className="s-rev-note">+ 5% of paid fees → Everglades / lionfish removal (earned PR)</div>
-        <div className="s-rev-note">+ Premium cap creates its own marketing engine</div>
-      </div>
-      <div className="s-rev-footer">Before anyone orders a single beer.</div>
     </div>
   );
 }
@@ -333,7 +374,6 @@ function SlideMoves() {
 function SlideBet() {
   return (
     <div className="cp-slide s-bet">
-      <Particles />
       <div className="cp-label">The Conclusion</div>
       <blockquote className="s-bet-quote">
         "A paid, tiered, digitally-managed mug club is the highest-ROI loyalty
@@ -398,6 +438,7 @@ export default function CarouserPitch() {
 
   return (
     <div className="cp-root">
+      <Particles />
       <div className="cp-progress" style={{ width: `${pct}%` }} />
 
       <div className={`cp-stage${fading ? ' fading' : ''}`}>
