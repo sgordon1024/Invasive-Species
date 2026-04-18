@@ -57,7 +57,10 @@ export default function CarouserCountdown() {
             </div>
           </div>
 
-          <p className="cc-countdown-date">Memberships open Sunday, April 20</p>
+          <p className="cc-countdown-date">Memberships open Sunday, May 11</p>
+          <p className="cc-countdown-early-access">
+            Returning member? Early renewal is open now.
+          </p>
         </>
       )}
 

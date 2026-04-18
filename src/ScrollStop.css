@@ -1215,10 +1215,9 @@ h1, h2 {
 
 .photos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 280px;
   gap: 8px;
-  grid-auto-flow: dense;
 }
 
 .photo-item {
@@ -1245,11 +1244,7 @@ h1, h2 {
   filter: brightness(1.05) saturate(1.1);
 }
 
-/* Collage spanning rules */
-.photo-item-1 { grid-column: span 2; grid-row: span 2; }
-.photo-item-4 { grid-column: span 2; }
-.photo-item-7 { grid-row: span 2; }
-.photo-item-9 { grid-column: span 2; }
+/* Uniform grid — no spanning */
 
 /* ─── LIGHTBOX ─── */
 .lightbox-overlay {
@@ -1502,10 +1497,6 @@ h1, h2 {
 
   /* PHOTOS */
   .photos-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
-  .photo-item-1 { grid-column: span 2; }
-  .photo-item-4 { grid-column: span 1; }
-  .photo-item-7 { grid-row: span 1; }
-  .photo-item-9 { grid-column: span 2; }
 }
 
 @media (max-height: 650px) {
@@ -1597,7 +1588,15 @@ h1, h2 {
   color: #444;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  margin: 0 0 0.6rem;
+}
+
+.cc-countdown-early-access {
+  font-size: 0.8rem;
+  color: #39FF14;
+  letter-spacing: 0.06em;
   margin: 0 0 2rem;
+  opacity: 0.85;
 }
 
 /* ── CTA button ── */

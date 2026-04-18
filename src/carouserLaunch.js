@@ -4,9 +4,9 @@
 
 import { useEffect, useState } from 'react';
 
-// ── The real launch: April 20, 2026, midnight local (Fort Lauderdale) ──
+// ── The real launch: May 11, 2026, midnight local (Fort Lauderdale) ──
 // Update this one line to change the launch moment everywhere.
-export const LAUNCH = new Date('2026-04-20T00:00:00');
+export const LAUNCH = new Date('2026-05-11T00:00:00');
 
 // ── Preview overrides (for testing — read from the URL) ──
 //   ?preview=done       → act as if already launched

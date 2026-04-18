@@ -26,14 +26,14 @@ export default function NavCarouserButton({ onClick, className = 'nav-cta' }) {
     <span
       className={`${className} nav-cta--countdown`}
       role="text"
-      aria-label={`Carouser Club membership opens April 20 — ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds from now`}
+      aria-label={`Carouser Club membership opens May 11 — ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds from now`}
     >
       <span className="nav-cta-countdown-digits">
         {days}d&nbsp;{pad(hours)}h&nbsp;{pad(minutes)}m&nbsp;{pad(seconds)}s
       </span>
       <span className="nav-cta-tooltip" role="tooltip">
         <strong>Carouser Club</strong> memberships open<br />
-        Sunday, April 20
+        Sunday, May 11
       </span>
     </span>
   );
