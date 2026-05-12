@@ -5,10 +5,10 @@ const ACCENT = '#39FF14';
 const PRICE = 125;
 
 const PERKS = [
-  { icon: '🍺', text: 'Custom engraved mug kept on our wall' },
+  { icon: '🍺', text: 'Custom engraved mug kept at the bar' },
   { icon: '👕', text: 'Exclusive Carouser Club T-shirt' },
-  { icon: '🎉', text: 'Members-only events & tastings' },
-  { icon: '💰', text: '10% off all taproom purchases' },
+  { icon: '🎉', text: '$1 off every pint purchased!' },
+  { icon: '💰', text: '10% off all merchandise purchases' },
   { icon: '🥇', text: 'Early access to limited releases' },
 ];
 
