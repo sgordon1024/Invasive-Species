@@ -8,7 +8,7 @@ const PERKS = [
   { icon: '🍺', text: 'Custom engraved mug kept at the bar' },
   { icon: '👕', text: 'Exclusive Carouser Club T-shirt' },
   { icon: '🎉', text: '$1 off every pint purchased!' },
-  { icon: '💰', text: '10% off all merchandise purchases' },
+  { icon: '💰', text: '15% off all merchandise purchases' },
   { icon: '🥇', text: 'Early access to limited releases' },
 ];
 
