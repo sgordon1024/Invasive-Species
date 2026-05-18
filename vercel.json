@@ -3,6 +3,7 @@
     { "source": "/menu-6-26", "destination": "/#menu", "permanent": false }
   ],
   "rewrites": [
-    { "source": "/Invasive-Species/(.*)", "destination": "/Invasive-Species/index.html" }
+    { "source": "/Invasive-Species/(.*)", "destination": "/Invasive-Species/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

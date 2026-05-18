@@ -204,7 +204,7 @@ function SlideTiers() {
             <li>Numbered 20-oz mug on the wall</li>
             <li>Mug pour at pint price <span className="hi">(+25% more beer)</span></li>
             <li>$1 off all drafts</li>
-            <li>10% off merch</li>
+            <li>15% off merch</li>
             <li>Wednesday "Pre-Pour" first looks</li>
             <li>Monthly SMS surprise drops</li>
           </ul>

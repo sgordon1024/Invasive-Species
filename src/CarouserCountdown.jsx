@@ -19,7 +19,7 @@ export default function CarouserCountdown() {
         The Carouser <span className="cc-countdown-accent">Club</span>
       </h2>
       <p className="cc-countdown-sub">
-        Your name on the wall. An engraved mug. Exclusive merch, 10% off, and
+        Your name on the wall. An engraved mug. Exclusive merch, 15% off, and
         members-only events — all year long.
       </p>
 
@@ -69,7 +69,7 @@ export default function CarouserCountdown() {
         {[
           ['🍺', 'Engraved mug on our wall'],
           ['👕', 'Exclusive Carouser Club tee'],
-          ['💰', '10% off taproom purchases'],
+          ['💰', '15% off merchandise purchases'],
           ['🎉', 'Members-only events'],
         ].map(([icon, text]) => (
           <div key={text} className="cc-countdown-perk">
