@@ -12,7 +12,7 @@ const PERKS = [
   { icon: '🥇', text: 'Early access to limited releases' },
 ];
 
-const STRIPE_URL = 'https://buy.stripe.com/test_28EdR85ZY1B3eiO8qo5Ne00';
+const STRIPE_URL = 'https://buy.stripe.com/fZu14m886cfH2A60XW5Ne02';
 
 export default function CarouserClub() {
   return (
