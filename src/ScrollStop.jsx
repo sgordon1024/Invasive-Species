@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { trackEvent } from './useAnalytics';
+import CarouserCountdown from './CarouserCountdown';
 import './ScrollStop.css';
 import taglineImg from './assets/tagline.webp';
 import alligatorImg from './assets/alligator.webp';
@@ -607,6 +608,9 @@ const ScrollStopSite = () => {
           </div>
         </div>
       )}
+
+      {/* ─── CAROUSER CLUB ─── */}
+      <CarouserCountdown />
 
       {/* ─── VISIT ─── */}
       <section id="visit" className="visit-section">
