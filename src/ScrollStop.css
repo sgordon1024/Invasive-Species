@@ -1657,6 +1657,90 @@ h1, h2 {
   .cc-countdown-perks { gap: 1.5rem; }
 }
 
+/* ─── HOMEBREW COMP CALLOUT ─── */
+.hbc-callout {
+  background: #0d0d0d;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hbc-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(57, 255, 20, 0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hbc-callout-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+}
+
+.hbc-callout-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #39FF14;
+  margin: 0 0 0.75rem;
+}
+
+.hbc-callout-heading {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: #fff;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.hbc-callout-sub {
+  font-size: 1rem;
+  color: #777;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.hbc-callout-btn {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 1.1rem 2.5rem;
+  background: #39FF14;
+  color: #000;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: opacity 0.18s, transform 0.15s;
+}
+
+.hbc-callout-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .hbc-callout { padding: 3.5rem 1.5rem; }
+  .hbc-callout-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hbc-callout-sub { max-width: 100%; }
+  .hbc-callout-btn { width: 100%; text-align: center; }
+}
+
 /* ─────────────────────────────────────────────────────────
    NAV CAROUSER COUNTDOWN (pre-launch, locked pill + tooltip)
    ───────────────────────────────────────────────────────── */

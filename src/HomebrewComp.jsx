@@ -1,0 +1,228 @@
+import { useState } from 'react';
+import { trackEvent } from './useAnalytics';
+import './HomebrewComp.css';
+
+const BEER_STYLES = [
+  'American Lager', 'American Pale Ale', 'American IPA', 'Double / Imperial IPA',
+  'Hazy / New England IPA', 'American Amber / Red Ale', 'American Brown Ale',
+  'American Porter', 'American Stout', 'Imperial Stout', 'Blonde Ale',
+  'Hefeweizen', 'Witbier', 'Saison / Farmhouse Ale', 'Belgian Strong Ale',
+  'Sour / Wild Ale', 'Gose', 'Berliner Weisse', 'Cream Ale',
+  'Kölsch', 'Munich Helles', 'Märzen / Oktoberfest', 'Pilsner',
+  'Scotch Ale / Wee Heavy', 'English Bitter', 'English Pale Ale',
+  'Barleywine', 'Fruit Beer', 'Spiced / Herb / Vegetable Beer',
+  'Smoke Beer', 'Other',
+];
+
+const empty = {
+  brewerName: '',
+  clubAffiliation: '',
+  beerName: '',
+  beerStyle: '',
+  abv: '',
+  phone: '',
+  email: '',
+};
+
+export default function HomebrewComp() {
+  const [form, setForm] = useState(empty);
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
+  };
+
+  const validate = () => {
+    const e = {};
+    if (!form.brewerName.trim())  e.brewerName  = 'Required';
+    if (!form.beerName.trim())    e.beerName    = 'Required';
+    if (!form.beerStyle)          e.beerStyle   = 'Please select a style';
+    if (!form.abv.trim())         e.abv         = 'Required';
+    if (!form.phone.trim())       e.phone       = 'Required';
+    if (!form.email.trim())       e.email       = 'Required';
+    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Please enter a valid email';
+    return e;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setSubmitting(true);
+    trackEvent('homebrew_comp_submit');
+    // TODO: wire up Mailchimp / spreadsheet submission
+    await new Promise(r => setTimeout(r, 800)); // placeholder
+    setSubmitting(false);
+    setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <section className="hbc-section">
+
+      {/* ── HERO ── */}
+      <div className="hbc-hero">
+        <p className="hbc-eyebrow">Open Homebrew Competition</p>
+        <h1 className="hbc-title">Think You<br />Can Brew?</h1>
+        <p className="hbc-subtitle">
+          Invasive Species is opening its doors to South Florida's best home brewers.
+          Bring your best, pour it against the pros, and let the crowd decide.
+        </p>
+        <p className="hbc-body">
+          We're hosting our first-ever homebrew competition on <strong style={{ color: '#fff' }}>August 15th</strong> — and we want your beer on tap.
+          Whether you're a weekend warrior or a seasoned club brewer, if you've got something worth drinking, we want to know about it.
+          Submit your entry below. We'll review all applications and announce selected contestants on <strong style={{ color: '#fff' }}>July 16th</strong>.
+          Selected brewers will be contacted directly with drop-off instructions.
+        </p>
+      </div>
+
+      {/* ── INFO CARDS ── */}
+      <div className="hbc-info-row">
+        <div className="hbc-info-card">
+          <div className="hbc-info-card-label">Applications Close</div>
+          <div className="hbc-info-card-value">July 16th</div>
+        </div>
+        <div className="hbc-info-card">
+          <div className="hbc-info-card-label">Competition Date</div>
+          <div className="hbc-info-card-value accent">August 15th</div>
+        </div>
+        <div className="hbc-info-card">
+          <div className="hbc-info-card-label">Style</div>
+          <div className="hbc-info-card-value">Any</div>
+        </div>
+        <div className="hbc-info-card">
+          <div className="hbc-info-card-label">Location</div>
+          <div className="hbc-info-card-value">Fort Lauderdale</div>
+        </div>
+      </div>
+
+      <hr className="hbc-divider" />
+
+      {/* ── FORM ── */}
+      <div className="hbc-form-wrap">
+        {submitted ? (
+          <div className="hbc-confirm">
+            <div className="hbc-confirm-icon">✓</div>
+            <h2 className="hbc-confirm-title">You're In the Mix!</h2>
+            <p className="hbc-confirm-msg">
+              Thanks{form.brewerName ? `, ${form.brewerName.split(' ')[0]}` : ''}! We've received your entry for <strong style={{ color: '#fff' }}>{form.beerName}</strong>.
+              We'll be in touch by July 16th to let you know if you've been selected.
+            </p>
+            <p className="hbc-confirm-note">
+              Keep an eye on <strong>{form.email}</strong> — that's where we'll send your drop-off instructions if you make the cut.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h2 className="hbc-form-title">Enter the Competition</h2>
+            <form className="hbc-form" onSubmit={handleSubmit} noValidate>
+
+              <div className="form-group">
+                <label htmlFor="hbc-brewer-name">Brewer Name</label>
+                <input
+                  id="hbc-brewer-name"
+                  name="brewerName"
+                  placeholder="Your name"
+                  value={form.brewerName}
+                  onChange={handleChange}
+                  autoFocus
+                />
+                {errors.brewerName && <span className="hbc-field-error">{errors.brewerName}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="hbc-club">Club Affiliation <span style={{ color: '#555' }}>(optional)</span></label>
+                <input
+                  id="hbc-club"
+                  name="clubAffiliation"
+                  placeholder="e.g. South Florida Homebrew Club"
+                  value={form.clubAffiliation}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="hbc-beer-name">Beer Name</label>
+                <input
+                  id="hbc-beer-name"
+                  name="beerName"
+                  placeholder="What's it called?"
+                  value={form.beerName}
+                  onChange={handleChange}
+                />
+                {errors.beerName && <span className="hbc-field-error">{errors.beerName}</span>}
+              </div>
+
+              <div className="form-row-2">
+                <div className="form-group">
+                  <label htmlFor="hbc-beer-style">Beer Style</label>
+                  <select
+                    id="hbc-beer-style"
+                    name="beerStyle"
+                    value={form.beerStyle}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a style</option>
+                    {BEER_STYLES.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                  {errors.beerStyle && <span className="hbc-field-error">{errors.beerStyle}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="hbc-abv">ABV</label>
+                  <input
+                    id="hbc-abv"
+                    name="abv"
+                    placeholder="e.g. 6.5%"
+                    value={form.abv}
+                    onChange={handleChange}
+                    inputMode="decimal"
+                  />
+                  {errors.abv && <span className="hbc-field-error">{errors.abv}</span>}
+                </div>
+              </div>
+
+              <div className="form-row-2">
+                <div className="form-group">
+                  <label htmlFor="hbc-phone">Phone Number</label>
+                  <input
+                    id="hbc-phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="(555) 000-0000"
+                    value={form.phone}
+                    onChange={handleChange}
+                    autoComplete="tel"
+                  />
+                  {errors.phone && <span className="hbc-field-error">{errors.phone}</span>}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="hbc-email">Email</label>
+                  <input
+                    id="hbc-email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    value={form.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                  />
+                  {errors.email && <span className="hbc-field-error">{errors.email}</span>}
+                </div>
+              </div>
+
+              <button type="submit" className="hbc-submit-btn" disabled={submitting}>
+                {submitting ? 'Submitting…' : 'Submit My Entry →'}
+              </button>
+
+            </form>
+          </>
+        )}
+      </div>
+
+    </section>
+  );
+}
