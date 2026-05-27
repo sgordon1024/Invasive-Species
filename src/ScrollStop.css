@@ -1604,20 +1604,20 @@ h1, h2 {
 .cc-countdown-cta {
   display: inline-block;
   padding: 0.85rem 2.2rem;
-  border: 2px solid #39FF14;
-  color: #39FF14;
+  background: #39FF14;
+  color: #000;
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   text-decoration: none;
-  transition: background 0.18s, color 0.18s;
-  border-radius: 2px;
+  transition: opacity 0.18s, transform 0.15s;
+  border-radius: 4px;
   margin-bottom: 3rem;
 }
 
 .cc-countdown-cta:hover {
-  background: #39FF14;
-  color: #000;
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
 
 .cc-countdown-cta--live {

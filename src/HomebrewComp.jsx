@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { trackEvent } from './useAnalytics';
-import posterImg from './assets/Heavy Kettle Homebrew Competition Poster Clean version green.jpg';
+import posterImg from './assets/heavy-kettle-poster.webp';
 import './HomebrewComp.css';
 
 const BEER_STYLES = [
