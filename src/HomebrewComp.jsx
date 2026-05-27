@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { trackEvent } from './useAnalytics';
+import posterImg from './assets/Heavy Kettle Homebrew Competition Poster Clean version green.jpg';
 import './HomebrewComp.css';
 
 const BEER_STYLES = [
@@ -55,7 +56,7 @@ export default function HomebrewComp() {
     setSubmitting(true);
     trackEvent('homebrew_comp_submit');
     // TODO: wire up Mailchimp / spreadsheet submission
-    await new Promise(r => setTimeout(r, 800)); // placeholder
+    await new Promise(r => setTimeout(r, 800));
     setSubmitting(false);
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -66,37 +67,65 @@ export default function HomebrewComp() {
 
       {/* ── HERO ── */}
       <div className="hbc-hero">
-        <p className="hbc-eyebrow">Open Homebrew Competition</p>
-        <h1 className="hbc-title">Think You<br />Can Brew?</h1>
-        <p className="hbc-subtitle">
-          Invasive Species is opening its doors to South Florida's best home brewers.
-          Bring your best, pour it against the pros, and let the crowd decide.
-        </p>
-        <p className="hbc-body">
-          We're hosting our first-ever homebrew competition on <strong style={{ color: '#fff' }}>August 15th</strong> — and we want your beer on tap.
-          Whether you're a weekend warrior or a seasoned club brewer, if you've got something worth drinking, we want to know about it.
-          Submit your entry below. We'll review all applications and announce selected contestants on <strong style={{ color: '#fff' }}>July 16th</strong>.
-          Selected brewers will be contacted directly with drop-off instructions.
-        </p>
+        <p className="hbc-eyebrow">A Metal Themed Homebrew Contest</p>
+        <h1 className="hbc-title">Heavy Kettle<br />Homebrew Contest</h1>
       </div>
 
-      {/* ── INFO CARDS ── */}
-      <div className="hbc-info-row">
-        <div className="hbc-info-card">
-          <div className="hbc-info-card-label">Applications Close</div>
-          <div className="hbc-info-card-value">July 16th</div>
-        </div>
-        <div className="hbc-info-card">
-          <div className="hbc-info-card-label">Competition Date</div>
-          <div className="hbc-info-card-value accent">August 15th</div>
-        </div>
-        <div className="hbc-info-card">
-          <div className="hbc-info-card-label">Style</div>
-          <div className="hbc-info-card-value">Any</div>
-        </div>
-        <div className="hbc-info-card">
-          <div className="hbc-info-card-label">Location</div>
-          <div className="hbc-info-card-value">Fort Lauderdale</div>
+      {/* ── POSTER + BODY ── */}
+      <div className="hbc-content-row">
+        <img src={posterImg} alt="Heavy Kettle Homebrew Contest poster" className="hbc-poster" />
+        <div className="hbc-content-text">
+          <p className="hbc-body">
+            We're hosting our first-ever homebrew competition on <strong>August 15th</strong> — and we want your beer on tap.
+            Whether you're a weekend warrior or a seasoned club brewer, if you've got something worth drinking, we want to know about it.
+            Submit your entry below. We'll review all applications and announce selected contestants on <strong>June 16th</strong>.
+          </p>
+
+          {/* ── PRIZES ── */}
+          <div className="hbc-prizes">
+            <div className="hbc-prize">
+              <span className="hbc-prize-icon">🏆</span>
+              <div>
+                <div className="hbc-prize-title">1st Place — Judges' Choice</div>
+                <div className="hbc-prize-desc">Win a brewday (Mon–Thurs) at Invasive Species where your winning beer will be brewed and served on tap.</div>
+              </div>
+            </div>
+            <div className="hbc-prize">
+              <span className="hbc-prize-icon">🤘</span>
+              <div>
+                <div className="hbc-prize-title">Crowd Favorite</div>
+                <div className="hbc-prize-desc">Additional prizes for the crowd's pick.</div>
+              </div>
+            </div>
+            <div className="hbc-prize">
+              <span className="hbc-prize-icon">🎸</span>
+              <div>
+                <div className="hbc-prize-title">Live Metal Show</div>
+                <div className="hbc-prize-desc">Doors open at 12PM. Live metal show at 9:00PM.</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── INFO CARDS ── */}
+          <div className="hbc-info-row">
+            <div className="hbc-info-card">
+              <div className="hbc-info-card-label">Entries Announced</div>
+              <div className="hbc-info-card-value">June 16th</div>
+            </div>
+            <div className="hbc-info-card">
+              <div className="hbc-info-card-label">Competition Date</div>
+              <div className="hbc-info-card-value accent">Aug 15th · 12–2PM</div>
+            </div>
+            <div className="hbc-info-card">
+              <div className="hbc-info-card-label">Location</div>
+              <div className="hbc-info-card-value">726 NE 2nd Ave, Fort Lauderdale</div>
+            </div>
+          </div>
+
+          <div className="hbc-fine-print">
+            <p>* Selected brewers will be contacted directly with drop-off instructions.</p>
+            <p>** Brewers will need to bring at least 3 gallons of their entry on event day, as well as any dispensing equipment.</p>
+          </div>
         </div>
       </div>
 
@@ -110,7 +139,7 @@ export default function HomebrewComp() {
             <h2 className="hbc-confirm-title">You're In the Mix!</h2>
             <p className="hbc-confirm-msg">
               Thanks{form.brewerName ? `, ${form.brewerName.split(' ')[0]}` : ''}! We've received your entry for <strong style={{ color: '#fff' }}>{form.beerName}</strong>.
-              We'll be in touch by July 16th to let you know if you've been selected.
+              We'll be in touch by June 16th to let you know if you've been selected.
             </p>
             <p className="hbc-confirm-note">
               Keep an eye on <strong>{form.email}</strong> — that's where we'll send your drop-off instructions if you make the cut.

@@ -8,8 +8,8 @@
 /* ── HERO ── */
 .hbc-hero {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 3.5rem;
+  max-width: 800px;
+  margin: 0 auto 3rem;
 }
 
 .hbc-eyebrow {
@@ -21,63 +21,130 @@
 }
 
 .hbc-title {
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
   color: #fff;
-  margin: 0 0 1.25rem;
-  line-height: 1.05;
-  font-weight: 800;
+  margin: 0;
+  line-height: 1.0;
 }
 
-.hbc-subtitle {
-  color: #aaa;
-  font-size: 1.1rem;
-  line-height: 1.65;
-  margin-bottom: 2rem;
+/* ── POSTER + CONTENT LAYOUT ── */
+.hbc-content-row {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  align-items: start;
+}
+
+.hbc-poster {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.hbc-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .hbc-body {
-  color: #777;
-  font-size: 0.95rem;
+  color: #888;
+  font-size: 1rem;
   line-height: 1.75;
-  margin-bottom: 0;
+  margin: 0;
+}
+
+.hbc-body strong {
+  color: #fff;
+}
+
+/* ── PRIZES ── */
+.hbc-prizes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hbc-prize {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: #0e0e0e;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+}
+
+.hbc-prize-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.hbc-prize-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.3px;
+}
+
+.hbc-prize-desc {
+  font-size: 0.82rem;
+  color: #666;
+  line-height: 1.5;
 }
 
 /* ── INFO CARDS ── */
 .hbc-info-row {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin: 0 auto 3.5rem;
-  max-width: 700px;
 }
 
 .hbc-info-card {
   background: #0e0e0e;
   border: 1px solid #1a1a1a;
   border-radius: 10px;
-  padding: 1.25rem 1.75rem;
+  padding: 1rem 1.25rem;
   text-align: center;
   flex: 1;
-  min-width: 160px;
+  min-width: 120px;
 }
 
 .hbc-info-card-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #555;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 .hbc-info-card-value {
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #fff;
+  line-height: 1.3;
 }
 
 .hbc-info-card-value.accent {
   color: #39FF14;
+}
+
+/* ── FINE PRINT ── */
+.hbc-fine-print {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hbc-fine-print p {
+  font-size: 0.75rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* ── DIVIDER ── */
@@ -146,27 +213,15 @@
   cursor: pointer;
 }
 
-.hbc-form .form-group select option {
-  background: #141414;
-}
-
+.hbc-form .form-group select option { background: #141414; }
 .hbc-form .form-group input:focus,
-.hbc-form .form-group select:focus {
-  border-color: #39FF14;
-  outline: none;
-}
-
+.hbc-form .form-group select:focus { border-color: #39FF14; outline: none; }
 .hbc-form .form-group input::placeholder { color: #555; }
 
 .hbc-form .form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
-}
-
-.hbc-field-hint {
-  font-size: 0.72rem;
-  color: #555;
 }
 
 .hbc-field-error {
@@ -231,6 +286,17 @@
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hbc-content-row {
+    grid-template-columns: 1fr;
+  }
+  .hbc-poster {
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 @media (max-width: 600px) {
   .hbc-section { padding: 3rem 1rem 4rem; }
   .hbc-form-wrap { padding: 1.5rem; }

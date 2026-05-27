@@ -621,8 +621,8 @@ const ScrollStopSite = () => {
       <section className="hbc-callout">
         <div className="hbc-callout-inner">
           <div className="hbc-callout-text">
-            <p className="hbc-callout-eyebrow">Open Homebrew Competition</p>
-            <h2 className="hbc-callout-heading">Think You Can Brew?</h2>
+            <p className="hbc-callout-eyebrow">A Metal Themed Homebrew Contest</p>
+            <h2 className="hbc-callout-heading">Heavy Kettle Homebrew Contest</h2>
             <p className="hbc-callout-sub">Submit your entry for our first-ever homebrew competition. Any style. Any ABV. August 15th.</p>
           </div>
           <Link to="/homebrew-comp" className="hbc-callout-btn" onClick={() => trackEvent('click_cta', { label: 'homebrew_comp_callout' })}>
