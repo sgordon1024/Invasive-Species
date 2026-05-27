@@ -1675,6 +1675,18 @@ h1, h2 {
   pointer-events: none;
 }
 
+.hbc-callout-skeleton {
+  position: absolute;
+  right: clamp(2rem, 8vw, 12rem);
+  bottom: 0;
+  height: 140%;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.18;
+  filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.15));
+}
+
 .hbc-callout-inner {
   max-width: 960px;
   margin: 0 auto;
@@ -1683,6 +1695,7 @@ h1, h2 {
   justify-content: space-between;
   gap: 3rem;
   position: relative;
+  z-index: 1;
 }
 
 .hbc-callout-eyebrow {
