@@ -138,17 +138,16 @@ h1, h2 {
 .nav-links a:hover { color: #fff; }
 
 .nav-links .nav-cta {
-  color: #39FF14;
-  border: 1px solid #39FF14;
+  background: #39FF14;
+  color: #000;
   padding: 0.5rem 1.25rem;
   border-radius: 4px;
   white-space: nowrap;
-  transition: background 0.2s, color 0.2s;
+  transition: opacity 0.2s;
 }
 
 .nav-links .nav-cta:hover {
-  background: #39FF14;
-  color: #000;
+  opacity: 0.85;
 }
 
 /* ─── HERO ─── */
@@ -1025,6 +1024,7 @@ h1, h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -1407,16 +1407,14 @@ h1, h2 {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.6rem 1.5rem;
-  border: 1px solid #39FF14;
-  border-radius: 20px;
-  color: #39FF14;
-  background: rgba(57, 255, 20, 0.08);
-  transition: background 0.2s, color 0.2s;
+  background: #39FF14;
+  color: #000;
+  border-radius: 4px;
+  transition: opacity 0.2s;
 }
 
 .nav-drawer-links .nav-cta:hover {
-  background: #39FF14;
-  color: #000;
+  opacity: 0.85;
 }
 
 /* ─── RESPONSIVE ─── */
