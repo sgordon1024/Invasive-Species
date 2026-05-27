@@ -148,6 +148,7 @@ h1, h2 {
 
 .nav-links .nav-cta:hover {
   opacity: 0.85;
+  color: #000;
 }
 
 /* ─── HERO ─── */
@@ -208,6 +209,7 @@ h1, h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 4px;
+  margin-bottom: 3rem;
   transition: opacity 0.2s, transform 0.15s;
   cursor: pointer;
 }
