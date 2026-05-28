@@ -158,7 +158,6 @@ export default function HomebrewComp() {
                   placeholder="Your name"
                   value={form.brewerName}
                   onChange={handleChange}
-                  autoFocus
                 />
                 {errors.brewerName && <span className="hbc-field-error">{errors.brewerName}</span>}
               </div>
