@@ -55,8 +55,19 @@ export default function HomebrewComp() {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setSubmitting(true);
     trackEvent('homebrew_comp_submit');
-    // TODO: wire up Mailchimp / spreadsheet submission
-    await new Promise(r => setTimeout(r, 800));
+    try {
+      const url = import.meta.env.VITE_HOMEBREW_SHEET_URL;
+      if (url) {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...form, submittedAt: new Date().toISOString() }),
+        });
+      }
+    } catch (_) {
+      // submission errors shouldn't block the confirmation screen
+    }
     setSubmitting(false);
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
