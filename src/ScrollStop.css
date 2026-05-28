@@ -1675,9 +1675,10 @@ h1, h2 {
   inset: 0;
   background-image: url('./assets/skeleton-big.webp');
   background-size: cover;
-  background-position: center center;
+  background-position: 72% center;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  filter: brightness(1.4);
   z-index: 0;
 }
 
