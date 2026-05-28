@@ -1659,32 +1659,24 @@ h1, h2 {
 
 /* ─── HOMEBREW COMP CALLOUT ─── */
 .hbc-callout {
-  background: #0d0d0d;
-  border-top: 1px solid #1e1e1e;
-  border-bottom: 1px solid #1e1e1e;
-  padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
+  padding: 7rem 2rem;
+  background-image: url('./assets/skeleton-big.webp');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
 }
 
 .hbc-callout::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 60% 50%, rgba(57, 255, 20, 0.05) 0%, transparent 65%);
+  background: rgba(0, 0, 0, 0.72);
   pointer-events: none;
-}
-
-.hbc-callout-skeleton {
-  position: absolute;
-  right: clamp(2rem, 8vw, 12rem);
-  bottom: 0;
-  height: 140%;
-  width: auto;
-  object-fit: contain;
-  pointer-events: none;
-  opacity: 0.18;
-  filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.15));
 }
 
 .hbc-callout-inner {

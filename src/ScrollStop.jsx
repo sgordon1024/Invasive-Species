@@ -11,7 +11,6 @@ import beaverImg from './assets/beaver.webp';
 import cobraImg from './assets/cobra.webp';
 import deerImg from './assets/deer.webp';
 import logoImg from './assets/logo-white-new.webp';
-import skeletonImg from './assets/skeleton.webp';
 import laCondesaFood1 from './assets/photos/La Condesa Taqueria.webp';
 import laCondesaFood2 from './assets/photos/La Condesa Taqueria 70A4715 Edit.webp';
 import photo1 from './assets/photos/invasive-species-brewing.webp';
@@ -620,7 +619,6 @@ const ScrollStopSite = () => {
 
       {/* ─── HOMEBREW COMP CALLOUT ─── */}
       <section className="hbc-callout">
-        <img src={skeletonImg} alt="" className="hbc-callout-skeleton" aria-hidden="true" />
         <div className="hbc-callout-inner">
           <div className="hbc-callout-text">
             <p className="hbc-callout-eyebrow">A Metal Themed Homebrew Contest</p>
