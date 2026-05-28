@@ -15,7 +15,7 @@ body {
   background-color: #000;
   color: #f0f0f0;
   font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip (not hidden) preserves background-attachment: fixed */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -1669,14 +1669,6 @@ h1, h2 {
   background-repeat: no-repeat;
   border-top: 1px solid #1e1e1e;
   border-bottom: 1px solid #1e1e1e;
-}
-
-.hbc-callout::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  pointer-events: none;
 }
 
 .hbc-callout-inner {
