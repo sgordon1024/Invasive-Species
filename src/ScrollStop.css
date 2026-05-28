@@ -1662,13 +1662,23 @@ h1, h2 {
   position: relative;
   overflow: hidden;
   padding: 7rem 2rem;
+  background: #000;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+/* Background lives on ::before so overflow:hidden clips it
+   without the GPU compositing bug that dims background-attachment:fixed */
+.hbc-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image: url('./assets/skeleton-big.webp');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  border-top: 1px solid #1e1e1e;
-  border-bottom: 1px solid #1e1e1e;
+  z-index: 0;
 }
 
 .hbc-callout-inner {
@@ -1688,6 +1698,7 @@ h1, h2 {
   text-transform: uppercase;
   color: #39FF14;
   margin: 0 0 0.75rem;
+  text-shadow: 0 0 12px rgba(0,0,0,0.8);
 }
 
 .hbc-callout-heading {
@@ -1696,14 +1707,16 @@ h1, h2 {
   margin: 0 0 0.75rem;
   font-weight: 800;
   line-height: 1.05;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.9);
 }
 
 .hbc-callout-sub {
   font-size: 1rem;
-  color: #777;
+  color: #ccc;
   margin: 0;
   line-height: 1.6;
   max-width: 480px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
 }
 
 .hbc-callout-btn {
