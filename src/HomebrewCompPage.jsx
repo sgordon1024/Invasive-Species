@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HomebrewComp from './HomebrewComp';
 import NavCarouserButton from './NavCarouserButton';
@@ -7,6 +7,8 @@ import './ScrollStop.css';
 
 export default function HomebrewCompPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div style={{ background: '#050505', minHeight: '100vh' }}>
