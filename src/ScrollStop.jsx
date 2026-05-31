@@ -379,6 +379,7 @@ const ScrollStopSite = () => {
             <li><a href="#visit">Visit</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#press">Press</a></li>
+            <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
           </ul>
           {/* Hamburger */}
@@ -401,6 +402,7 @@ const ScrollStopSite = () => {
             {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
+            <li><Link to="/dinner" onClick={() => setMenuOpen(false)}>Dinner</Link></li>
             <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
           <a
