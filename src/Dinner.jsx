@@ -45,7 +45,6 @@ export default function Dinner() {
       {/* ── HERO IMAGE ── */}
       <div className="dinner-hero-img-wrap">
         <img src={dinnerHeroImg} alt="" className="dinner-hero-img" aria-hidden="true" />
-        <div className="dinner-hero-img-overlay" />
       </div>
 
       {/* ── HERO ── */}
