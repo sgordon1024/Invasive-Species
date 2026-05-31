@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import dinnerHeroImg from './assets/dinner-hero.webp';
 import './Dinner.css';
 
 // Parses the Google Sheet (key | value rows) into a plain object.
@@ -40,6 +41,12 @@ export default function Dinner() {
 
   return (
     <section className="dinner-section">
+
+      {/* ── HERO IMAGE ── */}
+      <div className="dinner-hero-img-wrap">
+        <img src={dinnerHeroImg} alt="" className="dinner-hero-img" aria-hidden="true" />
+        <div className="dinner-hero-img-overlay" />
+      </div>
 
       {/* ── HERO ── */}
       <div className="dinner-hero">
