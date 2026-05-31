@@ -50,7 +50,7 @@ export default function DinnerPage() {
             <li><Link to="/dinner" onClick={() => setMenuOpen(false)}>Dinner</Link></li>
             <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
-          <
+          <a
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
             target="_blank"
             rel="noreferrer"
