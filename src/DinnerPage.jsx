@@ -26,6 +26,7 @@ export default function DinnerPage() {
             <li><Link to="/#visit">Visit</Link></li>
             <li><Link to="/#photos">Photos</Link></li>
             <li><Link to="/#press">Press</Link></li>
+            <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
           </ul>
           <button
@@ -46,9 +47,10 @@ export default function DinnerPage() {
             {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit'],['/#photos','Photos'],['/#press','Press']].map(([href, label]) => (
               <li key={href}><Link to={href} onClick={() => setMenuOpen(false)}>{label}</Link></li>
             ))}
+            <li><Link to="/dinner" onClick={() => setMenuOpen(false)}>Dinner</Link></li>
             <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
-          <a
+          <
             href="https://www.google.com/maps/dir/?api=1&destination=Invasive+Species+Brewing,726+NE+2nd+Ave,Fort+Lauderdale,FL+33304"
             target="_blank"
             rel="noreferrer"
