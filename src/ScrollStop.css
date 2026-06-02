@@ -15,7 +15,7 @@ body {
   background-color: #000;
   color: #f0f0f0;
   font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip (not hidden) preserves background-attachment: fixed */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -138,16 +138,16 @@ h1, h2 {
 .nav-links a:hover { color: #fff; }
 
 .nav-links .nav-cta {
-  color: #39FF14;
-  border: 1px solid #39FF14;
+  background: #39FF14;
+  color: #000;
   padding: 0.5rem 1.25rem;
   border-radius: 4px;
   white-space: nowrap;
-  transition: background 0.2s, color 0.2s;
+  transition: opacity 0.2s;
 }
 
 .nav-links .nav-cta:hover {
-  background: #39FF14;
+  opacity: 0.85;
   color: #000;
 }
 
@@ -160,9 +160,10 @@ h1, h2 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden;
   background: radial-gradient(ellipse at center, rgba(57,255,20,0.07) 0%, #000 65%);
   padding-top: 100px;
+  padding-bottom: 5rem;
 }
 
 .hero-content {
@@ -200,8 +201,8 @@ h1, h2 {
 
 .cta-btn {
   display: inline-block;
-  border: 1.5px solid #39FF14;
-  color: #39FF14;
+  background: #39FF14;
+  color: #000;
   padding: 1rem 2.5rem;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
@@ -209,14 +210,14 @@ h1, h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 4px;
-  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+  margin-bottom: 3rem;
+  transition: opacity 0.2s, transform 0.15s;
   cursor: pointer;
 }
 
 .cta-btn:hover {
-  background: #39FF14;
-  color: #000;
-  box-shadow: 0 0 30px rgba(57,255,20,0.4);
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
 
 .scroll-nudge {
@@ -1025,6 +1026,7 @@ h1, h2 {
   letter-spacing: 2px;
   text-transform: uppercase;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -1407,16 +1409,14 @@ h1, h2 {
   display: inline-block;
   margin-top: 0.5rem;
   padding: 0.6rem 1.5rem;
-  border: 1px solid #39FF14;
-  border-radius: 20px;
-  color: #39FF14;
-  background: rgba(57, 255, 20, 0.08);
-  transition: background 0.2s, color 0.2s;
+  background: #39FF14;
+  color: #000;
+  border-radius: 4px;
+  transition: opacity 0.2s;
 }
 
 .nav-drawer-links .nav-cta:hover {
-  background: #39FF14;
-  color: #000;
+  opacity: 0.85;
 }
 
 /* ─── RESPONSIVE ─── */
@@ -1604,20 +1604,20 @@ h1, h2 {
 .cc-countdown-cta {
   display: inline-block;
   padding: 0.85rem 2.2rem;
-  border: 2px solid #39FF14;
-  color: #39FF14;
+  background: #39FF14;
+  color: #000;
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   text-decoration: none;
-  transition: background 0.18s, color 0.18s;
-  border-radius: 2px;
+  transition: opacity 0.18s, transform 0.15s;
+  border-radius: 4px;
   margin-bottom: 3rem;
 }
 
 .cc-countdown-cta:hover {
-  background: #39FF14;
-  color: #000;
+  opacity: 0.88;
+  transform: translateY(-2px);
 }
 
 .cc-countdown-cta--live {
@@ -1655,6 +1655,101 @@ h1, h2 {
   .cc-countdown-section { padding: 4rem 1.5rem 4.5rem; }
   .cc-countdown-unit { min-width: 56px; }
   .cc-countdown-perks { gap: 1.5rem; }
+}
+
+/* ─── HOMEBREW COMP CALLOUT ─── */
+.hbc-callout {
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 2rem;
+  background: #000;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+/* Background lives on ::before so overflow:hidden clips it
+   without the GPU compositing bug that dims background-attachment:fixed */
+.hbc-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./assets/skeleton-big.webp');
+  background-size: cover;
+  background-position: 72% center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  filter: brightness(1.4);
+  z-index: 0;
+}
+
+.hbc-callout-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hbc-callout-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #39FF14;
+  margin: 0 0 0.75rem;
+  text-shadow: 0 0 12px rgba(0,0,0,0.8);
+}
+
+.hbc-callout-heading {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: #fff;
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  line-height: 1.05;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+}
+
+.hbc-callout-sub {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 480px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+}
+
+.hbc-callout-btn {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 1.1rem 2.5rem;
+  background: #39FF14;
+  color: #000;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: opacity 0.18s, transform 0.15s;
+}
+
+.hbc-callout-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .hbc-callout { padding: 3.5rem 1.5rem; }
+  .hbc-callout-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hbc-callout-sub { max-width: 100%; }
+  .hbc-callout-btn { width: 100%; text-align: center; }
 }
 
 /* ─────────────────────────────────────────────────────────

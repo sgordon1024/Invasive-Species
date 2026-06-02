@@ -1,0 +1,304 @@
+/* ─── HOMEBREW COMPETITION ─── */
+.hbc-section {
+  padding: 4rem 2rem 6rem;
+  background: #050505;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hbc-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.hbc-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #39FF14;
+  margin: 0 0 1rem;
+}
+
+.hbc-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  color: #fff;
+  margin: 0;
+  line-height: 1.0;
+}
+
+/* ── POSTER + CONTENT LAYOUT ── */
+.hbc-content-row {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  align-items: start;
+}
+
+.hbc-poster {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.hbc-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hbc-body {
+  color: #888;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.hbc-body strong {
+  color: #fff;
+}
+
+/* ── PRIZES ── */
+.hbc-prizes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hbc-prize {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: #0e0e0e;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+}
+
+.hbc-prize-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.hbc-prize-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.3px;
+}
+
+.hbc-prize-desc {
+  font-size: 0.82rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ── INFO CARDS ── */
+.hbc-info-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.hbc-info-card {
+  background: #0e0e0e;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+}
+
+.hbc-info-card-label {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 0.35rem;
+}
+
+.hbc-info-card-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.hbc-info-card-value.accent {
+  color: #39FF14;
+}
+
+/* ── FINE PRINT ── */
+.hbc-fine-print {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hbc-fine-print p {
+  font-size: 0.75rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── DIVIDER ── */
+.hbc-divider {
+  border: none;
+  border-top: 1px solid #141414;
+  max-width: 700px;
+  margin: 0 auto 3.5rem;
+}
+
+/* ── FORM ── */
+.hbc-form-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #0e0e0e;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.hbc-form-title {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 0 1.75rem;
+}
+
+.hbc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hbc-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hbc-form .form-group label {
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #808080;
+}
+
+.hbc-form .form-group input,
+.hbc-form .form-group select {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hbc-form .form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.hbc-form .form-group select option { background: #141414; }
+.hbc-form .form-group input:focus,
+.hbc-form .form-group select:focus { border-color: #39FF14; outline: none; }
+.hbc-form .form-group input::placeholder { color: #555; }
+
+.hbc-form .form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.hbc-field-error {
+  font-size: 0.75rem;
+  color: #ff4444;
+}
+
+.hbc-submit-btn {
+  background: #39FF14;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.95rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.hbc-submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.hbc-submit-btn:active { transform: translateY(0); }
+.hbc-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ── CONFIRMATION ── */
+.hbc-confirm {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.hbc-confirm-icon {
+  font-size: 3.5rem;
+  color: #39FF14;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
+
+.hbc-confirm-title {
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+.hbc-confirm-msg {
+  font-size: 0.95rem;
+  color: #888;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.hbc-confirm-note {
+  font-size: 0.85rem;
+  color: #39FF14;
+  background: rgba(57, 255, 20, 0.06);
+  border: 1px solid rgba(57, 255, 20, 0.15);
+  border-radius: 8px;
+  padding: 0.9rem 1.25rem;
+  line-height: 1.5;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hbc-content-row {
+    grid-template-columns: 1fr;
+  }
+  .hbc-poster {
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .hbc-section { padding: 3rem 1rem 4rem; }
+  .hbc-form-wrap { padding: 1.5rem; }
+  .hbc-form .form-row-2 { grid-template-columns: 1fr; }
+}

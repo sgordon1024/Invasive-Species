@@ -7,6 +7,7 @@ import useAnalytics from './useAnalytics';
 const ScrollStopSite = lazy(() => import('./ScrollStop'));
 const ShopPage = lazy(() => import('./ShopPage'));
 const CarouserClubPage = lazy(() => import('./CarouserClubPage'));
+const HomebrewCompPage = lazy(() => import('./HomebrewCompPage'));
 
 function LoadingFallback() {
   return (
@@ -24,6 +25,7 @@ function AppRoutes() {
         <Route path="/" element={<ScrollStopSite />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/carouser-club" element={<CarouserClubPage />} />
+        <Route path="/homebrew-comp" element={<HomebrewCompPage />} />
         <Route path="*" element={<ScrollStopSite />} />
       </Routes>
     </Suspense>
