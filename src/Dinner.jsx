@@ -16,6 +16,22 @@ function parseSheet(csv) {
   return data;
 }
 
+// Turns whatever Phil pastes in the "image" cell into a usable <img> src.
+// Handles Google Drive share links (the easy path — upload to Drive, share,
+// paste the link) as well as plain direct image URLs.
+function resolveImageUrl(raw) {
+  if (!raw) return null;
+  const url = raw.trim();
+  // Pull a Drive file ID out of the common share-link shapes:
+  //   .../file/d/FILE_ID/view   ·   ?id=FILE_ID   ·   /d/FILE_ID
+  const driveMatch = url.match(/\/file\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/) || url.match(/\/d\/([^/?]+)/);
+  if (driveMatch && url.includes('google.com')) {
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+  }
+  // Otherwise assume it's already a direct image URL.
+  return url;
+}
+
 export default function Dinner() {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,12 +55,21 @@ export default function Dinner() {
     ? event.menu.split('|').map(c => c.trim()).filter(Boolean)
     : [];
 
+  // Use the sheet's image if Phil set one, otherwise the bundled default.
+  const heroSrc = resolveImageUrl(event?.image) || dinnerHeroImg;
+
   return (
     <section className="dinner-section">
 
       {/* ── HERO IMAGE ── */}
       <div className="dinner-hero-img-wrap">
-        <img src={dinnerHeroImg} alt="" className="dinner-hero-img" aria-hidden="true" />
+        <img
+          src={heroSrc}
+          alt=""
+          className="dinner-hero-img"
+          aria-hidden="true"
+          onError={(e) => { e.currentTarget.src = dinnerHeroImg; }}
+        />
       </div>
 
       {/* ── HERO ── */}
