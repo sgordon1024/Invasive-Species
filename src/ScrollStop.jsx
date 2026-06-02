@@ -380,6 +380,7 @@ const ScrollStopSite = () => {
             <li><a href="#photos">Photos</a></li>
             <li><a href="#press">Press</a></li>
             <li><Link to="/homebrew-comp">Homebrew Comp</Link></li>
+            <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
           </ul>
           {/* Hamburger */}
@@ -403,6 +404,7 @@ const ScrollStopSite = () => {
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
             <li><Link to="/homebrew-comp" onClick={() => setMenuOpen(false)}>Homebrew Comp</Link></li>
+            <li><Link to="/dinner" onClick={() => setMenuOpen(false)}>Dinner</Link></li>
             <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
           <a
