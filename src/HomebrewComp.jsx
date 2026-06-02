@@ -125,7 +125,7 @@ export default function HomebrewComp() {
             </div>
             <div className="hbc-info-card">
               <div className="hbc-info-card-label">Competition Date</div>
-              <div className="hbc-info-card-value accent">Aug 15th · 12–2PM</div>
+              <div className="hbc-info-card-value accent">Aug 15th · 12–3PM</div>
             </div>
             <div className="hbc-info-card">
               <div className="hbc-info-card-label">Location</div>
