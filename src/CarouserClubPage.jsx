@@ -29,6 +29,8 @@ export default function CarouserClubPage() {
             <li><Link to="/#menu">Menu</Link></li>
             <li><Link to="/#food-trucks">Food Trucks</Link></li>
             <li><Link to="/#visit">Visit</Link></li>
+            <li><Link to="/homebrew-comp">Homebrew Comp</Link></li>
+            <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
           </ul>
           <button
@@ -50,6 +52,8 @@ export default function CarouserClubPage() {
             {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit']].map(([href, label]) => (
               <li key={href}><Link to={href} onClick={() => setMenuOpen(false)}>{label}</Link></li>
             ))}
+            <li><Link to="/homebrew-comp" onClick={() => setMenuOpen(false)}>Homebrew Comp</Link></li>
+            <li><Link to="/dinner" onClick={() => setMenuOpen(false)}>Dinner</Link></li>
             <li><NavCarouserButton onClick={() => setMenuOpen(false)} /></li>
           </ul>
           <a

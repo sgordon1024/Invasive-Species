@@ -133,6 +133,7 @@ h1, h2 {
   text-transform: uppercase;
   color: #aaa;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .nav-links a:hover { color: #fff; }
@@ -1421,7 +1422,7 @@ h1, h2 {
 
 /* ─── RESPONSIVE ─── */
 /* Nav collapses to hamburger early — before links crowd the logo */
-@media (max-width: 1024px) {
+@media (max-width: 1150px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
 }
