@@ -89,7 +89,7 @@ export default function HomebrewComp() {
           <p className="hbc-body">
             We're hosting our first-ever homebrew competition on <strong>August 15th</strong> — and we want your beer on tap.
             Whether you're a weekend warrior or a seasoned club brewer, if you've got something worth drinking, we want to know about it.
-            Submit your entry below. We'll review all applications and announce selected contestants on <strong>June 16th</strong>.
+            Submit your entry below. We'll review all applications and announce selected contestants on <strong>July 1st</strong>.
           </p>
 
           {/* ── PRIZES ── */}
@@ -121,7 +121,7 @@ export default function HomebrewComp() {
           <div className="hbc-info-row">
             <div className="hbc-info-card">
               <div className="hbc-info-card-label">Entries Announced</div>
-              <div className="hbc-info-card-value">June 16th</div>
+              <div className="hbc-info-card-value">July 1st</div>
             </div>
             <div className="hbc-info-card">
               <div className="hbc-info-card-label">Competition Date</div>
@@ -150,7 +150,7 @@ export default function HomebrewComp() {
             <h2 className="hbc-confirm-title">You're In the Mix!</h2>
             <p className="hbc-confirm-msg">
               Thanks{form.brewerName ? `, ${form.brewerName.split(' ')[0]}` : ''}! We've received your entry for <strong style={{ color: '#fff' }}>{form.beerName}</strong>.
-              We'll be in touch by June 16th to let you know if you've been selected.
+              We'll be in touch by July 1st to let you know if you've been selected.
             </p>
             <p className="hbc-confirm-note">
               Keep an eye on <strong>{form.email}</strong> — that's where we'll send your drop-off instructions if you make the cut.
