@@ -20,8 +20,6 @@ export default function ShopPage() {
             <li><Link to="/#menu">Menu</Link></li>
             <li><Link to="/#food-trucks">Food Trucks</Link></li>
             <li><Link to="/#visit">Visit</Link></li>
-            <li><Link to="/#photos">Photos</Link></li>
-            <li><Link to="/#press">Press</Link></li>
             <li><Link to="/passport" className="nav-cta" style={{ background: 'rgba(57,255,20,0.12)', color: '#39FF14', border: '1px solid rgba(57,255,20,0.3)' }}>Beer Passport</Link></li>
           </ul>
         </nav>

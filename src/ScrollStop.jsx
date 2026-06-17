@@ -377,8 +377,6 @@ const ScrollStopSite = () => {
             <li><a href="#menu">Menu</a></li>
             <li><a href="#food-trucks">Food Trucks</a></li>
             <li><a href="#visit">Visit</a></li>
-            <li><a href="#photos">Photos</a></li>
-            <li><a href="#press">Press</a></li>
             <li><Link to="/homebrew-comp">Homebrew Comp</Link></li>
             <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
@@ -400,7 +398,7 @@ const ScrollStopSite = () => {
         <div id="mobile-nav-drawer" className={`nav-drawer ${menuOpen ? 'nav-drawer-open' : ''}`} aria-label="Mobile navigation">
           <button className="nav-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu">✕</button>
           <ul className="nav-drawer-links">
-            {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit'],['#photos','Photos'],['#press','Press']].map(([href, label]) => (
+            {[['#story','About'],['#menu','Menu'],['#food-trucks','Food Trucks'],['#visit','Visit']].map(([href, label]) => (
               <li key={href}><a href={href} onClick={() => setMenuOpen(false)}>{label}</a></li>
             ))}
             <li><Link to="/homebrew-comp" onClick={() => setMenuOpen(false)}>Homebrew Comp</Link></li>

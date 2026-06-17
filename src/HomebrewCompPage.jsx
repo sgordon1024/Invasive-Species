@@ -24,8 +24,6 @@ export default function HomebrewCompPage() {
             <li><Link to="/#menu">Menu</Link></li>
             <li><Link to="/#food-trucks">Food Trucks</Link></li>
             <li><Link to="/#visit">Visit</Link></li>
-            <li><Link to="/#photos">Photos</Link></li>
-            <li><Link to="/#press">Press</Link></li>
             <li><Link to="/homebrew-comp">Homebrew Comp</Link></li>
             <li><Link to="/dinner">Dinner</Link></li>
             <li><NavCarouserButton /></li>
@@ -45,7 +43,7 @@ export default function HomebrewCompPage() {
         <div id="mobile-nav-drawer" className={`nav-drawer ${menuOpen ? 'nav-drawer-open' : ''}`} aria-label="Mobile navigation">
           <button className="nav-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close navigation menu">✕</button>
           <ul className="nav-drawer-links">
-            {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit'],['/#photos','Photos'],['/#press','Press']].map(([href, label]) => (
+            {[['/#story','About'],['/#menu','Menu'],['/#food-trucks','Food Trucks'],['/#visit','Visit']].map(([href, label]) => (
               <li key={href}><Link to={href} onClick={() => setMenuOpen(false)}>{label}</Link></li>
             ))}
             <li><Link to="/homebrew-comp" onClick={() => setMenuOpen(false)}>Homebrew Comp</Link></li>
