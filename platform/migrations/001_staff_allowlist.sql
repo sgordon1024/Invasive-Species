@@ -14,7 +14,8 @@ create table if not exists ops_staff (
 
 -- Seed the first staff member. Add more below, or via the Supabase Table editor.
 insert into ops_staff (email) values
-  ('sgordon1024@gmail.com')
+  ('sgordon1024@gmail.com'),
+  ('invasivespeciesbrewing@gmail.com')
 on conflict do nothing;
 
 -- Is the current caller an approved staff member?
