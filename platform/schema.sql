@@ -65,6 +65,27 @@ create table if not exists ops_sale_items (
 );
 create index if not exists idx_ops_sale_items_sale on ops_sale_items(sale_id);
 
+-- ── STAFF ALLOWLIST ──────────────────────────────────────────────────────────
+-- Only emails in here may use the platform. Add your team below.
+create table if not exists ops_staff (
+  email    text primary key,
+  added_at timestamptz not null default now()
+);
+
+-- CHANGE THIS to your own admin email before running on a fresh project.
+insert into ops_staff (email) values
+  ('sgordon1024@gmail.com')
+on conflict do nothing;
+
+create or replace function ops_is_staff()
+returns boolean
+language sql
+stable
+security definer
+as $$
+  select exists (select 1 from ops_staff where email = (auth.jwt() ->> 'email'));
+$$;
+
 -- ── ON-HAND VIEW ─────────────────────────────────────────────────────────────
 -- Each product with its current stock on hand (sum of the ledger).
 create or replace view ops_product_stock as
@@ -98,7 +119,7 @@ declare
   v_total   numeric(10,2) := 0;
   v_line    numeric(10,2);
 begin
-  if auth.role() is distinct from 'authenticated' then
+  if not ops_is_staff() then
     raise exception 'Not authorized';
   end if;
 
@@ -136,21 +157,24 @@ end;
 $$;
 
 -- ── ROW-LEVEL SECURITY ───────────────────────────────────────────────────────
--- Internal team tool: any signed-in user (Phil's team) has full access.
--- Public visitors (no session) can't touch anything.
+-- Internal team tool: only emails in ops_staff have access.
+-- Public visitors and other signed-in accounts can't touch anything.
 alter table ops_products        enable row level security;
 alter table ops_stock_movements enable row level security;
 alter table ops_sales           enable row level security;
 alter table ops_sale_items      enable row level security;
+alter table ops_staff           enable row level security;
 
-create policy "ops_products_auth"  on ops_products
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-create policy "ops_movements_auth" on ops_stock_movements
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-create policy "ops_sales_auth"     on ops_sales
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-create policy "ops_sale_items_auth" on ops_sale_items
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "ops_staff_select"     on ops_staff
+  for select using (ops_is_staff());
+create policy "ops_products_staff"   on ops_products
+  for all using (ops_is_staff()) with check (ops_is_staff());
+create policy "ops_movements_staff"  on ops_stock_movements
+  for all using (ops_is_staff()) with check (ops_is_staff());
+create policy "ops_sales_staff"      on ops_sales
+  for all using (ops_is_staff()) with check (ops_is_staff());
+create policy "ops_sale_items_staff" on ops_sale_items
+  for all using (ops_is_staff()) with check (ops_is_staff());
 
 -- ── SEED: current spirits lineup (runs only if the table is empty) ────────────
 insert into ops_products (name, category, size, proof, unit_price, unit_cost, reorder_point)
