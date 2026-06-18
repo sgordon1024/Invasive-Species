@@ -143,7 +143,7 @@ export default function Sales() {
 
             <span className="field" style={{ marginBottom: '0.4rem' }}><span>Line items</span></span>
             {lines.map((l, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 64px 92px 28px', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'center' }}>
+              <div key={i} className="line-item-row">
                 <select value={l.product_id} onChange={(e) => onProductPick(i, e.target.value)} required
                   style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: 6, padding: '0.55rem 0.6rem', color: 'var(--text)', font: 'inherit', fontSize: '0.85rem' }}>
                   <option value="">Select product…</option>

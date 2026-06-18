@@ -13,6 +13,14 @@ export default function Layout({ children }) {
 
   return (
     <div className="layout">
+      <header className="mobile-header">
+        <div className="mobile-header-brand">
+          <span className="sidebar-mark mobile-mark">IS</span>
+          <strong>Invasive Ops</strong>
+        </div>
+        <button className="btn btn-ghost btn-sm" onClick={signOut}>Sign out</button>
+      </header>
+
       <aside className="sidebar">
         <div className="sidebar-brand">
           <span className="sidebar-mark">IS</span>
