@@ -7,6 +7,15 @@
   },
   "specimens": [
     {
+      "id": "field-test",
+      "name": "The Test Subject",
+      "species": "Brewery Logo (Rana skeletona)",
+      "origin": "A laptop screen near you — delete this specimen before shipping",
+      "story": "Congratulations, the AR pipeline works. You are currently pointing a phone at a picture of a frog skeleton and it is talking back to you, which is either a triumph of engineering or a sign you've been in the woods too long. Walk closer and further to test the story card popping and dismissing, and try leaving a note below if Supabase is wired up.",
+      "imageName": "field-test.jpg",
+      "physicalWidthMeters": 0.25
+    },
+    {
       "id": "burmese-python",
       "name": "Banquet",
       "species": "Burmese Python (Python bivittatus)",
