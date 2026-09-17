@@ -1,0 +1,64 @@
+{
+  "venue": {
+    "name": "Invasive Species Brewing",
+    "latitude": 26.1325146,
+    "longitude": -80.1416794,
+    "radiusMeters": 60
+  },
+  "specimens": [
+    {
+      "id": "burmese-python",
+      "name": "Banquet",
+      "species": "Burmese Python (Python bivittatus)",
+      "origin": "Southeast Asia, by way of the Everglades",
+      "story": "Banquet here got her name because that's what she treated the Everglades like — an all-you-can-eat buffet. Pythons like her have eaten so many marsh rabbits and raccoons that biologists literally can't find enough left to count. She can unhinge her jaw to swallow a deer whole, which is also how some of our regulars approach the smash burger. Raise a glass; she earned the wall.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    },
+    {
+      "id": "lionfish",
+      "name": "Vlad",
+      "species": "Red Lionfish (Pterois volitans)",
+      "origin": "Indo-Pacific, dumped from somebody's aquarium",
+      "story": "Vlad is gorgeous, venomous, and has absolutely no natural predators in the Atlantic — a combination that also describes a few people at last call. One lionfish can wipe out most of the young fish on a reef patch in weeks. The good news: they're delicious. Eating invasives is conservation, which makes your fish sandwich basically volunteer work.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    },
+    {
+      "id": "green-iguana",
+      "name": "Iggy",
+      "species": "Green Iguana (Iguana iguana)",
+      "origin": "Central & South America, via the pet trade",
+      "story": "Iggy spent his years eating South Florida's landscaping and digging burrows that collapse seawalls. When it gets below 40°F, iguanas like him famously go rigid and drop straight out of trees — the only weather forecast Florida ever needed. He fell for the last time in the iguana blizzard of '22, and now he supervises the taproom.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    },
+    {
+      "id": "wild-hog",
+      "name": "Chompsky",
+      "species": "Wild Boar (Sus scrofa)",
+      "origin": "Brought by Spanish explorers in the 1500s",
+      "story": "Chompsky descends from hogs Hernando de Soto dropped off in Florida five hundred years ago, making him more of a local than anyone drinking here tonight. Wild hogs plow up wetlands like rototillers and eat literally anything, causing billions in damage a year. He lost an argument with a hunter in Okeechobee and won a permanent bar tab here.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    },
+    {
+      "id": "cane-toad",
+      "name": "Duke",
+      "species": "Cane Toad (Rhinella marina)",
+      "origin": "South America, imported to eat sugarcane beetles in 1936",
+      "story": "Duke was brought in to protect Florida's sugarcane. He did not protect the sugarcane. Instead, cane toads spread everywhere, ooze a toxin strong enough to take down a curious dog, and grow to the size of a dinner plate. A cautionary tale about hiring the wrong contractor — he sits here as a warning to us all.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    },
+    {
+      "id": "peacock-bass",
+      "name": "Flash",
+      "species": "Butterfly Peacock Bass (Cichla ocellaris)",
+      "origin": "Amazon Basin — one of the only invasives Florida invited on purpose",
+      "story": "Flash is the rare invader with a work visa: Florida stocked peacock bass in the '80s specifically to eat other invasive fish, and it mostly worked. He spent a decade terrorizing the canals of Miami-Dade before an angler with a topwater lure ended his run. He's the only one on this wall who was doing his job when he went.",
+      "imageName": null,
+      "physicalWidthMeters": null
+    }
+  ]
+}
